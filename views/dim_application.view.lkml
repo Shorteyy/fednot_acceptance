@@ -9,6 +9,7 @@ view: dim_application {
   }
 
   dimension: application_code {
+    drill_fields: [description]
     label: "Application"
     type: string
     sql: ${TABLE}.applicationCode ;;
@@ -58,6 +59,7 @@ view: dim_application {
   }
 
   dimension: is_itapplication {
+    drill_fields: [application_code, description]
     label: "IT Application"
     type: yesno
     sql: ${TABLE}.isITApplication ;;
@@ -127,6 +129,7 @@ view: dim_application {
   }
 
   measure: count {
+    hidden: yes
     type: count
     drill_fields: [m_model_run.m_model_run_id, m_model_run.m_model_name]
   }
