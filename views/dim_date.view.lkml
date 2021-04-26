@@ -19,6 +19,21 @@ view: dim_date {
   #   sql: ${TABLE}.Date ;;
   # }
 
+  parameter: timeframe_picker {
+    label: "Period Selector"
+    type: unquoted
+    allowed_value: { value: "Month" }
+    allowed_value: { value: "Quarter" }
+    allowed_value: { value: "Year" }
+  }
+
+  dimension: is_ytd {
+    type: yesno
+    group_label: "Date Restrictions"
+    label: "Is YTD?"
+    sql: EXTRACT(MONTH from ${date}) < EXTRACT(MONTH from CURRENT_TIMESTAMP);;
+  }
+
   dimension: date {
     type: date
     datatype: date

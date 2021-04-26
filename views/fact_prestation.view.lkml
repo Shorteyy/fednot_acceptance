@@ -3,37 +3,46 @@ view: fact_prestation {
     ;;
 
   dimension: dim_application_sk {
+    hidden: yes
     type: string
     sql: ${TABLE}.dim_application_sk ;;
   }
 
-  dimension_group: dim_days_sk {
-    type: time
-    timeframes: [
-      raw,
-      time,
-      date,
-      week,
-      month,
-      quarter,
-      year
-    ]
-    sql: ${TABLE}.dim_days_sk ;;
+  # dimension_group: dim_days_sk {
+  #   type: time
+  #   timeframes: [
+  #     raw,
+  #     time,
+  #     date,
+  #     week,
+  #     month,
+  #     quarter,
+  #     year
+  #   ]
+  #   sql: ${TABLE}.dim_days_sk ;;
+  # }
+
+  dimension: dim_days_sk {
+    hidden: yes
+    type: date
+    sql: CAST(${TABLE}.dim_days_sk as date) ;;
   }
 
   dimension: dim_notary_office_sk {
+    hidden: yes
     type: string
     sql: ${TABLE}.dim_notaryOffice_sk ;;
   }
 
   dimension: dim_province_sk {
+    hidden: yes
     type: string
     sql: ${TABLE}.dim_province_sk ;;
   }
 
   dimension: m_model_run_id {
     type: string
-    # hidden: yes
+    hidden: yes
     sql: ${TABLE}.m_model_run_id ;;
   }
 
@@ -42,24 +51,24 @@ view: fact_prestation {
     sql: ${TABLE}.qty ;;
   }
 
-  dimension_group: row_start_dt {
-    type: time
-    timeframes: [
-      raw,
-      time,
-      date,
-      week,
-      month,
-      quarter,
-      year
-    ]
-    sql: ${TABLE}.row_start_dt ;;
-  }
+  # dimension_group: row_start_dt {
+  #   type: time
+  #   timeframes: [
+  #     raw,
+  #     time,
+  #     date,
+  #     week,
+  #     month,
+  #     quarter,
+  #     year
+  #   ]
+  #   sql: ${TABLE}.row_start_dt ;;
+  # }
 
-  dimension: year_month {
-    type: string
-    sql: ${TABLE}.yearMonth ;;
-  }
+  # dimension: year_month {
+  #   type: string
+  #   sql: ${TABLE}.yearMonth ;;
+  # }
 
   measure: count {
     type: count
