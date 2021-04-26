@@ -22,7 +22,7 @@ view: dim_date {
   dimension: date {
     type: date
     datatype: date
-    sql: ${TABLE}.date) ;;
+    sql: ${TABLE}.date ;;
   }
 
   dimension: day_name {
