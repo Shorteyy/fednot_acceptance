@@ -73,6 +73,7 @@ view: dim_application {
 
   dimension: notary_business {
     label: "Notary Group"
+    drill_fields: [application_code, description]
     type: string
     sql: ${TABLE}.notaryBusiness ;;
   }
