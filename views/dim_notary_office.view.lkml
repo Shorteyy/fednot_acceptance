@@ -2,50 +2,91 @@ view: dim_notary_office {
   sql_table_name: `dwh.dim_notaryOffice`
     ;;
 
+  parameter: pick_language {
+    type: string
+    allowed_value: { value: "NL" }
+    allowed_value: { value: "FR" }
+  }
+
   dimension: address {
     type: string
+    hidden: yes
     sql: ${TABLE}.address ;;
   }
 
   dimension: address_fr {
     type: string
+    hidden: yes
     sql: ${TABLE}.addressFr ;;
   }
 
   dimension: address_nl {
+    hidden: yes
     type: string
     sql: ${TABLE}.addressNl ;;
   }
 
+  dimension: address_description {
+    label: "Address"
+    label_from_parameter: pick_language
+    sql:
+        {% if pick_language._parameter_value == "'NL'" %}
+          ${address_nl}
+        {% elsif pick_language._parameter_value == "'FR'" %}
+          ${address_fr}
+         {% else %}
+          ${address_nl}
+        {% endif %};;
+  }
+
   dimension: dim_notary_office_sk {
+    primary_key: yes
     type: string
+    hidden: yes
     sql: ${TABLE}.dim_notaryOffice_sk ;;
   }
 
   dimension: h_notary_office_bk {
     type: number
+    hidden: yes
     sql: ${TABLE}.h_notaryOffice_bk ;;
   }
 
   dimension: m_model_run_id {
     type: string
-    # hidden: yes
+    hidden: yes
     sql: ${TABLE}.m_model_run_id ;;
   }
 
   dimension: municipality {
     type: string
+    hidden: yes
     sql: ${TABLE}.municipality ;;
   }
 
   dimension: municipality_fr {
     type: string
+    hidden:  yes
     sql: ${TABLE}.municipalityFr ;;
   }
 
   dimension: municipality_nl {
     type: string
+    hidden:  yes
     sql: ${TABLE}.municipalityNl ;;
+  }
+
+  dimension: municipality_description {
+    label: "Municipality"
+    label_from_parameter: pick_language
+    sql:
+        {% if pick_language._parameter_value == "'NL'" %}
+          ${municipality_nl}
+        {% elsif pick_language._parameter_value == "'FR'" %}
+          ${municipality_fr}
+         {% else %}
+          ${municipality_nl}
+        {% endif %};;
   }
 
   dimension: notary_office_name {
@@ -60,11 +101,13 @@ view: dim_notary_office {
 
   dimension: row_current {
     type: number
+    hidden: yes
     sql: ${TABLE}.row_current ;;
   }
 
   dimension_group: row_end_dt {
     type: time
+    hidden: yes
     timeframes: [
       raw,
       time,
@@ -79,6 +122,7 @@ view: dim_notary_office {
 
   dimension_group: row_start_dt {
     type: time
+    hidden: yes
     timeframes: [
       raw,
       time,
@@ -93,6 +137,7 @@ view: dim_notary_office {
 
   dimension_group: row_start_dt_orig {
     type: time
+    hidden:  yes
     timeframes: [
       raw,
       time,
@@ -107,6 +152,7 @@ view: dim_notary_office {
 
   measure: count {
     type: count
+    hidden: yes
     drill_fields: [notary_office_name, m_model_run.m_model_run_id, m_model_run.m_model_name]
   }
 }
