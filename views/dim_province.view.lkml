@@ -1,4 +1,5 @@
 view: dim_province {
+  label: "Province"
   sql_table_name: `dwh.dim_province`
     ;;
 
@@ -95,6 +96,7 @@ view: dim_province {
 
   dimension_group: row_end_dt {
     type: time
+    hidden: yes
     timeframes: [
       raw,
       time,
@@ -109,11 +111,13 @@ view: dim_province {
 
   dimension: row_is_current_flag {
     type: number
+    hidden: yes
     sql: ${TABLE}.row_is_current_flag ;;
   }
 
   dimension_group: row_start_dt {
     type: time
+    hidden: yes
     timeframes: [
       raw,
       time,
@@ -128,6 +132,7 @@ view: dim_province {
 
   measure: count {
     type: count
+    hidden: yes
     drill_fields: [m_model_run.m_model_run_id, m_model_run.m_model_name]
   }
 }

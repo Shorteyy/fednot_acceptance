@@ -1,20 +1,28 @@
 view: dim_date {
+  label: "Date Hierarchy"
   sql_table_name: `dwh.DimDate`
     ;;
 
-  dimension_group: date {
-    type: time
-    timeframes: [
-      raw,
-      date,
-      week,
-      month,
-      quarter,
-      year
-    ]
-    convert_tz: no
+  # dimension_group: date {
+  #   type: time
+  #   hidden: yes
+  #   timeframes: [
+  #     raw,
+  #     date,
+  #     week,
+  #     month,
+  #     quarter,
+  #     year
+  #   ]
+  #   convert_tz: no
+  #   datatype: date
+  #   sql: ${TABLE}.Date ;;
+  # }
+
+  dimension: date {
+    type: date
     datatype: date
-    sql: ${TABLE}.Date ;;
+    sql: ${TABLE}.date) ;;
   }
 
   dimension: day_name {
@@ -57,47 +65,65 @@ view: dim_date {
     sql: ${TABLE}.DaySuffix ;;
   }
 
-  dimension_group: first_day_of_month {
-    type: time
-    timeframes: [
-      raw,
-      date,
-      week,
-      month,
-      quarter,
-      year
-    ]
-    convert_tz: no
+  # dimension_group: first_day_of_month {
+  #   type: time
+  #   timeframes: [
+  #     raw,
+  #     date,
+  #     week,
+  #     month,
+  #     quarter,
+  #     year
+  #   ]
+  #   convert_tz: no
+  #   datatype: date
+  #   sql: ${TABLE}.FirstDayOfMonth ;;
+  # }
+
+  dimension: first_day_of_month {
+    type: date
     datatype: date
     sql: ${TABLE}.FirstDayOfMonth ;;
   }
 
-  dimension_group: first_day_of_quarter {
-    type: time
-    timeframes: [
-      raw,
-      date,
-      week,
-      month,
-      quarter,
-      year
-    ]
-    convert_tz: no
+  # dimension_group: first_day_of_quarter {
+  #   type: time
+  #   timeframes: [
+  #     raw,
+  #     date,
+  #     week,
+  #     month,
+  #     quarter,
+  #     year
+  #   ]
+  #   convert_tz: no
+  #   datatype: date
+  #   sql: ${TABLE}.FirstDayOfQuarter ;;
+  # }
+
+  dimension: first_day_of_quarter {
+    type: date
     datatype: date
     sql: ${TABLE}.FirstDayOfQuarter ;;
   }
 
-  dimension_group: first_day_of_year {
-    type: time
-    timeframes: [
-      raw,
-      date,
-      week,
-      month,
-      quarter,
-      year
-    ]
-    convert_tz: no
+  # dimension_group: first_day_of_year {
+  #   type: time
+  #   timeframes: [
+  #     raw,
+  #     date,
+  #     week,
+  #     month,
+  #     quarter,
+  #     year
+  #   ]
+  #   convert_tz: no
+  #   datatype: date
+  #   sql: ${TABLE}.FirstDayOfYear ;;
+  # }
+
+  dimension: first_day_of_year {
+    type: date
     datatype: date
     sql: ${TABLE}.FirstDayOfYear ;;
   }
@@ -117,53 +143,72 @@ view: dim_date {
     sql: ${TABLE}.IsWeekday ;;
   }
 
-  dimension_group: last_day_of_month {
-    type: time
-    timeframes: [
-      raw,
-      date,
-      week,
-      month,
-      quarter,
-      year
-    ]
-    convert_tz: no
+  # dimension_group: last_day_of_month {
+  #   type: time
+  #   timeframes: [
+  #     raw,
+  #     date,
+  #     week,
+  #     month,
+  #     quarter,
+  #     year
+  #   ]
+  #   convert_tz: no
+  #   datatype: date
+  #   sql: ${TABLE}.LastDayOfMonth ;;
+  # }
+
+  dimension: last_day_of_month {
+    type: date
     datatype: date
     sql: ${TABLE}.LastDayOfMonth ;;
   }
 
-  dimension_group: last_day_of_quarter {
-    type: time
-    timeframes: [
-      raw,
-      date,
-      week,
-      month,
-      quarter,
-      year
-    ]
-    convert_tz: no
+  # dimension_group: last_day_of_quarter {
+  #   type: time
+  #   timeframes: [
+  #     raw,
+  #     date,
+  #     week,
+  #     month,
+  #     quarter,
+  #     year
+  #   ]
+  #   convert_tz: no
+  #   datatype: date
+  #   sql: ${TABLE}.LastDayOfQuarter ;;
+  # }
+
+  dimension: last_day_of_quarter {
+    type: date
     datatype: date
     sql: ${TABLE}.LastDayOfQuarter ;;
   }
 
-  dimension_group: last_day_of_year {
-    type: time
-    timeframes: [
-      raw,
-      date,
-      week,
-      month,
-      quarter,
-      year
-    ]
-    convert_tz: no
+  # dimension_group: last_day_of_year {
+  #   type: time
+  #   timeframes: [
+  #     raw,
+  #     date,
+  #     week,
+  #     month,
+  #     quarter,
+  #     year
+  #   ]
+  #   convert_tz: no
+  #   datatype: date
+  #   sql: ${TABLE}.LastDayOfYear ;;
+  # }
+
+  dimension: last_day_of_year {
+    type: date
     datatype: date
     sql: ${TABLE}.LastDayOfYear ;;
   }
 
   dimension: mmyyyy {
     type: string
+    drill_fields: [date]
     sql: ${TABLE}.MMYYYY ;;
   }
 
@@ -183,11 +228,14 @@ view: dim_date {
   }
 
   dimension: month_year {
+    drill_fields: [date]
     type: string
     sql: ${TABLE}.MonthYear ;;
   }
 
   dimension: pk_date {
+    primary_key: yes
+    hidden: yes
     type: number
     sql: ${TABLE}.PK_Date ;;
   }
@@ -203,6 +251,7 @@ view: dim_date {
   }
 
   dimension: quarter_year {
+    drill_fields: [month_year, date]
     type: string
     sql: ${TABLE}.QuarterYear ;;
   }
@@ -223,6 +272,7 @@ view: dim_date {
   }
 
   dimension: year {
+    drill_fields: [month_year,date]
     type: string
     sql: ${TABLE}.Year ;;
   }
@@ -239,6 +289,7 @@ view: dim_date {
 
   measure: count {
     type: count
+    hidden: yes
     drill_fields: [year_name, quarter_name, day_name, month_name]
   }
 }

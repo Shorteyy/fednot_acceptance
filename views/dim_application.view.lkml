@@ -1,4 +1,5 @@
 view: dim_application {
+  label: "Application"
   sql_table_name: `dwh.dim_application`
     ;;
 
