@@ -16,6 +16,7 @@ view: dim_application {
   }
 
   dimension: business_group {
+    drill_fields: [description]
     type: string
     sql: ${TABLE}.businessGroup ;;
   }
@@ -73,7 +74,7 @@ view: dim_application {
 
   dimension: notary_business {
     label: "Notary Group"
-    drill_fields: [application_code, description]
+    drill_fields: [description]
     type: string
     sql: ${TABLE}.notaryBusiness ;;
   }
