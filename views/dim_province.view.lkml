@@ -96,7 +96,7 @@ view: dim_province {
     label: "Province Area"
     type: string
     map_layer_name: province_location_belgium
-    sql: concat("Provincie " || trim(${TABLE}.h_province_bk)) ;;
+    sql: concat("Provincie " || trim(${TABLE}.provinceNl)) ;;
   }
 
   dimension: province_lat {
