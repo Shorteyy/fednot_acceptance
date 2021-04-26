@@ -239,23 +239,23 @@ explore: fact_prestation {
 #   }
 # }
 
-explore: m_job_run {
-fields: []
-}
+# explore: m_job_run {
+# fields: []
+# }
 
-explore: m_model_run {
-  fields: []
-  join: m_job_run {
-   type: left_outer
-   sql_on: ${m_model_run.m_job_run_id} = ${m_job_run.m_job_run_id} ;;
-   relationship: many_to_one
- }
-}
+# explore: m_model_run {
+#   fields: []
+#   join: m_job_run {
+#   type: left_outer
+#   sql_on: ${m_model_run.m_job_run_id} = ${m_job_run.m_job_run_id} ;;
+#   relationship: many_to_one
+# }
+# }
 
-explore: vw_dim_application {
-  fields: []
-}
+# explore: vw_dim_application {
+#   fields: []
+# }
 
-explore: vw_dim_application_month {
-  fields: []
-}
+# explore: vw_dim_application_month {
+#   fields: []
+# }
