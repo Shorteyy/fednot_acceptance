@@ -27,17 +27,25 @@ view: dim_date {
     allowed_value: { value: "Year" }
   }
 
-  dimension: is_ytd {
-    type: yesno
-    group_label: "Date Restrictions"
-    label: "Is YTD?"
-    sql: EXTRACT(MONTH from ${date}) < EXTRACT(MONTH from CURRENT_TIMESTAMP);;
-  }
-
   dimension: date {
     type: date
     datatype: date
     sql: ${TABLE}.date ;;
+  }
+
+  dimension: timeframe {
+    label_from_parameter: timeframe_picker
+    type: string
+    sql:
+    {% if timeframe_picker._parameter_value == 'Month'  %}
+      ${month_year}
+    {% elsif timeframe_picker._parameter_value == 'Year' %}
+      ${year}
+      {% elsif timeframe_picker._parameter_value == 'Quarter' %}
+      ${quarter_year}
+    {% else %}
+      ${quarter_year}
+    {% endif %};;
   }
 
   dimension: day_name {
