@@ -48,8 +48,8 @@ explore: fact_prestation {
     relationship: many_to_one
     type: left_outer # Could be excluded since left_outer is the default
   }
-  join: dim_days {
-    sql_on: CAST(${fact_prestation.dim_days_sk_date} as date) = ${dim_days.day_date} ;;
+  join: dim_date {
+    sql_on: CAST(${fact_prestation.dim_days_sk_date} as date) = ${dim_date.date_date} ;;
     relationship:  many_to_one
     type: left_outer
   }
