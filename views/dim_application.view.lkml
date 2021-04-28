@@ -13,8 +13,8 @@ view: dim_application {
     label: "Operation Group Selector"
     type: unquoted
     allowed_value: { value: "Application" }
-    allowed_value: { value: "Business Group" }
-    allowed_value: { value: "Notary Business" }
+    allowed_value: { value: "Business_Group" }
+    allowed_value: { value: "Notary_Business" }
   }
 
   dimension: application_code {
@@ -94,9 +94,9 @@ view: dim_application {
     sql:
     {% if operation_group_picker._parameter_value == 'Application'  %}
       ${application_code}
-    {% elsif operation_group_picker._parameter_value == 'Business Group' %}
+    {% elsif operation_group_picker._parameter_value == 'Business_Group' %}
       ${business_group}
-      {% elsif operation_group_picker._parameter_value == 'Notary Business' %}
+      {% elsif operation_group_picker._parameter_value == 'Notary_Business' %}
       ${notary_business}
     {% else %}
       ${application_code}
