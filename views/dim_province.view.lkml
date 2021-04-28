@@ -155,7 +155,7 @@ view: dim_province {
     map_layer_name: region_location_belgium
     sql: CASE
           WHEN ${TABLE}.region = "Vlaanderen" THEN "Vlaams Gewest"
-          WHEN ${TABLE}.region = "Wallonie" THEN "Waals Gewest"
+          WHEN ${TABLE}.region = "Wallonië" THEN "Waals Gewest"
           ELSE "Brussels Hoofdstedelijk Gewest"
           END ;;
   }
