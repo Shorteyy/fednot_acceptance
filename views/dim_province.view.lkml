@@ -154,8 +154,8 @@ view: dim_province {
     drill_fields: [province_area]
     map_layer_name: region_location_belgium
     sql: CASE
-          WHEN ${TABLE}.region = "Vlaanderen" THEN "Vlaams Gewest"
-          WHEN ${TABLE}.region = "Wallonië" THEN "Waals Gewest"
+          WHEN ${TABLE}.regionNl = "Vlaanderen" THEN "Vlaams Gewest"
+          WHEN ${TABLE}.regionNl = "Wallonië" THEN "Waals Gewest"
           ELSE "Brussels Hoofdstedelijk Gewest"
           END ;;
   }
