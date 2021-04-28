@@ -54,7 +54,6 @@ view: fact_prestation {
   }
 
   dimension: is_ytd {
-    hidden: yes
     type: yesno
     label: "Is YTD?"
     sql: EXTRACT(MONTH from ${dim_days_sk}) < EXTRACT(MONTH from CURRENT_TIMESTAMP);;
