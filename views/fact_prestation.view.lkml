@@ -86,7 +86,7 @@ view: fact_prestation {
 
   measure: count {
     type: count
-    drill_fields: [m_model_run.m_model_run_id, m_model_run.m_model_name]
+    drill_fields: []
   }
 
   measure: sum_qty {
