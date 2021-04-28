@@ -1,5 +1,5 @@
 view: dim_date {
-  label: "Date Hierarchy"
+  # label: "Date Hierarchy"
   sql_table_name: `dwh.DimDate`
     ;;
 
