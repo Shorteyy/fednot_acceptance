@@ -117,6 +117,4 @@ view: fact_prestation {
     }
     sql: ${qty} ;;
   }
-
-
 }

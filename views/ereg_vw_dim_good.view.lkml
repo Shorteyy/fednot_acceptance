@@ -68,33 +68,34 @@ view: ereg_vw_dim_good {
     sql: ${TABLE}.LandRegisterDivisionNumberLabel ;;
   }
 
-  dimension_group: m_job_datetime {
-    type: time
-    timeframes: [
-      raw,
-      time,
-      date,
-      week,
-      month,
-      quarter,
-      year
-    ]
-    sql: ${TABLE}.m_job_datetime ;;
-  }
+  # dimension_group: m_job_datetime {
+  #   type: time
+  #   timeframes: [
+  #     raw,
+  #     time,
+  #     date,
+  #     week,
+  #     month,
+  #     quarter,
+  #     year
+  #   ]
+  #   sql: ${TABLE}.m_job_datetime ;;
+  # }
 
-  dimension: m_job_run_id {
-    type: string
-    # hidden: yes
-    sql: ${TABLE}.m_job_run_id ;;
-  }
+  # dimension: m_job_run_id {
+  #   type: string
+  #   # hidden: yes
+  #   sql: ${TABLE}.m_job_run_id ;;
+  # }
 
-  dimension: m_model_run_id {
-    type: string
-    # hidden: yes
-    sql: ${TABLE}.m_model_run_id ;;
-  }
+  # dimension: m_model_run_id {
+  #   type: string
+  #   # hidden: yes
+  #   sql: ${TABLE}.m_model_run_id ;;
+  # }
 
   dimension: pk_ereg_good {
+    hidden: yes
     type: string
     sql: ${TABLE}.PK_EregGood ;;
   }
@@ -119,10 +120,10 @@ view: ereg_vw_dim_good {
     sql: ${TABLE}.SendingTransactionGoodId ;;
   }
 
-  dimension: sys_insert_update_date {
-    type: string
-    sql: ${TABLE}.Sys_InsertUpdateDate ;;
-  }
+  # dimension: sys_insert_update_date {
+  #   type: string
+  #   sql: ${TABLE}.Sys_InsertUpdateDate ;;
+  # }
 
   dimension: unique_good_identifier {
     type: string
@@ -130,7 +131,8 @@ view: ereg_vw_dim_good {
   }
 
   measure: count {
+    hidden: yes
     type: count
-    drill_fields: [m_job_run.m_job_run_id, m_job_run.m_job_name, m_model_run.m_model_run_id, m_model_run.m_model_name]
+    drill_fields: []
   }
 }

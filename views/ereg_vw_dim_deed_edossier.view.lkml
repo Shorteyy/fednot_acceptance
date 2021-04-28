@@ -3,6 +3,12 @@ view: ereg_vw_dim_deed_edossier {
   sql_table_name: `dwh.ereg_vwDimDeedEdossier`
     ;;
 
+  parameter: pick_language {
+    type: string
+    allowed_value: { value: "NL" }
+    allowed_value: { value: "FR" }
+  }
+
   dimension: deed_id {
     type: string
     sql: ${TABLE}.DeedId ;;
@@ -39,18 +45,34 @@ view: ereg_vw_dim_deed_edossier {
   }
 
   dimension: last_deed_request_formality {
+    hidden: no
     type: string
     sql: ${TABLE}.LastDeedRequestFormality ;;
   }
 
   dimension: last_deed_request_formality_label_fr {
+    hidden: yes
     type: string
     sql: ${TABLE}.LastDeedRequestFormalityLabelFR ;;
   }
 
   dimension: last_deed_request_formality_label_nl {
+    hidden: yes
     type: string
     sql: ${TABLE}.LastDeedRequestFormalityLabelNL ;;
+  }
+
+  dimension: last_deed_request_formality_label {
+    label: "Last Deed Request Formality Label"
+    label_from_parameter: pick_language
+    sql:
+        {% if pick_language._parameter_value == "'NL'" %}
+          IF(${last_deed_request_formality_label_nl} = "NA",${last_deed_request_formality_label_fr},${last_deed_request_formality_label_nl})
+        {% elsif pick_language._parameter_value == "'FR'" %}
+          IF(${last_deed_request_formality_label_fr} = "NA",${last_deed_request_formality_label_nl },${last_deed_request_formality_label_fr})
+         {% else %}
+          ${last_deed_request_formality_label_nl}
+        {% endif %};;
   }
 
   dimension: last_deed_size {
@@ -58,44 +80,46 @@ view: ereg_vw_dim_deed_edossier {
     sql: ${TABLE}.LastDeedSize ;;
   }
 
-  dimension_group: m_job_datetime {
-    type: time
-    timeframes: [
-      raw,
-      time,
-      date,
-      week,
-      month,
-      quarter,
-      year
-    ]
-    sql: ${TABLE}.m_job_datetime ;;
-  }
+  # dimension_group: m_job_datetime {
+  #   type: time
+  #   timeframes: [
+  #     raw,
+  #     time,
+  #     date,
+  #     week,
+  #     month,
+  #     quarter,
+  #     year
+  #   ]
+  #   sql: ${TABLE}.m_job_datetime ;;
+  # }
 
-  dimension: m_job_run_id {
-    type: string
-    # hidden: yes
-    sql: ${TABLE}.m_job_run_id ;;
-  }
+  # dimension: m_job_run_id {
+  #   type: string
+  #   # hidden: yes
+  #   sql: ${TABLE}.m_job_run_id ;;
+  # }
 
-  dimension: m_model_run_id {
-    type: string
-    # hidden: yes
-    sql: ${TABLE}.m_model_run_id ;;
-  }
+  # dimension: m_model_run_id {
+  #   type: string
+  #   # hidden: yes
+  #   sql: ${TABLE}.m_model_run_id ;;
+  # }
 
   dimension: pk_ereg_deed_edossier {
+    hidden: yes
     type: string
     sql: ${TABLE}.PK_EregDeedEdossier ;;
   }
 
-  dimension: sys_insert_update_date {
-    type: string
-    sql: ${TABLE}.Sys_InsertUpdateDate ;;
-  }
+  # dimension: sys_insert_update_date {
+  #   type: string
+  #   sql: ${TABLE}.Sys_InsertUpdateDate ;;
+  # }
 
   measure: count {
+    hidden:  yes
     type: count
-    drill_fields: [itprovider_name, m_job_run.m_job_run_id, m_job_run.m_job_name, m_model_run.m_model_run_id, m_model_run.m_model_name]
+    drill_fields: []
   }
 }

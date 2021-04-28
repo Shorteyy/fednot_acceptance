@@ -176,6 +176,27 @@ view: ereg_vw_fact_transaction {
     sql: ${TABLE}.QuotaNumerator ;;
   }
 
+  dimension: is_ytd_deed {
+    hidden: yes
+    type: yesno
+    label: "Is YTD?"
+    sql: EXTRACT(MONTH from ${fk_date_deed}) < EXTRACT(MONTH from CURRENT_TIMESTAMP);;
+  }
+
+  dimension: is_ytd_First_FedNot_Sending {
+    hidden: yes
+    type: yesno
+    label: "Is YTD?"
+    sql: EXTRACT(MONTH from ${fk_date_first_fed_not_sending}) < EXTRACT(MONTH from CURRENT_TIMESTAMP);;
+  }
+
+  dimension: is_ytd_Expedition_Signed {
+    hidden: yes
+    type: yesno
+    label: "Is YTD?"
+    sql: EXTRACT(MONTH from ${fk_date_expedition_signed}) < EXTRACT(MONTH from CURRENT_TIMESTAMP);;
+  }
+
   # dimension: sys_insert_update_date {
   #   type: string
   #   sql: ${TABLE}.Sys_InsertUpdateDate ;;
@@ -185,4 +206,33 @@ view: ereg_vw_fact_transaction {
     type: count
     drill_fields: []
   }
+
+  # measure: sum_qty {
+  #   label: "# Transactions"
+  #   type: sum
+  #   sql: ${count} ;;
+  # }
+
+  # measure: avg_qty {
+  #   label: "Average # Transactions"
+  #   type:  average
+  #   sql: ${count} ;;
+  # }
+
+  # measure: percent_of_total_operations {
+  #   label: "% of Total # Transactions"
+  #   type: percent_of_total
+  #   value_format: "0.00\%"
+  #   sql: ${sum_qty} ;;
+  # }
+
+  # measure: total_sum_ytd_deed {
+  #   label: "# Transactions YTD"
+  #   type: sum
+  #   filters: {
+  #     field: is_ytd_deed
+  #     value: "yes"
+  #   }
+  #   sql: ${count} ;;
+  # }
 }
