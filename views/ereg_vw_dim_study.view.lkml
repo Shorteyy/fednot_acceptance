@@ -1,4 +1,5 @@
 view: ereg_vw_dim_study {
+  label: "Notary Office"
   sql_table_name: `dwh.ereg_vwDimStudy`
     ;;
 

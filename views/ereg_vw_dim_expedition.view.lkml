@@ -1,4 +1,5 @@
 view: ereg_vw_dim_expedition {
+  label: "Expedition"
   sql_table_name: `dwh.ereg_vwDimExpedition`
     ;;
 

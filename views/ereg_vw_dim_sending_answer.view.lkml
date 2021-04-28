@@ -1,4 +1,5 @@
 view: ereg_vw_dim_sending_answer {
+  label: "Sending Answer"
   sql_table_name: `dwh.ereg_vwDimSendingAnswer`
     ;;
 

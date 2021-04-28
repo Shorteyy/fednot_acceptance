@@ -41,12 +41,12 @@ explore: fact_prestation {
   join: dim_application {
     sql_on: ${fact_prestation.dim_application_sk} = ${dim_application.dim_application_sk} ;;
     relationship: many_to_one
-    type: left_outer # Could be excluded since left_outer is the default
+    type: left_outer
   }
   join: dim_province {
     sql_on: ${fact_prestation.dim_province_sk} = ${dim_province.dim_province_sk} ;;
     relationship: many_to_one
-    type: left_outer # Could be excluded since left_outer is the default
+    type: left_outer
   }
   join: dim_date {
     sql_on: ${fact_prestation.dim_days_sk} = ${dim_date.date} ;;

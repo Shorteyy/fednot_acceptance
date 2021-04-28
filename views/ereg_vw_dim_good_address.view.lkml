@@ -1,4 +1,5 @@
 view: ereg_vw_dim_good_address {
+  label: "Good Address"
   sql_table_name: `dwh.ereg_vwDimGoodAddress`
     ;;
 
