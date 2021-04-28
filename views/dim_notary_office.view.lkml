@@ -32,11 +32,11 @@ view: dim_notary_office {
     label_from_parameter: pick_language
     sql:
         {% if pick_language._parameter_value == "'NL'" %}
-          ${address_nl}
+          IF(${address_nl} = "NA",${address_fr},${address_nl})
         {% elsif pick_language._parameter_value == "'FR'" %}
-          ${address_fr}
+          IF(${address_fr} = "NA",${address_nl},${address_fr})
          {% else %}
-          ${address_nl}
+          ${address}
         {% endif %};;
   }
 
@@ -82,11 +82,11 @@ view: dim_notary_office {
     label_from_parameter: pick_language
     sql:
         {% if pick_language._parameter_value == "'NL'" %}
-          ${municipality_nl}
+          IF(${municipality_nl} ="NA",${municipality_fr},${municipality_nl})
         {% elsif pick_language._parameter_value == "'FR'" %}
-          ${municipality_fr}
+          IF(${municipality_fr} ="NA",${municipality_nl},${municipality_fr})
          {% else %}
-          ${municipality_nl}
+          ${municipality}
         {% endif %};;
   }
 
