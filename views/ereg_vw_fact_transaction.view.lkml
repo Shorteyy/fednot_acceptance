@@ -3,43 +3,43 @@ view: ereg_vw_fact_transaction {
     ;;
 
   dimension: fk_date_deed {
-    type: string
-    sql: ${TABLE}.FK_Date_Deed ;;
+    type: date
+    sql: cast(${TABLE}.FK_Date_Deed as date);;
   }
 
   dimension: fk_date_deed_registered_aa {
-    type: string
-    sql: ${TABLE}.FK_Date_DeedRegisteredAA ;;
+    type: date
+    sql: cast(${TABLE}.FK_Date_DeedRegisteredAA as date) ;;
   }
 
   dimension: fk_date_edossier_creation {
-    type: string
-    sql: ${TABLE}.FK_Date_EdossierCreation ;;
+    type: date
+    sql: cast(${TABLE}.FK_Date_EdossierCreation as date);;
   }
 
   dimension: fk_date_expedition_signed {
-    type: string
-    sql: ${TABLE}.FK_Date_ExpeditionSigned ;;
+    type: date
+    sql: cast(${TABLE}.FK_Date_ExpeditionSigned as date);;
   }
 
   dimension: fk_date_fed_not_received_answer {
-    type: string
-    sql: ${TABLE}.FK_Date_FedNotReceivedAnswer ;;
+    type: date
+    sql: cast(${TABLE}.FK_Date_FedNotReceivedAnswer as date);;
   }
 
   dimension: fk_date_fed_not_sending {
-    type: string
-    sql: ${TABLE}.FK_Date_FedNotSending ;;
+    type: date
+    sql: cast(${TABLE}.FK_Date_FedNotSending as date);;
   }
 
   dimension: fk_date_first_fed_not_sending {
-    type: string
-    sql: ${TABLE}.FK_Date_FirstFedNotSending ;;
+    type: date
+    sql: cast(${TABLE}.FK_Date_FirstFedNotSending as date);;
   }
 
   dimension: fk_date_request {
-    type: string
-    sql: ${TABLE}.FK_Date_Request ;;
+    type: date
+    sql: cast(${TABLE}.FK_Date_Request as date);;
   }
 
   dimension: fk_ereg_deed_edossier {
@@ -117,31 +117,31 @@ view: ereg_vw_fact_transaction {
     sql: ${TABLE}.IsPartyFromCommunity ;;
   }
 
-  dimension_group: m_job_datetime {
-    type: time
-    timeframes: [
-      raw,
-      time,
-      date,
-      week,
-      month,
-      quarter,
-      year
-    ]
-    sql: ${TABLE}.m_job_datetime ;;
-  }
+  # dimension_group: m_job_datetime {
+  #   type: time
+  #   timeframes: [
+  #     raw,
+  #     time,
+  #     date,
+  #     week,
+  #     month,
+  #     quarter,
+  #     year
+  #   ]
+  #   sql: ${TABLE}.m_job_datetime ;;
+  # }
 
-  dimension: m_job_run_id {
-    type: string
-    # hidden: yes
-    sql: ${TABLE}.m_job_run_id ;;
-  }
+  # dimension: m_job_run_id {
+  #   type: string
+  #   # hidden: yes
+  #   sql: ${TABLE}.m_job_run_id ;;
+  # }
 
-  dimension: m_model_run_id {
-    type: string
-    # hidden: yes
-    sql: ${TABLE}.m_model_run_id ;;
-  }
+  # dimension: m_model_run_id {
+  #   type: string
+  #   # hidden: yes
+  #   sql: ${TABLE}.m_model_run_id ;;
+  # }
 
   dimension: quota_denominator {
     type: string
@@ -153,13 +153,13 @@ view: ereg_vw_fact_transaction {
     sql: ${TABLE}.QuotaNumerator ;;
   }
 
-  dimension: sys_insert_update_date {
-    type: string
-    sql: ${TABLE}.Sys_InsertUpdateDate ;;
-  }
+  # dimension: sys_insert_update_date {
+  #   type: string
+  #   sql: ${TABLE}.Sys_InsertUpdateDate ;;
+  # }
 
   measure: count {
     type: count
-    drill_fields: [m_job_run.m_job_run_id, m_job_run.m_job_name, m_model_run.m_model_run_id, m_model_run.m_model_name]
+    drill_fields: []
   }
 }
