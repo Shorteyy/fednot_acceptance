@@ -9,6 +9,14 @@ view: dim_application {
     allowed_value: { value: "FR" }
   }
 
+  parameter: operation_group_picker {
+    label: "Operation Group Selector"
+    type: unquoted
+    allowed_value: { value: "Application" }
+    allowed_value: { value: "Business Group" }
+    allowed_value: { value: "Notary Business" }
+  }
+
   dimension: application_code {
     drill_fields: [description]
     label: "Application"
@@ -67,17 +75,32 @@ view: dim_application {
     sql: ${TABLE}.isITApplication ;;
   }
 
-  dimension: m_model_run_id {
-    type: string
-    hidden: yes
-    sql: ${TABLE}.m_model_run_id ;;
-  }
+  # dimension: m_model_run_id {
+  #   type: string
+  #   hidden: yes
+  #   sql: ${TABLE}.m_model_run_id ;;
+  # }
 
   dimension: notary_business {
-    label: "Notary Group"
+    label: "Notary Business"
     drill_fields: [description]
     type: string
     sql: ${TABLE}.notaryBusiness ;;
+  }
+
+  dimension: operation_group {
+    label_from_parameter: operation_group_picker
+    type: string
+    sql:
+    {% if operation_group_picker._parameter_value == 'Application'  %}
+      ${application_code}
+    {% elsif operation_group_picker._parameter_value == 'Business Group' %}
+      ${business_group}
+      {% elsif operation_group_picker._parameter_value == 'Notary Business' %}
+      ${notary_business}
+    {% else %}
+      ${application_code}
+    {% endif %};;
   }
 
   dimension: row_current {
@@ -86,54 +109,54 @@ view: dim_application {
     sql: ${TABLE}.row_current ;;
   }
 
-  dimension_group: row_end_dt {
-    type: time
-    hidden: yes
-    timeframes: [
-      raw,
-      time,
-      date,
-      week,
-      month,
-      quarter,
-      year
-    ]
-    sql: ${TABLE}.row_end_dt ;;
-  }
+  # dimension_group: row_end_dt {
+  #   type: time
+  #   hidden: yes
+  #   timeframes: [
+  #     raw,
+  #     time,
+  #     date,
+  #     week,
+  #     month,
+  #     quarter,
+  #     year
+  #   ]
+  #   sql: ${TABLE}.row_end_dt ;;
+  # }
 
-  dimension_group: row_start_dt {
-    type: time
-    hidden: yes
-    timeframes: [
-      raw,
-      time,
-      date,
-      week,
-      month,
-      quarter,
-      year
-    ]
-    sql: ${TABLE}.row_start_dt ;;
-  }
+  # dimension_group: row_start_dt {
+  #   type: time
+  #   hidden: yes
+  #   timeframes: [
+  #     raw,
+  #     time,
+  #     date,
+  #     week,
+  #     month,
+  #     quarter,
+  #     year
+  #   ]
+  #   sql: ${TABLE}.row_start_dt ;;
+  # }
 
-  dimension_group: row_start_dt_orig {
-    type: time
-    hidden: yes
-    timeframes: [
-      raw,
-      time,
-      date,
-      week,
-      month,
-      quarter,
-      year
-    ]
-    sql: ${TABLE}.row_start_dt_orig ;;
-  }
+  # dimension_group: row_start_dt_orig {
+  #   type: time
+  #   hidden: yes
+  #   timeframes: [
+  #     raw,
+  #     time,
+  #     date,
+  #     week,
+  #     month,
+  #     quarter,
+  #     year
+  #   ]
+  #   sql: ${TABLE}.row_start_dt_orig ;;
+  # }
 
   measure: count {
     hidden: yes
     type: count
-    drill_fields: [m_model_run.m_model_run_id, m_model_run.m_model_name]
+    drill_fields: []
   }
 }

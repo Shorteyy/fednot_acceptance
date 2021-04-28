@@ -3,6 +3,13 @@ view: ereg_vw_fact_transaction {
   sql_table_name: `dwh.ereg_vwFactTransaction`
     ;;
 
+  # dimension: transaction_compound_primary_key {
+  #   primary_key: yes
+  #   hidden: yes
+  #   type: string
+  #   sql: CONCAT(cast(${TABLE}.fk_date_deed as string ), ' ', ${TABLE}.fk_date_deedregisteredaa, ' ', ${TABLE}.fk_date_edossiercreation, ' ', ${TABLE}.fk_date_expeditionsigned, ' ', ${TABLE}.fk_date_fednotreceivedanswer, ' ', ${TABLE}.FK_Date_FedNotSending ) ;;
+  # }
+
   dimension: fk_date_deed {
     hidden: yes
     type: date
