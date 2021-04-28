@@ -133,6 +133,24 @@ explore: ereg_vw_fact_transaction {
   relationship:  many_to_one
   type: left_outer
   }
+  join: deed {
+    from: dim_date
+    sql_on: ${ereg_vw_fact_transaction.fk_date_deed} = ${deed.date} ;;
+  relationship: many_to_one
+  type: left_outer
+  }
+  join: firstFedNotSending {
+    from: dim_date
+    sql_on: ${ereg_vw_fact_transaction.fk_date_first_fed_not_sending} = ${firstFedNotSending.date} ;;
+    relationship: many_to_one
+    type: left_outer
+  }
+  join: expeditionsigned {
+    from: dim_date
+    sql_on: ${ereg_vw_fact_transaction.fk_date_expedition_signed} = ${expeditionsigned.date} ;;
+    relationship: many_to_one
+    type: left_outer
+  }
 }
 
 # explore: m_job_run {
