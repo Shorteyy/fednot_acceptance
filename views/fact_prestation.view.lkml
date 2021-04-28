@@ -96,17 +96,20 @@ view: fact_prestation {
   }
 
   measure: avg_qty {
+    label: "Average # Operations"
     type:  average
     sql: ${qty} ;;
   }
 
   measure: percent_of_total_operations {
+    label: "% of Total # Operations"
     type: percent_of_total
     value_format: "0.00\%"
     sql: ${sum_qty} ;;
   }
 
   measure: total_sum_ytd {
+    label: "# Operations YTD"
     type: sum
     filters: {
       field: is_ytd
