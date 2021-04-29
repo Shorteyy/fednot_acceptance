@@ -184,7 +184,7 @@ view: ereg_vw_dim_party_address {
     label: "Province Area"
     type: string
     map_layer_name: province_location_belgium_ereg
-    sql: ${TABLE}.nis_code) ;;
+    sql: ${TABLE}.NisCode ;;
   }
 
   dimension: region_id {
@@ -222,7 +222,7 @@ view: ereg_vw_dim_party_address {
     label: "Region Area"
     drill_fields: [province_area]
     map_layer_name: region_location_belgium_ereg
-    sql: ${TABLE}.nis_code ;;
+    sql: ${TABLE}.NisCode ;;
   }
 
 
