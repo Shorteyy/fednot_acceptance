@@ -235,6 +235,6 @@ view: dim_province {
   measure: count {
     type: count
     hidden: yes
-    drill_fields: [m_model_run.m_model_run_id, m_model_run.m_model_name]
+    drill_fields: []
   }
 }

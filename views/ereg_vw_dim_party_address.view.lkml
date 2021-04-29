@@ -180,6 +180,13 @@ view: ereg_vw_dim_party_address {
     sql: ${TABLE}.ProvinceNameNL ;;
   }
 
+  dimension: province_area {
+    label: "Province Area"
+    type: string
+    map_layer_name: province_location_belgium_ereg
+    sql: ${TABLE}.nis_code) ;;
+  }
+
   dimension: region_id {
     type: string
     sql: ${TABLE}.regionId ;;
@@ -209,6 +216,15 @@ view: ereg_vw_dim_party_address {
     type: string
     sql: ${TABLE}.RegionName_Tableau ;;
   }
+
+  dimension: region_area {
+    type: string
+    label: "Region Area"
+    drill_fields: [province_area]
+    map_layer_name: region_location_belgium_ereg
+    sql: ${TABLE}.nis_code ;;
+  }
+
 
   dimension: street_code {
     type: string
