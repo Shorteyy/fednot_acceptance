@@ -3,7 +3,7 @@ view: dim_date {
   sql_table_name: `dwh.DimDate`
     ;;
 
-  # dimension_group: date {
+  # dimension_group: date_group {
   #   type: time
   #   hidden: yes
   #   timeframes: [
