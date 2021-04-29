@@ -22,10 +22,28 @@ view: dim_date {
   parameter: timeframe_picker {
     label: "Period Selector"
     type: unquoted
-    allowed_value: { value: "Month" }
-    allowed_value: { value: "Quarter" }
-    allowed_value: { value: "Year" }
+    allowed_value: {
+      label: "Month"
+      value: "Month" }
+    allowed_value: {
+      label: "Quarter"
+      value: "Quarter" }
+    allowed_value: {
+      label: "Year"
+      value: "Year" }
     default_value: "Month"
+  }
+
+  parameter: date_granularity {
+    type: unquoted
+    allowed_value: {
+      label: "Break down by Day"
+      value: "day"
+    }
+    allowed_value: {
+      label: "Break down by Month"
+      value: "month"
+    }
   }
 
   dimension: date {
