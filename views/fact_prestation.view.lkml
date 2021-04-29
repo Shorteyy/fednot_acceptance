@@ -60,6 +60,7 @@ view: fact_prestation {
   }
 
   dimension: qty {
+    hidden: yes
     type: number
     sql: ${TABLE}.qty ;;
   }

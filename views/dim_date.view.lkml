@@ -34,18 +34,6 @@ view: dim_date {
     default_value: "Month"
   }
 
-  parameter: date_granularity {
-    type: unquoted
-    allowed_value: {
-      label: "Break down by Day"
-      value: "day"
-    }
-    allowed_value: {
-      label: "Break down by Month"
-      value: "month"
-    }
-  }
-
   dimension: date {
     type: date
     datatype: date
@@ -65,6 +53,11 @@ view: dim_date {
     {% else %}
       ${quarter_year}
     {% endif %};;
+  }
+
+  dimension: YYYYMM {
+    type:  number
+    sql:  cast(${TABLE}.year as number) * 100 + cast(${TABLE}.month as number) ;;
   }
 
   dimension: day_name {
