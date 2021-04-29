@@ -25,6 +25,7 @@ view: dim_date {
     allowed_value: { value: "Month" }
     allowed_value: { value: "Quarter" }
     allowed_value: { value: "Year" }
+    default_value: "Month"
   }
 
   dimension: date {
