@@ -149,21 +149,21 @@ explore: ereg_vw_fact_transaction {
   join: deed {
     view_label: "Date Deed Hierarchy"
     from: dim_date
-    sql_on: ${ereg_vw_fact_transaction.fk_date_deed} = ${deed.date} ;;
+    sql_on: ${ereg_vw_fact_transaction.fk_date_deed} = ${deed.pk_date} ;;
   relationship: many_to_one
   type: left_outer
   }
   join: firstFedNotSending {
     view_label: "Date First FedNot Sending Hierarchy"
     from: dim_date
-    sql_on: ${ereg_vw_fact_transaction.fk_date_first_fed_not_sending} = ${firstFedNotSending.date} ;;
+    sql_on: ${ereg_vw_fact_transaction.fk_date_first_fed_not_sending} = ${firstFedNotSending.pk_date} ;;
     relationship: many_to_one
     type: left_outer
   }
   join: expeditionsigned {
     view_label: "Date Expedition Signed Hierarchy"
     from: dim_date
-    sql_on: ${ereg_vw_fact_transaction.fk_date_expedition_signed} = ${expeditionsigned.date} ;;
+    sql_on: ${ereg_vw_fact_transaction.fk_date_expedition_signed} = ${expeditionsigned.pk_date} ;;
     relationship: many_to_one
     type: left_outer
   }
