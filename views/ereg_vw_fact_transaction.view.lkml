@@ -13,7 +13,7 @@ view: ereg_vw_fact_transaction {
   dimension: fk_date_deed {
     hidden: yes
     type: date
-    sql: cast(${TABLE}.FK_Date_Deed as date);;
+    sql: cast(cast(${TABLE}.FK_Date_Deed as string) as date);;
   }
 
   dimension: fk_date_deed_registered_aa {
