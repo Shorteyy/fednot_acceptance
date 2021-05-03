@@ -187,21 +187,56 @@ view: ereg_vw_fact_transaction {
     hidden: yes
     type: yesno
     label: "Is YTD?"
-    sql: EXTRACT(MONTH from ${fk_date_deed}) < EXTRACT(MONTH from CURRENT_TIMESTAMP);;
+    sql: MOD(${fk_date_deed},100) < EXTRACT(MONTH from CURRENT_TIMESTAMP);;
   }
 
-  dimension: is_ytd_First_FedNot_Sending {
+  dimension: is_ytd_first_fednot_sending {
     hidden: yes
     type: yesno
     label: "Is YTD?"
-    sql: EXTRACT(MONTH from ${fk_date_first_fed_not_sending}) < EXTRACT(MONTH from CURRENT_TIMESTAMP);;
+    sql: MOD(${fk_date_first_fed_not_sending},100) < EXTRACT(MONTH from CURRENT_TIMESTAMP);;
   }
 
-  dimension: is_ytd_Expedition_Signed {
+  dimension: is_ytd_expedition_signed {
     hidden: yes
     type: yesno
     label: "Is YTD?"
-    sql: EXTRACT(MONTH from ${fk_date_expedition_signed}) < EXTRACT(MONTH from CURRENT_TIMESTAMP);;
+    sql: MOD(${fk_date_expedition_signed},100) < EXTRACT(MONTH from CURRENT_TIMESTAMP);;
+  }
+
+  dimension: is_ytd_deed_registered_aa {
+    hidden: yes
+    type: yesno
+    label: "Is YTD?"
+    sql: MOD(${fk_date_deed_registered_aa},100) < EXTRACT(MONTH from CURRENT_TIMESTAMP);;
+  }
+
+  dimension: is_ytd_edossier_creation {
+    hidden: yes
+    type: yesno
+    label: "Is YTD?"
+    sql: MOD(${fk_date_edossier_creation},100) < EXTRACT(MONTH from CURRENT_TIMESTAMP);;
+  }
+
+  dimension: is_ytd_fednot_received_answer {
+    hidden: yes
+    type: yesno
+    label: "Is YTD?"
+    sql: MOD(${fk_date_fed_not_received_answer},100) < EXTRACT(MONTH from CURRENT_TIMESTAMP);;
+  }
+
+  dimension: is_ytd_fednot_sending {
+    hidden: yes
+    type: yesno
+    label: "Is YTD?"
+    sql: MOD(${fk_date_fed_not_sending},100) < EXTRACT(MONTH from CURRENT_TIMESTAMP);;
+  }
+
+  dimension: is_ytd_request {
+    hidden: yes
+    type: yesno
+    label: "Is YTD?"
+    sql: MOD(${fk_date_request},100) < EXTRACT(MONTH from CURRENT_TIMESTAMP);;
   }
 
   # dimension: sys_insert_update_date {
