@@ -12,50 +12,50 @@ view: ereg_vw_fact_transaction {
 
   dimension: fk_date_deed {
     hidden: yes
-    type: date
-    sql: timestamp(parse_date('%Y%m%d',cast(${TABLE}.FK_Date_Deed as string))) ;;
+    type: number
+    sql: ${TABLE}.FK_Date_Deed ;;
   }
 
   dimension: fk_date_deed_registered_aa {
     hidden: yes
-    type: date
-    sql: cast(${TABLE}.FK_Date_DeedRegisteredAA as date) ;;
+    type: number
+    sql: ${TABLE}.FK_Date_DeedRegisteredAA ;;
   }
 
   dimension: fk_date_edossier_creation {
     hidden: yes
-    type: date
-    sql: cast(${TABLE}.FK_Date_EdossierCreation as date);;
+    type: number
+    sql: ${TABLE}.FK_Date_EdossierCreation ;;
   }
 
   dimension: fk_date_expedition_signed {
     hidden: yes
-    type: date
-    sql: cast(${TABLE}.FK_Date_ExpeditionSigned as date);;
+    type: number
+    sql: ${TABLE}.FK_Date_ExpeditionSigned ;;
   }
 
   dimension: fk_date_fed_not_received_answer {
     hidden: yes
-    type: date
-    sql: cast(${TABLE}.FK_Date_FedNotReceivedAnswer as date);;
+    type: number
+    sql: ${TABLE}.FK_Date_FedNotReceivedAnswer ;;
   }
 
   dimension: fk_date_fed_not_sending {
     hidden: yes
-    type: date
-    sql: cast(${TABLE}.FK_Date_FedNotSending as date);;
+    type: number
+    sql: ${TABLE}.FK_Date_FedNotSending ;;
   }
 
   dimension: fk_date_first_fed_not_sending {
     hidden: yes
-    type: date
-    sql: cast(${TABLE}.FK_Date_FirstFedNotSending as date);;
+    type: number
+    sql: ${TABLE}.FK_Date_FirstFedNotSending ;;
   }
 
   dimension: fk_date_request {
     hidden: yes
-    type: date
-    sql: cast(${TABLE}.FK_Date_Request as date);;
+    type: number
+    sql: ${TABLE}.FK_Date_Request ;;
   }
 
   dimension: fk_ereg_deed_edossier {
