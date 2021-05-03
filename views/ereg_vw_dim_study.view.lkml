@@ -3,17 +3,83 @@ view: ereg_vw_dim_study {
   sql_table_name: `dwh.ereg_vwDimStudy`
     ;;
 
+  parameter: pick_language {
+    type: string
+    allowed_value: { value: "NL" }
+    allowed_value: { value: "FR" }
+    allowed_value: { value: "DE" }
+  }
+
+  dimension: alternate_wording {
+    label_from_parameter: pick_language
+    sql:
+        {% if pick_language._parameter_value == "'NL'" %}
+          ${alternate_wording_nl}
+        {% elsif pick_language._parameter_value == "'FR'" %}
+          ${alternate_wording_fr}
+        {% elsif pick_language._parameter_value == "'DE'" %}
+          ${alternate_wording_de}
+         {% else %}
+          coalesce(${alternate_wording_nl},${alternate_wording_fr},${alternate_wording_de})
+        {% endif %};;
+  }
+
+  dimension: locality_wording {
+    label_from_parameter: pick_language
+    sql:
+        {% if pick_language._parameter_value == "'NL'" %}
+          ${locality_wording_nl}
+        {% elsif pick_language._parameter_value == "'FR'" %}
+          ${locality_wording_fr}
+        {% elsif pick_language._parameter_value == "'DE'" %}
+          ${locality_wording_de}
+         {% else %}
+          coalesce(${locality_wording_nl},${locality_wording_fr},${locality_wording_de})
+        {% endif %};;
+  }
+
+  dimension: short_wording {
+    label_from_parameter: pick_language
+    sql:
+        {% if pick_language._parameter_value == "'NL'" %}
+          ${short_wording_nl}
+        {% elsif pick_language._parameter_value == "'FR'" %}
+          ${short_wording_fr}
+        {% elsif pick_language._parameter_value == "'DE'" %}
+          ${short_wording_de}
+         {% else %}
+          coalesce(${short_wording_nl},${short_wording_fr},${short_wording_de})
+        {% endif %};;
+  }
+
+  dimension: wording {
+    label_from_parameter: pick_language
+    sql:
+        {% if pick_language._parameter_value == "'NL'" %}
+          ${wording_nl}
+        {% elsif pick_language._parameter_value == "'FR'" %}
+          ${wording_fr}
+        {% elsif pick_language._parameter_value == "'DE'" %}
+          ${wording_de}
+         {% else %}
+          coalesce(${wording_nl},${wording_fr},${wording_de})
+        {% endif %};;
+  }
+
   dimension: alternate_wording_de {
+    hidden: yes
     type: string
     sql: ${TABLE}.AlternateWordingDe ;;
   }
 
   dimension: alternate_wording_fr {
+    hidden: yes
     type: string
     sql: ${TABLE}.AlternateWordingFr ;;
   }
 
   dimension: alternate_wording_nl {
+    hidden: yes
     type: string
     sql: ${TABLE}.AlternateWordingNl ;;
   }
@@ -74,43 +140,46 @@ view: ereg_vw_dim_study {
   }
 
   dimension: locality_wording_de {
+    hidden: yes
     type: string
     sql: ${TABLE}.Locality_WordingDe ;;
   }
 
   dimension: locality_wording_fr {
+    hidden: yes
     type: string
     sql: ${TABLE}.Locality_WordingFr ;;
   }
 
   dimension: locality_wording_nl {
+    hidden: yes
     type: string
     sql: ${TABLE}.Locality_WordingNl ;;
   }
 
-  dimension_group: m_job_datetime {
-    type: time
-    timeframes: [
-      raw,
-      time,
-      date,
-      week,
-      month,
-      quarter,
-      year
-    ]
-    sql: ${TABLE}.m_job_datetime ;;
-  }
+  # dimension_group: m_job_datetime {
+  #   type: time
+  #   timeframes: [
+  #     raw,
+  #     time,
+  #     date,
+  #     week,
+  #     month,
+  #     quarter,
+  #     year
+  #   ]
+  #   sql: ${TABLE}.m_job_datetime ;;
+  # }
 
-  dimension: m_job_run_id {
-    type: string
-    sql: ${TABLE}.m_job_run_id ;;
-  }
+  # dimension: m_job_run_id {
+  #   type: string
+  #   sql: ${TABLE}.m_job_run_id ;;
+  # }
 
-  dimension: m_model_run_id {
-    type: string
-    sql: ${TABLE}.m_model_run_id ;;
-  }
+  # dimension: m_model_run_id {
+  #   type: string
+  #   sql: ${TABLE}.m_model_run_id ;;
+  # }
 
   dimension: organization_name {
     type: string
@@ -118,6 +187,8 @@ view: ereg_vw_dim_study {
   }
 
   dimension: pk_study {
+    hidden: yes
+    primary_key: yes
     type: number
     sql: ${TABLE}.PK_Study ;;
   }
@@ -133,16 +204,19 @@ view: ereg_vw_dim_study {
   }
 
   dimension: short_wording_de {
+    hidden: yes
     type: string
     sql: ${TABLE}.ShortWordingDe ;;
   }
 
   dimension: short_wording_fr {
+    hidden: yes
     type: string
     sql: ${TABLE}.ShortWordingFr ;;
   }
 
   dimension: short_wording_nl {
+    hidden: yes
     type: string
     sql: ${TABLE}.ShortWordingNl ;;
   }
@@ -157,36 +231,40 @@ view: ereg_vw_dim_study {
     sql: ${TABLE}.StudyIsAssociation ;;
   }
 
-  dimension_group: sys_insert_update {
-    type: time
-    timeframes: [
-      raw,
-      time,
-      date,
-      week,
-      month,
-      quarter,
-      year
-    ]
-    sql: ${TABLE}.Sys_InsertUpdateDate ;;
-  }
+  # dimension_group: sys_insert_update {
+  #   type: time
+  #   timeframes: [
+  #     raw,
+  #     time,
+  #     date,
+  #     week,
+  #     month,
+  #     quarter,
+  #     year
+  #   ]
+  #   sql: ${TABLE}.Sys_InsertUpdateDate ;;
+  # }
 
   dimension: wording_de {
+    hidden: yes
     type: string
     sql: ${TABLE}.WordingDe ;;
   }
 
   dimension: wording_fr {
+    hidden: yes
     type: string
     sql: ${TABLE}.WordingFr ;;
   }
 
   dimension: wording_nl {
+    hidden:  yes
     type: string
     sql: ${TABLE}.WordingNl ;;
   }
 
   measure: count {
+    hidden: yes
     type: count
     drill_fields: [organization_name]
   }

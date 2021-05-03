@@ -27,14 +27,14 @@ view: ereg_vw_dim_expedition {
   }
 
   dimension: expedition_change_mode_label {
-    label_from_parameter: pick_language
+       label_from_parameter: pick_language
     sql:
         {% if pick_language._parameter_value == "'NL'" %}
-          IF(${expedition_change_mode_label_nl} = "NA",${expedition_change_mode_label_fr},${expedition_change_mode_label_nl})
+          IF(${expedition_change_mode_label_nl} = "NULL",${expedition_change_mode_label_fr},${expedition_change_mode_label_nl})
         {% elsif pick_language._parameter_value == "'FR'" %}
-          IF(${expedition_change_mode_label_fr} = "NA",${expedition_change_mode_label_fr},${expedition_change_mode_label_fr})
+          IF(${expedition_change_mode_label_fr} = "NULL",${expedition_change_mode_label_nl },${expedition_change_mode_label_fr})
          {% else %}
-          ${expedition_change_mode_label_nl}
+          coalesce(${expedition_change_mode_label_nl},${expedition_change_mode_label_fr})
         {% endif %};;
   }
 
@@ -68,14 +68,15 @@ view: ereg_vw_dim_expedition {
   dimension: expedition_status_label {
     label_from_parameter: pick_language
     sql:
-        {% if pick_language._parameter_value == "'NL'" %}
-          IF(${expedition_status_label_nl} = "NA",${expedition_status_label_fr},${expedition_status_label_nl})
-        {% elsif pick_language._parameter_value == "'FR'" %}
-          IF(${expedition_status_label_fr} = "NA",${expedition_status_label_nl},${expedition_status_label_fr})
-         {% else %}
-          ${expedition_status_label_nl}
-        {% endif %};;
+    {% if pick_language._parameter_value == "'NL'" %}
+    IF(${expedition_status_label_nl} = "NULL",${expedition_status_label_fr},${expedition_status_label_nl})
+    {% elsif pick_language._parameter_value == "'FR'" %}
+    IF(${expedition_status_label_fr} = "NULL",${expedition_status_label_nl},${expedition_status_label_fr})
+    {% else %}
+    coalesce(${expedition_status_label_nl},${expedition_status_label_fr})
+    {% endif %};;
   }
+
 
   # dimension_group: m_job_datetime {
   #   type: time

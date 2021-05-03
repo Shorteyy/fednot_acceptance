@@ -9,6 +9,30 @@ view: ereg_vw_dim_party {
     allowed_value: { value: "FR" }
   }
 
+  dimension: party_source_label {
+    label_from_parameter: pick_language
+    sql:
+        {% if pick_language._parameter_value == "'NL'" %}
+          IF(${party_source_label_nl} = "NULL",${party_source_label_fr},${party_source_label_nl})
+        {% elsif pick_language._parameter_value == "'FR'" %}
+          IF(${party_source_label_fr} = "NULL",${party_source_label_nl },${party_source_label_fr})
+         {% else %}
+          coalesce(${party_source_label_nl},${party_source_label_fr})
+        {% endif %};;
+  }
+
+  dimension: party_type_label {
+    label_from_parameter: pick_language
+    sql:
+        {% if pick_language._parameter_value == "'NL'" %}
+          IF(${party_type_label_nl} = "NULL",${party_type_label_fr},${party_type_label_nl})
+        {% elsif pick_language._parameter_value == "'FR'" %}
+          IF(${party_type_label_fr} = "NULL",${party_type_label_nl },${party_type_label_fr})
+         {% else %}
+          coalesce(${party_type_label_nl},${party_type_label_fr})
+        {% endif %};;
+  }
+
   # dimension_group: m_job_datetime {
   #   type: time
   #   timeframes: [
@@ -66,11 +90,13 @@ view: ereg_vw_dim_party {
   }
 
   dimension: party_legal_form_label_fr {
+    hidden: yes
     type: string
     sql: ${TABLE}.PartyLegalFormLabelFR ;;
   }
 
   dimension: party_legal_form_label_nl {
+    hidden: yes
     type: string
     sql: ${TABLE}.PartyLegalFormLabelNL ;;
   }
@@ -91,11 +117,13 @@ view: ereg_vw_dim_party {
   }
 
   dimension: party_source_label_fr {
+    hidden: yes
     type: string
     sql: ${TABLE}.PartySourceLabelFR ;;
   }
 
   dimension: party_source_label_nl {
+    hidden: yes
     type: string
     sql: ${TABLE}.PartySourceLabelNL ;;
   }
@@ -111,11 +139,13 @@ view: ereg_vw_dim_party {
   }
 
   dimension: party_type_label_fr {
+    hidden: yes
     type: string
     sql: ${TABLE}.PartyTypeLabelFR ;;
   }
 
   dimension: party_type_label_nl {
+    hidden:  yes
     type: string
     sql: ${TABLE}.PartyTypeLabelNL ;;
   }
@@ -137,6 +167,7 @@ view: ereg_vw_dim_party {
   # }
 
   measure: count {
+    hidden: yes
     type: count
     drill_fields: []
   }

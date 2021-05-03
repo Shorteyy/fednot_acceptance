@@ -3,12 +3,6 @@ view: ereg_vw_dim_good_address {
   sql_table_name: `dwh.ereg_vwDimGoodAddress`
     ;;
 
-  parameter: pick_language {
-    type: string
-    allowed_value: { value: "NL" }
-    allowed_value: { value: "FR" }
-  }
-
   dimension: country_name {
     type: string
     sql: ${TABLE}.CountryName ;;
@@ -25,16 +19,19 @@ view: ereg_vw_dim_good_address {
   }
 
   dimension: district_name_de {
+    hidden: yes
     type: string
     sql: ${TABLE}.DistrictNameDE ;;
   }
 
   dimension: district_name_fr {
+    hidden:  yes
     type: string
     sql: ${TABLE}.DistrictNameFR ;;
   }
 
   dimension: district_name_nl {
+    hidden: yes
     type: string
     sql: ${TABLE}.DistrictNameNL ;;
   }
@@ -75,16 +72,19 @@ view: ereg_vw_dim_good_address {
   }
 
   dimension: locality_name_de {
+    hidden:  yes
     type: string
     sql: ${TABLE}.LocalityNameDE ;;
   }
 
   dimension: locality_name_fr {
+    hidden: yes
     type: string
     sql: ${TABLE}.LocalityNameFR ;;
   }
 
   dimension: locality_name_nl {
+    hidden: yes
     type: string
     sql: ${TABLE}.LocalityNameNL ;;
   }
@@ -136,16 +136,19 @@ view: ereg_vw_dim_good_address {
   }
 
   dimension: municipality_name_de {
+    hidden: yes
     type: string
     sql: ${TABLE}.MunicipalityNameDE ;;
   }
 
   dimension: municipality_name_fr {
+    hidden: yes
     type: string
     sql: ${TABLE}.MunicipalityNameFR ;;
   }
 
   dimension: municipality_name_nl {
+    hidden: yes
     type: string
     sql: ${TABLE}.MunicipalityNameNL ;;
   }
@@ -173,16 +176,19 @@ view: ereg_vw_dim_good_address {
   }
 
   dimension: province_name_de {
+    hidden: yes
     type: string
     sql: ${TABLE}.ProvinceNameDE ;;
   }
 
   dimension: province_name_fr {
+    hidden: yes
     type: string
     sql: ${TABLE}.ProvinceNameFR ;;
   }
 
   dimension: province_name_nl {
+    hidden: yes
     type: string
     sql: ${TABLE}.ProvinceNameNL ;;
   }
@@ -198,16 +204,19 @@ view: ereg_vw_dim_good_address {
   }
 
   dimension: region_name_de {
+    hidden:  yes
     type: string
     sql: ${TABLE}.RegionNameDE ;;
   }
 
   dimension: region_name_fr {
+    hidden: yes
     type: string
     sql: ${TABLE}.RegionNameFR ;;
   }
 
   dimension: region_name_nl {
+    hidden: yes
     type: string
     sql: ${TABLE}.RegionNameNL ;;
   }
@@ -233,16 +242,19 @@ view: ereg_vw_dim_good_address {
   }
 
   dimension: street_name_de {
+    hidden:  yes
     type: string
     sql: ${TABLE}.StreetNameDE ;;
   }
 
   dimension: street_name_fr {
+    hidden: yes
     type: string
     sql: ${TABLE}.StreetNameFR ;;
   }
 
   dimension: street_name_nl {
+    hidden: yes
     type: string
     sql: ${TABLE}.StreetNameNL ;;
   }
@@ -258,6 +270,7 @@ view: ereg_vw_dim_good_address {
   }
 
   measure: count {
+    hidden: yes
     type: count
     drill_fields: [detail*]
   }

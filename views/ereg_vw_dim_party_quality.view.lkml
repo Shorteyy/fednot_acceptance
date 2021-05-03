@@ -3,6 +3,36 @@ view: ereg_vw_dim_party_quality {
   sql_table_name: `dwh.ereg_vwDimPartyQuality`
     ;;
 
+  parameter: pick_language {
+    type: string
+    allowed_value: { value: "NL" }
+    allowed_value: { value: "FR" }
+  }
+
+  dimension: party_quality_category_label {
+    label_from_parameter: pick_language
+    sql:
+        {% if pick_language._parameter_value == "'NL'" %}
+          IF(${party_quality_category_label_nl} = "NULL",${party_quality_category_label_fr},${party_quality_category_label_nl})
+        {% elsif pick_language._parameter_value == "'FR'" %}
+          IF(${party_quality_category_label_fr} = "NULL",${party_quality_category_label_nl },${party_quality_category_label_fr})
+         {% else %}
+          coalesce(${party_quality_category_label_nl},${party_quality_category_label_fr})
+        {% endif %};;
+  }
+
+  dimension: party_quality_label {
+    label_from_parameter: pick_language
+    sql:
+        {% if pick_language._parameter_value == "'NL'" %}
+          IF(${party_quality_label_nl} = "NULL",${party_quality_label_fr},${party_quality_label_nl})
+        {% elsif pick_language._parameter_value == "'FR'" %}
+          IF(${party_quality_label_fr} = "NULL",${party_quality_label_nl },${party_quality_label_fr})
+         {% else %}
+          coalesce(${party_quality_label_nl},${party_quality_label_fr})
+        {% endif %};;
+  }
+
   # dimension_group: m_job_datetime {
   #   type: time
   #   timeframes: [
@@ -35,11 +65,13 @@ view: ereg_vw_dim_party_quality {
   }
 
   dimension: party_quality_category_label_fr {
+    hidden: yes
     type: string
     sql: ${TABLE}.PartyQualityCategoryLabelFR ;;
   }
 
   dimension: party_quality_category_label_nl {
+    hidden: yes
     type: string
     sql: ${TABLE}.PartyQualityCategoryLabelNL ;;
   }
@@ -50,27 +82,31 @@ view: ereg_vw_dim_party_quality {
   }
 
   dimension: party_quality_label_fr {
+    hidden: yes
     type: string
     sql: ${TABLE}.PartyQualityLabelFR ;;
   }
 
   dimension: party_quality_label_nl {
+    hidden: yes
     type: string
     sql: ${TABLE}.PartyQualityLabelNL ;;
   }
 
   dimension: pk_ereg_party_quality {
+    hidden: yes
     type: string
     sql: ${TABLE}.PK_EregPartyQuality ;;
   }
 
-  dimension: sys_insert_update_date {
-    type: string
-    sql: ${TABLE}.Sys_InsertUpdateDate ;;
-  }
+  # dimension: sys_insert_update_date {
+  #   type: string
+  #   sql: ${TABLE}.Sys_InsertUpdateDate ;;
+  # }
 
   measure: count {
+    hidden: yes
     type: count
-    drill_fields: [m_model_run.m_model_run_id, m_model_run.m_model_name, m_job_run.m_job_run_id, m_job_run.m_job_name]
+    drill_fields: []
   }
 }

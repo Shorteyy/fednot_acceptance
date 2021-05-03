@@ -19,16 +19,19 @@ view: ereg_vw_dim_study_address {
   }
 
   dimension: district_name_de {
+    hidden: yes
     type: string
     sql: ${TABLE}.DistrictNameDE ;;
   }
 
   dimension: district_name_fr {
+    hidden: yes
     type: string
     sql: ${TABLE}.DistrictNameFR ;;
   }
 
   dimension: district_name_nl {
+    hidden: yes
     type: string
     sql: ${TABLE}.DistrictNameNL ;;
   }
@@ -69,45 +72,48 @@ view: ereg_vw_dim_study_address {
   }
 
   dimension: locality_name_de {
+    hidden: yes
     type: string
     sql: ${TABLE}.LocalityNameDE ;;
   }
 
   dimension: locality_name_fr {
+    hidden: yes
     type: string
     sql: ${TABLE}.LocalityNameFR ;;
   }
 
   dimension: locality_name_nl {
+    hidden: yes
     type: string
     sql: ${TABLE}.LocalityNameNL ;;
   }
 
-  dimension_group: m_job_datetime {
-    type: time
-    timeframes: [
-      raw,
-      time,
-      date,
-      week,
-      month,
-      quarter,
-      year
-    ]
-    sql: ${TABLE}.m_job_datetime ;;
-  }
+  # dimension_group: m_job_datetime {
+  #   type: time
+  #   timeframes: [
+  #     raw,
+  #     time,
+  #     date,
+  #     week,
+  #     month,
+  #     quarter,
+  #     year
+  #   ]
+  #   sql: ${TABLE}.m_job_datetime ;;
+  # }
 
-  dimension: m_job_run_id {
-    type: string
-    # hidden: yes
-    sql: ${TABLE}.m_job_run_id ;;
-  }
+  # dimension: m_job_run_id {
+  #   type: string
+  #   # hidden: yes
+  #   sql: ${TABLE}.m_job_run_id ;;
+  # }
 
-  dimension: m_model_run_id {
-    type: string
-    # hidden: yes
-    sql: ${TABLE}.m_model_run_id ;;
-  }
+  # dimension: m_model_run_id {
+  #   type: string
+  #   # hidden: yes
+  #   sql: ${TABLE}.m_model_run_id ;;
+  # }
 
   dimension: main_locality_name {
     type: string
@@ -130,16 +136,19 @@ view: ereg_vw_dim_study_address {
   }
 
   dimension: municipality_name_de {
+    hidden: yes
     type: string
     sql: ${TABLE}.MunicipalityNameDE ;;
   }
 
   dimension: municipality_name_fr {
+    hidden: yes
     type: string
     sql: ${TABLE}.MunicipalityNameFR ;;
   }
 
   dimension: municipality_name_nl {
+    hidden: yes
     type: string
     sql: ${TABLE}.MunicipalityNameNL ;;
   }
@@ -150,6 +159,8 @@ view: ereg_vw_dim_study_address {
   }
 
   dimension: pk_address {
+    hidden: yes
+    primary_key: yes
     type: string
     sql: ${TABLE}.PK_Address ;;
   }
@@ -165,16 +176,19 @@ view: ereg_vw_dim_study_address {
   }
 
   dimension: province_name_de {
+    hidden: yes
     type: string
     sql: ${TABLE}.ProvinceNameDE ;;
   }
 
   dimension: province_name_fr {
+    hidden: yes
     type: string
     sql: ${TABLE}.ProvinceNameFR ;;
   }
 
   dimension: province_name_nl {
+    hidden: yes
     type: string
     sql: ${TABLE}.ProvinceNameNL ;;
   }
@@ -190,16 +204,19 @@ view: ereg_vw_dim_study_address {
   }
 
   dimension: region_name_de {
+    hidden: yes
     type: string
     sql: ${TABLE}.RegionNameDE ;;
   }
 
   dimension: region_name_fr {
+    hidden: yes
     type: string
     sql: ${TABLE}.RegionNameFR ;;
   }
 
   dimension: region_name_nl {
+    hidden: yes
     type: string
     sql: ${TABLE}.RegionNameNL ;;
   }
@@ -225,24 +242,27 @@ view: ereg_vw_dim_study_address {
   }
 
   dimension: street_name_de {
+    hidden: yes
     type: string
     sql: ${TABLE}.StreetNameDE ;;
   }
 
   dimension: street_name_fr {
+    hidden: yes
     type: string
     sql: ${TABLE}.StreetNameFR ;;
   }
 
   dimension: street_name_nl {
+    hidden: yes
     type: string
     sql: ${TABLE}.StreetNameNL ;;
   }
 
-  dimension: sys_insert_update_date {
-    type: string
-    sql: ${TABLE}.Sys_InsertUpdateDate ;;
-  }
+  # dimension: sys_insert_update_date {
+  #   type: string
+  #   sql: ${TABLE}.Sys_InsertUpdateDate ;;
+  # }
 
   dimension: zip_code {
     type: zipcode
@@ -250,6 +270,7 @@ view: ereg_vw_dim_study_address {
   }
 
   measure: count {
+    hidden: yes
     type: count
     drill_fields: [detail*]
   }
@@ -264,11 +285,7 @@ view: ereg_vw_dim_study_address {
       region_name,
       municipality_name,
       district_name,
-      main_locality_name,
-      m_job_run.m_job_run_id,
-      m_job_run.m_job_name,
-      m_model_run.m_model_run_id,
-      m_model_run.m_model_name
+      main_locality_name
     ]
   }
 }
