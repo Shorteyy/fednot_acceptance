@@ -324,8 +324,8 @@ view: dim_date {
   }
 
   dimension: YYYYMM {
-    type:  string
-    sql:  ${TABLE}.Year ;;
+    type:  number
+    sql:  cast(trim(${TABLE}.Year) as number) ;;
   }
 
 }
