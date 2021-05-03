@@ -153,10 +153,10 @@ explore: ereg_vw_fact_transaction {
   relationship: many_to_one
   type: left_outer
   }
-  join: firstFedNotSending {
+  join: firstfednotsending {
     view_label: "Date First FedNot Sending Hierarchy"
     from: dim_date
-    sql_on: ${ereg_vw_fact_transaction.fk_date_first_fed_not_sending} = ${firstFedNotSending.pk_date} ;;
+    sql_on: ${ereg_vw_fact_transaction.fk_date_first_fed_not_sending} = ${firstfednotsending.pk_date} ;;
     relationship: many_to_one
     type: left_outer
   }
@@ -167,6 +167,41 @@ explore: ereg_vw_fact_transaction {
     relationship: many_to_one
     type: left_outer
   }
+  join: deedregisteredaa {
+    view_label: "Date Deed Registered AA Hierarchy"
+    from: dim_date
+    sql_on: ${ereg_vw_fact_transaction.fk_date_deed_registered_aa} = ${deedregisteredaa.pk_date} ;;
+    relationship: many_to_one
+    type: left_outer
+  }
+  join: edossiercreation {
+    view_label: "Date eDossier Creation Hierarchy"
+    from: dim_date
+    sql_on: ${ereg_vw_fact_transaction.fk_date_edossier_creation} = ${edossiercreation.pk_date} ;;
+    relationship: many_to_one
+    type: left_outer
+  }
+  join: fednotreceivedanswer {
+    view_label: "Date FedNot Received Answer Hierarchy"
+    from: dim_date
+    sql_on: ${ereg_vw_fact_transaction.fk_date_fed_not_received_answer} = ${fednotreceivedanswer.pk_date} ;;
+    relationship: many_to_one
+    type: left_outer
+  }
+  join: fednotsending {
+    view_label: "Date FedNot Sending Hierarchy"
+    from: dim_date
+    sql_on: ${ereg_vw_fact_transaction.fk_date_fed_not_sending} = ${fednotsending.pk_date} ;;
+    relationship: many_to_one
+    type: left_outer
+  }
+  join: request {
+    view_label: "Date Request Hierarchy"
+    from: dim_date
+    sql_on: ${ereg_vw_fact_transaction.fk_date_request} = ${request.pk_date} ;;
+    relationship: many_to_one
+    type: left_outer
+    }
 }
 
 # explore: m_job_run {
