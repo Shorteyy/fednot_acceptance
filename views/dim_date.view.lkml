@@ -55,11 +55,6 @@ view: dim_date {
     {% endif %};;
   }
 
-  dimension: YYYYMM {
-    type:  number
-    sql:  cast(${TABLE}.year as number) * 100 + cast(${TABLE}.month as number) ;;
-  }
-
   dimension: day_name {
     type: string
     sql: ${TABLE}.DayName ;;
@@ -327,4 +322,10 @@ view: dim_date {
     hidden: yes
     drill_fields: [year_name, quarter_name, day_name, month_name]
   }
+
+  dimension: YYYYMM {
+    type:  number
+    sql:  cast(${TABLE}.Year as number) * 100 + cast(${TABLE}.Month as number) ;;
+  }
+
 }
