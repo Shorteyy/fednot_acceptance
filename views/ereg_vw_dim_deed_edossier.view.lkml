@@ -67,11 +67,11 @@ view: ereg_vw_dim_deed_edossier {
     label_from_parameter: pick_language
     sql:
         {% if pick_language._parameter_value == "'NL'" %}
-          IF(${last_deed_request_formality_label_nl} = "NA",${last_deed_request_formality_label_fr},${last_deed_request_formality_label_nl})
+          IF(${last_deed_request_formality_label_nl} = "NULL",${last_deed_request_formality_label_fr},${last_deed_request_formality_label_nl})
         {% elsif pick_language._parameter_value == "'FR'" %}
-          IF(${last_deed_request_formality_label_fr} = "NA",${last_deed_request_formality_label_nl },${last_deed_request_formality_label_fr})
+          IF(${last_deed_request_formality_label_fr} = "NULL",${last_deed_request_formality_label_nl },${last_deed_request_formality_label_fr})
          {% else %}
-          ${last_deed_request_formality_label_nl}
+          coalesce(${last_deed_request_formality_label_nl},${last_deed_request_formality_label_fr})
         {% endif %};;
   }
 

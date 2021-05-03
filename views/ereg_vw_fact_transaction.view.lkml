@@ -3,12 +3,12 @@ view: ereg_vw_fact_transaction {
   sql_table_name: `dwh.ereg_vwFactTransaction`
     ;;
 
-  # dimension: transaction_compound_primary_key {
-  #   primary_key: yes
-  #   hidden: yes
-  #   type: string
-  #   sql: CONCAT(cast(${TABLE}.fk_date_deed as string ), ' ', ${TABLE}.fk_date_deedregisteredaa, ' ', ${TABLE}.fk_date_edossiercreation, ' ', ${TABLE}.fk_date_expeditionsigned, ' ', ${TABLE}.fk_date_fednotreceivedanswer, ' ', ${TABLE}.FK_Date_FedNotSending ) ;;
-  # }
+  dimension: transaction_compound_primary_key {
+    primary_key: yes
+    hidden: yes
+    type: string
+    sql: CONCAT(${TABLE}.fk_date_deed, ${TABLE}.fk_date_deedregisteredaa, ${TABLE}.fk_date_edossiercreation, ${TABLE}.fk_date_expeditionsigned, ${TABLE}.fk_date_fednotreceivedanswer, ${TABLE}.FK_Date_FedNotSending,${TABLE}.FK_Date_FirstFedNotSending, ${TABLE}.FK_Date_Request,  ${TABLE}.FK_EregDeedEdossier, ${TABLE}.FK_EregExpedition,${TABLE}.FK_EregGood,${TABLE}.FK_EregGoodAddress,${TABLE}.FK_EregParty,${TABLE}.FK_EregPartyAddress, ${TABLE}.fk_ereg_party_quality, ${TABLE}.FK_EregPartyRightType , ${TABLE}.FK_EregSendingAnswer, ${TABLE}.FK_EregSP25, ${TABLE}.FK_EregTransaction, ${TABLE}.FK_EregTransactionType ) ;;
+  }
 
   dimension: fk_date_deed {
     hidden: yes
