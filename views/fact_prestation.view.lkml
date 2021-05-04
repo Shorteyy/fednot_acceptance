@@ -47,11 +47,11 @@ view: fact_prestation {
     sql: CONCAT(cast(${TABLE}.dim_days_sk as string ), ' ', ${TABLE}.dim_notaryOffice_sk, ' ', ${TABLE}.dim_province_sk, ' ', ${TABLE}.dim_application_sk ) ;;
   }
 
-  dimension: m_model_run_id {
-    type: string
-    hidden: yes
-    sql: ${TABLE}.m_model_run_id ;;
-  }
+  # dimension: m_model_run_id {
+  #   type: string
+  #   hidden: yes
+  #   sql: ${TABLE}.m_model_run_id ;;
+  # }
 
   dimension: is_ytd {
     type: yesno
@@ -62,7 +62,13 @@ view: fact_prestation {
   dimension: qty {
     hidden: yes
     type: number
-    sql: ${TABLE}.qty ;;
+    sql: ${TABLE}.quantity ;;
+  }
+
+  dimension: amount {
+    hidden: yes
+    type: number
+    sql: ${TABLE}.amountWVAT ;;
   }
 
   # dimension_group: row_start_dt {
@@ -95,10 +101,22 @@ view: fact_prestation {
     sql: ${qty} ;;
   }
 
+  measure: sum_amount {
+    label: "Amount"
+    type: sum
+    sql: ${amount} ;;
+  }
+
   measure: avg_qty {
     label: "Average # Operations"
     type:  average
     sql: ${qty} ;;
+  }
+
+  measure: avg_amount {
+    label: "Average Amount"
+    type:  average
+    sql: ${amount} ;;
   }
 
   measure: percent_of_total_operations {
@@ -106,6 +124,13 @@ view: fact_prestation {
     type: percent_of_total
     value_format: "0.00\%"
     sql: ${sum_qty} ;;
+  }
+
+  measure: percent_of_total_amount {
+    label: "% of Total Amount"
+    type: percent_of_total
+    value_format: "0.00\%"
+    sql: ${sum_amount} ;;
   }
 
   measure: total_sum_ytd {
@@ -116,5 +141,15 @@ view: fact_prestation {
       value: "yes"
     }
     sql: ${qty} ;;
+  }
+
+  measure: total_amount_ytd {
+    label: "Amount YTD"
+    type: sum
+    filters: {
+      field: is_ytd
+      value: "yes"
+    }
+    sql: ${amount} ;;
   }
 }

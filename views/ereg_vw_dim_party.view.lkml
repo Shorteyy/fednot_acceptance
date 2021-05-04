@@ -3,18 +3,20 @@ view: ereg_vw_dim_party {
   sql_table_name: `dwh.ereg_vwDimParty`
     ;;
 
-  parameter: pick_language {
+  parameter: pick_language_party {
     type: string
     allowed_value: { value: "NL" }
     allowed_value: { value: "FR" }
   }
 
   dimension: party_source_label {
-    label_from_parameter: pick_language
+    group_label: "Party"
+    group_item_label: "Source"
+    label_from_parameter: pick_language_party
     sql:
-        {% if pick_language._parameter_value == "'NL'" %}
+        {% if pick_language_party._parameter_value == "'NL'" %}
           IF(${party_source_label_nl} = "NULL",${party_source_label_fr},${party_source_label_nl})
-        {% elsif pick_language._parameter_value == "'FR'" %}
+        {% elsif pick_language_party._parameter_value == "'FR'" %}
           IF(${party_source_label_fr} = "NULL",${party_source_label_nl },${party_source_label_fr})
          {% else %}
           coalesce(${party_source_label_nl},${party_source_label_fr})
@@ -22,11 +24,13 @@ view: ereg_vw_dim_party {
   }
 
   dimension: party_type_label {
-    label_from_parameter: pick_language
+    group_label: "Party"
+    group_item_label: "Type"
+    label_from_parameter: pick_language_party
     sql:
-        {% if pick_language._parameter_value == "'NL'" %}
+        {% if pick_language_party._parameter_value == "'NL'" %}
           IF(${party_type_label_nl} = "NULL",${party_type_label_fr},${party_type_label_nl})
-        {% elsif pick_language._parameter_value == "'FR'" %}
+        {% elsif pick_language_party._parameter_value == "'FR'" %}
           IF(${party_type_label_fr} = "NULL",${party_type_label_nl },${party_type_label_fr})
          {% else %}
           coalesce(${party_type_label_nl},${party_type_label_fr})
@@ -60,31 +64,43 @@ view: ereg_vw_dim_party {
   # }
 
   dimension: moral_party_bcenumber {
+    group_label: "Party"
+    group_item_label: "BCE Number"
     type: string
     sql: ${TABLE}.MoralPartyBCENumber ;;
   }
 
   dimension: party_age {
+    group_label: "Party"
+    group_item_label: "Age"
     type: string
     sql: ${TABLE}.PartyAge ;;
   }
 
   dimension: party_birth_year {
+    group_label: "Party"
+    group_item_label: "Year of Birth"
     type: string
     sql: ${TABLE}.PartyBirthYear ;;
   }
 
   dimension: party_city {
+    group_label: "Party"
+    group_item_label: "City"
     type: string
     sql: ${TABLE}.PartyCity ;;
   }
 
   dimension: party_country_code {
+    group_label: "Party"
+    group_item_label: "Country Code"
     type: string
     sql: ${TABLE}.PartyCountryCode ;;
   }
 
   dimension: party_legal_form_label {
+    group_label: "Party"
+    group_item_label: "Legal Form"
     type: string
     sql: ${TABLE}.PartyLegalFormLabel ;;
   }
@@ -102,16 +118,23 @@ view: ereg_vw_dim_party {
   }
 
   dimension: party_postal_code {
+    group_label: "Party"
+    group_item_label: "Postal Code"
     type: string
     sql: ${TABLE}.PartyPostalCode ;;
   }
 
   dimension: party_sending_reference {
+    group_label: "Party"
+    group_item_label: "Sending Reference"
     type: string
     sql: ${TABLE}.PartySendingReference ;;
   }
 
   dimension: party_source {
+    hidden: yes
+    group_label: "Party"
+    group_item_label: "Source"
     type: string
     sql: ${TABLE}.PartySource ;;
   }
@@ -129,11 +152,16 @@ view: ereg_vw_dim_party {
   }
 
   dimension: party_street {
+    group_label: "Party"
+    group_item_label: "Street"
     type: string
     sql: ${TABLE}.PartyStreet ;;
   }
 
   dimension: party_type {
+    hidden: yes
+    group_label: "Party"
+    group_item_label: "Type"
     type: string
     sql: ${TABLE}.PartyType ;;
   }
@@ -157,6 +185,8 @@ view: ereg_vw_dim_party {
   }
 
   dimension: sending_party_id {
+    group_label: "Party"
+    group_item_label: "Sending ID"
     type: string
     sql: ${TABLE}.SendingPartyId ;;
   }

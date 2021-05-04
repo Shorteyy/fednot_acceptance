@@ -58,9 +58,10 @@ explore: fact_prestation {
     relationship: many_to_one
     type: left_outer
   }
-  join: dim_date {
-    view_label: "Date Prestation Hierarchy"
-    sql_on: ${fact_prestation.dim_days_sk} = ${dim_date.date} ;;
+  join: prestation {
+    from:  dim_date
+    view_label: "Date Hierarchy"
+    sql_on: ${fact_prestation.dim_days_sk} = ${prestation.date} ;;
     relationship:  many_to_one
     type: left_outer
   }
@@ -147,16 +148,16 @@ explore: ereg_vw_fact_transaction {
   type: left_outer
   }
   join: deed {
-    view_label: "Date Deed Hierarchy"
+    view_label: "Date Hierarchy"
     from: dim_date
     sql_on: ${ereg_vw_fact_transaction.fk_date_deed} = ${deed.pk_date} ;;
   relationship: many_to_one
   type: left_outer
   }
-  join: firstfednotsending {
+  join: first_fednot_sending {
     view_label: "Date First FedNot Sending Hierarchy"
     from: dim_date
-    sql_on: ${ereg_vw_fact_transaction.fk_date_first_fed_not_sending} = ${firstfednotsending.pk_date} ;;
+    sql_on: ${ereg_vw_fact_transaction.fk_date_first_fed_not_sending} = ${first_fednot_sending.pk_date} ;;
     relationship: many_to_one
     type: left_outer
   }

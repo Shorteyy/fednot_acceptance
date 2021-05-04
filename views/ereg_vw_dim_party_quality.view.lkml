@@ -1,20 +1,22 @@
 view: ereg_vw_dim_party_quality {
-  label: "Party Quality"
+  label: "Party"
   sql_table_name: `dwh.ereg_vwDimPartyQuality`
     ;;
 
-  parameter: pick_language {
+  parameter: pick_language_quality {
     type: string
     allowed_value: { value: "NL" }
     allowed_value: { value: "FR" }
   }
 
   dimension: party_quality_category_label {
-    label_from_parameter: pick_language
+    group_label: "Quality"
+    group_item_label: "Category"
+    label_from_parameter: pick_language_quality
     sql:
-        {% if pick_language._parameter_value == "'NL'" %}
+        {% if pick_language_quality._parameter_value == "'NL'" %}
           IF(${party_quality_category_label_nl} = "NULL",${party_quality_category_label_fr},${party_quality_category_label_nl})
-        {% elsif pick_language._parameter_value == "'FR'" %}
+        {% elsif pick_language_quality._parameter_value == "'FR'" %}
           IF(${party_quality_category_label_fr} = "NULL",${party_quality_category_label_nl },${party_quality_category_label_fr})
          {% else %}
           coalesce(${party_quality_category_label_nl},${party_quality_category_label_fr})
@@ -22,11 +24,13 @@ view: ereg_vw_dim_party_quality {
   }
 
   dimension: party_quality_label {
-    label_from_parameter: pick_language
+    group_label: "Quality"
+    group_item_label: "Label"
+    label_from_parameter: pick_language_quality
     sql:
-        {% if pick_language._parameter_value == "'NL'" %}
+        {% if pick_language_quality._parameter_value == "'NL'" %}
           IF(${party_quality_label_nl} = "NULL",${party_quality_label_fr},${party_quality_label_nl})
-        {% elsif pick_language._parameter_value == "'FR'" %}
+        {% elsif pick_language_quality._parameter_value == "'FR'" %}
           IF(${party_quality_label_fr} = "NULL",${party_quality_label_nl },${party_quality_label_fr})
          {% else %}
           coalesce(${party_quality_label_nl},${party_quality_label_fr})
@@ -60,6 +64,7 @@ view: ereg_vw_dim_party_quality {
   # }
 
   dimension: party_quality_category {
+    hidden: yes
     type: string
     sql: ${TABLE}.PartyQualityCategory ;;
   }
@@ -77,6 +82,8 @@ view: ereg_vw_dim_party_quality {
   }
 
   dimension: party_quality_code {
+    group_label: "Quality"
+    group_item_label: "Code"
     type: string
     sql: ${TABLE}.PartyQualityCode ;;
   }

@@ -35,6 +35,7 @@ view: dim_date {
   }
 
   dimension: date {
+    group_label: "{% assign groupname = _field._name | replace: \".date\" , \" \" | replace: \"_\" , \" \" | capitalize %} {{groupname}} Date Hierarchy"
     type: date
     datatype: date
     sql: ${TABLE}.date ;;
@@ -56,6 +57,7 @@ view: dim_date {
   }
 
   dimension: day_name {
+    group_label: "{% assign groupname = _field._name | replace: \".day_name\" , \" \" | replace: \"_\" , \" \" | capitalize %} {{groupname}} Date Hierarchy"
     type: string
     sql: ${TABLE}.DayName ;;
   }

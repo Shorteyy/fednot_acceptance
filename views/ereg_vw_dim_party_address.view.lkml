@@ -1,19 +1,24 @@
 view: ereg_vw_dim_party_address {
-  label: "Party Address"
+  label: "Party"
   sql_table_name: `dwh.ereg_vwDimPartyAddress`
     ;;
 
   dimension: country_name {
+    group_label: "Address"
+    group_item_label: "Country"
     type: string
     sql: ${TABLE}.CountryName ;;
   }
 
   dimension: district_id {
+    hidden: yes
     type: string
     sql: ${TABLE}.districtId ;;
   }
 
   dimension: district_name {
+    group_label: "Address"
+    group_item_label: "District"
     type: string
     sql: ${TABLE}.DistrictName ;;
   }
@@ -37,36 +42,48 @@ view: ereg_vw_dim_party_address {
   }
 
   dimension: district_name_tableau {
+    hidden: yes
     type: string
     sql: ${TABLE}.DistrictName_Tableau ;;
   }
 
   dimension: is_streets_belgian_coast {
+    group_label: "Address"
+    group_item_label: "Streets Belgian Coast?"
     type: string
     sql: ${TABLE}.isStreetsBelgianCoast ;;
   }
 
   dimension: is_zip_belgian_coast {
+    group_label: "Address"
+    group_item_label: "Zip Belgian Coast?"
     type: string
     sql: ${TABLE}.isZipBelgianCoast ;;
   }
 
   dimension: is_zip_frontalier {
+    group_label: "Address"
+    group_item_label: "Zip Frontalier?"
     type: string
     sql: ${TABLE}.isZipFrontalier ;;
   }
 
   dimension: is_zip_town {
+    group_label: "Address"
+    group_item_label: "Zip Town?"
     type: string
     sql: ${TABLE}.isZipTown ;;
   }
 
   dimension: locality_id {
+    hidden: yes
     type: string
     sql: ${TABLE}.localityId ;;
   }
 
   dimension: locality_name {
+    group_label: "Address"
+    group_item_label: "Locality"
     type: string
     sql: ${TABLE}.LocalityName ;;
   }
@@ -116,21 +133,28 @@ view: ereg_vw_dim_party_address {
   # }
 
   dimension: main_locality_name {
+    group_label: "Address"
+    group_item_label: "Main Locality"
     type: string
     sql: ${TABLE}.MainLocalityName ;;
   }
 
   dimension: matching_level {
+    group_label: "Address"
+    group_item_label: "Matching Level"
     type: string
     sql: ${TABLE}.MatchingLevel ;;
   }
 
   dimension: municipality_id {
+    hidden: yes
     type: string
     sql: ${TABLE}.municipalityId ;;
   }
 
   dimension: municipality_name {
+    group_label: "Address"
+    group_item_label: "Municipality"
     type: string
     sql: ${TABLE}.MunicipalityName ;;
   }
@@ -154,6 +178,7 @@ view: ereg_vw_dim_party_address {
   }
 
   dimension: nis_code {
+    hidden: yes
     type: string
     sql: ${TABLE}.NisCode ;;
   }
@@ -165,11 +190,14 @@ view: ereg_vw_dim_party_address {
   }
 
   dimension: province_id {
+    hidden: yes
     type: string
     sql: ${TABLE}.provinceId ;;
   }
 
   dimension: province_name {
+    group_label: "Address"
+    group_item_label: "Province"
     type: string
     sql: ${TABLE}.ProvinceName ;;
   }
@@ -193,18 +221,22 @@ view: ereg_vw_dim_party_address {
   }
 
   dimension: province_area {
-    label: "Province Area"
+    group_label: "Address"
+    group_item_label: "Province Area"
     type: string
     map_layer_name: province_location_belgium_ereg
     sql: ${TABLE}.NisCode ;;
   }
 
   dimension: region_id {
+    hidden: yes
     type: string
     sql: ${TABLE}.regionId ;;
   }
 
   dimension: region_name {
+    group_label: "Address"
+    group_item_label: "Region"
     type: string
     sql: ${TABLE}.RegionName ;;
   }
@@ -228,11 +260,14 @@ view: ereg_vw_dim_party_address {
   }
 
   dimension: region_name_tableau {
+    hidden: yes
     type: string
     sql: ${TABLE}.RegionName_Tableau ;;
   }
 
   dimension: region_area {
+    group_label: "Address"
+    group_item_label: "Region Area"
     type: string
     label: "Region Area"
     drill_fields: [province_area]
@@ -242,16 +277,20 @@ view: ereg_vw_dim_party_address {
 
 
   dimension: street_code {
+    hidden: yes
     type: string
     sql: ${TABLE}.StreetCode ;;
   }
 
   dimension: street_id {
+    hidden: yes
     type: string
     sql: ${TABLE}.streetId ;;
   }
 
   dimension: street_name {
+    group_label: "Address"
+    group_item_label: "Street"
     type: string
     sql: ${TABLE}.StreetName ;;
   }
@@ -280,6 +319,8 @@ view: ereg_vw_dim_party_address {
   # }
 
   dimension: zip_code {
+    group_label: "Address"
+    group_item_label: "Zip Code"
     type: zipcode
     sql: ${TABLE}.ZipCode ;;
   }

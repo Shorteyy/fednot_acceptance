@@ -1,20 +1,22 @@
 view: ereg_vw_dim_party_right_type {
-  label: "Party Right Type"
+  label: "Party"
   sql_table_name: `dwh.ereg_vwDimPartyRightType`
     ;;
 
-  parameter: pick_language {
+  parameter: pick_language_right_type {
     type: string
     allowed_value: { value: "NL" }
     allowed_value: { value: "FR" }
   }
 
   dimension: party_right_type_label {
-    label_from_parameter: pick_language
+    group_label: "Right Type"
+    group_item_label: "Label"
+    label_from_parameter: pick_language_right_type
     sql:
-        {% if pick_language._parameter_value == "'NL'" %}
+        {% if pick_language_right_type._parameter_value == "'NL'" %}
           IF(${party_right_type_label_nl} = "NULL",${party_right_type_label_fr},${party_right_type_label_nl})
-        {% elsif pick_language._parameter_value == "'FR'" %}
+        {% elsif pick_language_right_type._parameter_value == "'FR'" %}
           IF(${party_right_type_label_fr} = "NULL",${party_right_type_label_nl },${party_right_type_label_fr})
          {% else %}
           coalesce(${party_right_type_label_nl},${party_right_type_label_fr})
@@ -48,6 +50,8 @@ view: ereg_vw_dim_party_right_type {
   # }
 
   dimension: party_right_type_code {
+    group_label: "Right Type"
+    group_item_label: "Code"
     type: string
     sql: ${TABLE}.PartyRightTypeCode ;;
   }
