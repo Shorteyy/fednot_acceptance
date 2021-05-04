@@ -4,6 +4,7 @@ view: ereg_vw_dim_deed_edossier {
     ;;
 
   parameter: pick_language {
+    label: "Last Deed Request Formality Label Language Selector"
     type: string
     allowed_value: { value: "NL" }
     allowed_value: { value: "FR" }

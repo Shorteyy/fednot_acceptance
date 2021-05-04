@@ -4,6 +4,7 @@ view: ereg_vw_dim_party_quality {
     ;;
 
   parameter: pick_language_quality {
+    label: "Party Quality Language Selector"
     type: string
     allowed_value: { value: "NL" }
     allowed_value: { value: "FR" }

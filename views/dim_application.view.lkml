@@ -4,6 +4,7 @@ view: dim_application {
     ;;
 
   parameter: pick_language {
+    label: "Operation Language Selector"
     type: string
     allowed_value: { value: "NL" }
     allowed_value: { value: "FR" }

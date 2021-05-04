@@ -44,7 +44,7 @@ view: fact_prestation {
     primary_key: yes
     hidden: yes
     type: string
-    sql: CONCAT(cast(${TABLE}.dim_days_sk as string ), ' ', ${TABLE}.dim_notaryOffice_sk, ' ', ${TABLE}.dim_province_sk, ' ', ${TABLE}.dim_application_sk ) ;;
+    sql: CONCAT(cast(${TABLE}.dim_days_sk as string ), ${TABLE}.dim_notaryOffice_sk, ${TABLE}.dim_province_sk, ${TABLE}.dim_application_sk ) ;;
   }
 
   # dimension: m_model_run_id {

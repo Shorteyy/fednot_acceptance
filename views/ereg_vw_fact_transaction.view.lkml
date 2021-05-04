@@ -269,25 +269,6 @@ view: ereg_vw_fact_transaction {
     drill_fields: []
   }
 
-  # measure: sum_qty {
-  #   label: "# Transactions"
-  #   type: sum
-  #   sql: ${count} ;;
-  # }
-
-  # measure: avg_qty {
-  #   label: "Average # Transactions"
-  #   type:  average
-  #   sql: ${count} ;;
-  # }
-
-  # measure: percent_of_total_operations {
-  #   label: "% of Total # Transactions"
-  #   type: percent_of_total
-  #   value_format: "0.00\%"
-  #   sql: ${sum_qty} ;;
-  # }
-
   # measure: total_sum_ytd_deed {
   #   label: "# Transactions YTD"
   #   type: sum

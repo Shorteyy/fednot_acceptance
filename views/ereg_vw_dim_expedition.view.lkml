@@ -4,6 +4,7 @@ view: ereg_vw_dim_expedition {
     ;;
 
   parameter: pick_language {
+    label: "Expedition Language Selector"
     type: string
     allowed_value: { value: "NL" }
     allowed_value: { value: "FR" }

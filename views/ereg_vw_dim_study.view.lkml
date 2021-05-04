@@ -4,6 +4,7 @@ view: ereg_vw_dim_study {
     ;;
 
   parameter: pick_language {
+    label: "Notary Office Language Selector"
     type: string
     allowed_value: { value: "NL" }
     allowed_value: { value: "FR" }

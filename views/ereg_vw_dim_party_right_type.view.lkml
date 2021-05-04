@@ -4,6 +4,7 @@ view: ereg_vw_dim_party_right_type {
     ;;
 
   parameter: pick_language_right_type {
+    label: "Party Right Type Language Selector"
     type: string
     allowed_value: { value: "NL" }
     allowed_value: { value: "FR" }

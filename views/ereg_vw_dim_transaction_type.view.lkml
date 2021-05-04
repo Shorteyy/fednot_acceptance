@@ -4,6 +4,7 @@ view: ereg_vw_dim_transaction_type {
     ;;
 
   parameter: pick_language {
+    label: "Transaction Type Language Selector"
     type: string
     allowed_value: { value: "NL" }
     allowed_value: { value: "FR" }

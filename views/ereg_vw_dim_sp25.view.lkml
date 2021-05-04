@@ -4,6 +4,7 @@ view: ereg_vw_dim_sp25 {
     ;;
 
   parameter: pick_language {
+    label: "SP25 Language Selector"
     type: string
     allowed_value: { value: "NL" }
     allowed_value: { value: "FR" }

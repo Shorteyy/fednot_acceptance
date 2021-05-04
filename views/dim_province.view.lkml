@@ -4,6 +4,7 @@ view: dim_province {
     ;;
 
   parameter: pick_language {
+    label: "Geography Language Selector"
     type: string
     allowed_value: { value: "NL" }
     allowed_value: { value: "FR" }
@@ -31,8 +32,8 @@ view: dim_province {
           ${country_nl}
         {% elsif pick_language._parameter_value == "'FR'" %}
           ${country_fr}
-         {% else %}
-           ${country_nl}
+        {% else %}
+          ${country_nl}
         {% endif %};;
   }
 

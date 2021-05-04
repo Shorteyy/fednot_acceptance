@@ -4,6 +4,7 @@ view: ereg_vw_dim_sending_answer {
     ;;
 
   parameter: pick_language {
+    label: "Sending Answer Language Selector"
     type: string
     allowed_value: { value: "NL" }
     allowed_value: { value: "FR" }
