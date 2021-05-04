@@ -20,7 +20,7 @@ view: dim_date {
   # }
 
   parameter: timeframe_picker {
-    label: "Period Selector"
+    label: "{% assign groupname = _field._name | replace: \".date\" , \" \" | replace: \".timeframe_picker\" , \" \" | capitalize %} {{groupname}} Period Selector"
     type: unquoted
     allowed_value: {
       label: "Month"
@@ -35,7 +35,7 @@ view: dim_date {
   }
 
   dimension: date {
-    group_label: "{% assign groupname = _field._name | replace: \".date\" , \" \" | replace: \"_\" , \" \" | capitalize %} {{groupname}} Date Hierarchy"
+    group_label: "{% assign groupname = _field._name | replace: \".date\" , \" \" | replace: \"_\" , \" \" | capitalize %} {{groupname}}"
     type: date
     datatype: date
     sql: ${TABLE}.date ;;
@@ -57,7 +57,7 @@ view: dim_date {
   }
 
   dimension: day_name {
-    group_label: "{% assign groupname = _field._name | replace: \".day_name\" , \" \" | replace: \"_\" , \" \" | capitalize %} {{groupname}} Date Hierarchy"
+    group_label: "{% assign groupname = _field._name | replace: \".day_name\" , \" \" | replace: \"_\" , \" \" | capitalize %} {{groupname}}"
     type: string
     sql: ${TABLE}.DayName ;;
   }
