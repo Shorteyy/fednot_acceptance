@@ -244,6 +244,26 @@ view: ereg_vw_fact_transaction {
   #   sql: ${TABLE}.Sys_InsertUpdateDate ;;
   # }
 
+  measure: count_transaction {
+    type: count_distinct
+    sql: ${fk_ereg_transaction} ;;
+  }
+
+  measure: count_parties {
+    type: count_distinct
+    sql: ${fk_ereg_party} ;;
+  }
+
+  measure: count_deed {
+    type: count_distinct
+    sql: ${fk_ereg_deed_edossier} ;;
+  }
+
+  measure: count_good {
+    type: count_distinct
+    sql: ${fk_ereg_good} ;;
+  }
+
   measure: count {
     type: count
     drill_fields: []
