@@ -116,6 +116,7 @@ view: ereg_vw_dim_transaction_type {
   }
 
   dimension: sub_category_code {
+    hidden: yes
     type: string
     sql: ${TABLE}.SubCategoryCode ;;
   }
@@ -138,11 +139,13 @@ view: ereg_vw_dim_transaction_type {
   # }
 
   dimension: transaction_type_code {
+    hidden: yes
     type: string
     sql: ${TABLE}.TransactionTypeCode ;;
   }
 
   dimension: transaction_type_family {
+    hidden:  yes
     type: string
     sql: ${TABLE}.TransactionTypeFamily ;;
   }
