@@ -53,7 +53,7 @@ view: dim_date {
       {% elsif timeframe_picker._parameter_value == 'Quarter' %}
       ${quarter_year}
     {% else %}
-      ${quarter_year}
+      ${year}
     {% endif %};;
   }
 
@@ -257,6 +257,7 @@ view: dim_date {
 
   dimension: MMYYYY {
     group_label: "{% assign groupname = _field._name | replace: \".MMYYYY\" , \"\" | replace: \"_\" , \" \" | capitalize %} {{groupname}}"
+    order_by_field: YYYYMM
     type: string
     drill_fields: [date]
     sql: ${TABLE}.MMYYYY ;;
@@ -264,24 +265,28 @@ view: dim_date {
 
   dimension: month {
     group_label: "{% assign groupname = _field._name | replace: \".month\" , \"\" | replace: \"_\" , \" \" | capitalize %} {{groupname}}"
+    order_by_field: YYYYMM
     type: string
     sql: ${TABLE}.Month ;;
   }
 
   dimension: month_name {
     group_label: "{% assign groupname = _field._name | replace: \".month_name\" , \"\" | replace: \"_\" , \" \" | capitalize %} {{groupname}}"
+    order_by_field: YYYYMM
     type: string
     sql: ${TABLE}.MonthName ;;
   }
 
   dimension: month_of_quarter {
     group_label: "{% assign groupname = _field._name | replace: \".month_of_quarter\" , \"\" | replace: \"_\" , \" \" | capitalize %} {{groupname}}"
+    order_by_field: YYYYMM
     type: string
     sql: ${TABLE}.MonthOfQuarter ;;
   }
 
   dimension: month_year {
     group_label: "{% assign groupname = _field._name | replace: \".month_year\" , \"\" | replace: \"_\" , \" \" | capitalize %} {{groupname}}"
+    order_by_field: YYYYMM
     drill_fields: [date]
     type: string
     sql: ${TABLE}.MonthYear ;;
@@ -296,18 +301,21 @@ view: dim_date {
 
   dimension: quarter {
     group_label: "{% assign groupname = _field._name | replace: \".quarter\" , \"\" | replace: \"_\" , \" \" | capitalize %} {{groupname}}"
+    order_by_field: year_quarter
     type: string
     sql: ${TABLE}.Quarter ;;
   }
 
   dimension: quarter_name {
     group_label: "{% assign groupname = _field._name | replace: \".quarter_name\" , \"\" | replace: \"_\" , \" \" | capitalize %} {{groupname}}"
+    order_by_field: year_quarter
     type: string
     sql: ${TABLE}.QuarterName ;;
   }
 
   dimension: quarter_year {
     group_label: "{% assign groupname = _field._name | replace: \".quarter_year\" , \"\" | replace: \"_\" , \" \" | capitalize %} {{groupname}}"
+    order_by_field: year_quarter
     drill_fields: [month_year, date]
     type: string
     sql: ${TABLE}.QuarterYear ;;
