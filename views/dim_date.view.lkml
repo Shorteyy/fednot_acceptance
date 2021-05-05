@@ -47,11 +47,11 @@ view: dim_date {
     type: string
     sql:
     {% if timeframe_picker._parameter_value == 'Month'  %}
-      ${month_year}
+      concat(${year},if(length(${month}) = 1,"-0","-"),${month})
     {% elsif timeframe_picker._parameter_value == 'Year' %}
       ${year}
       {% elsif timeframe_picker._parameter_value == 'Quarter' %}
-      ${quarter_year}
+      concat(${year}," ",substr(${quarter_year},1,2))
     {% else %}
       ${year}
     {% endif %};;
