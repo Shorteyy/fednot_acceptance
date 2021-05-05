@@ -12,6 +12,7 @@ view: ereg_vw_dim_transaction_type {
 
   dimension: category_label {
     label_from_parameter: pick_language
+    label: "Category"
     sql:
         {% if pick_language._parameter_value == "'NL'" %}
           IF(${category_label_nl} = "NULL",${category_label_fr},${category_label_nl})
@@ -24,6 +25,7 @@ view: ereg_vw_dim_transaction_type {
 
   dimension: sub_category_label {
     label_from_parameter: pick_language
+    label: "Deed Type"
     sql:
         {% if pick_language._parameter_value == "'NL'" %}
           IF(${sub_category_label_nl} = "NULL",${sub_category_label_fr},${sub_category_label_nl})
@@ -36,6 +38,7 @@ view: ereg_vw_dim_transaction_type {
 
   dimension: transaction_type_family_label {
     label_from_parameter: pick_language
+    label: "Family"
     sql:
         {% if pick_language._parameter_value == "'NL'" %}
           IF(${transaction_type_family_label_nl} = "NULL",${transaction_type_family_label_fr},${transaction_type_family_label_nl})
@@ -47,6 +50,7 @@ view: ereg_vw_dim_transaction_type {
   }
 
   dimension: category_code {
+    hidden: yes
     type: string
     sql: ${TABLE}.CategoryCode ;;
   }
