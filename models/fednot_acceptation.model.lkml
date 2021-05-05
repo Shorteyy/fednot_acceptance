@@ -79,21 +79,25 @@ explore: ereg_vw_fact_transaction {
     sql_on: ${ereg_vw_fact_transaction.fk_ereg_deed_edossier} = ${ereg_vw_dim_deed_edossier.pk_ereg_deed_edossier} ;;
     relationship: many_to_one
     type: left_outer
+    fields: []
   }
   join: ereg_vw_dim_expedition {
     sql_on: ${ereg_vw_fact_transaction.fk_ereg_expedition} = ${ereg_vw_dim_expedition.pk_ereg_expedition} ;;
     relationship: many_to_one
     type: left_outer
+    fields: []
   }
   join: ereg_vw_dim_good {
     sql_on: ${ereg_vw_fact_transaction.fk_ereg_good} = ${ereg_vw_dim_good.pk_ereg_good} ;;
     relationship:  many_to_one
     type: left_outer
+    fields: []
   }
   join: ereg_vw_dim_good_address {
     sql_on: ${ereg_vw_fact_transaction.fk_ereg_good_address} = ${ereg_vw_dim_good_address.pk_address} ;;
   relationship:  many_to_one
   type: left_outer
+  fields: []
   }
   join:  ereg_vw_dim_party {
     sql_on:  ${ereg_vw_fact_transaction.fk_ereg_party} = ${ereg_vw_dim_party.pk_ereg_party};;
@@ -109,33 +113,37 @@ explore: ereg_vw_fact_transaction {
     sql_on: ${ereg_vw_fact_transaction.fk_ereg_party_quality} = ${ereg_vw_dim_party_quality.pk_ereg_party_quality};;
   relationship:  many_to_one
   type: left_outer
+  fields: []
   }
   join:  ereg_vw_dim_party_right_type {
     sql_on: ${ereg_vw_fact_transaction.fk_ereg_party_right_type} =${ereg_vw_dim_party_right_type.pk_ereg_party_right_type} ;;
   relationship:  many_to_one
   type: left_outer
+  fields: []
   }
   join:  ereg_vw_dim_sending_answer {
     sql_on: ${ereg_vw_fact_transaction.fk_ereg_sending_answer}  = ${ereg_vw_dim_sending_answer.pk_ereg_sending_answer} ;;
   relationship:  many_to_one
   type: left_outer
+  fields: []
   }
   join:  ereg_vw_dim_sp25 {
     sql_on: ${ereg_vw_fact_transaction.fk_ereg_sp25} = ${ereg_vw_dim_sp25.pk_ereg_sp25};;
   relationship:  many_to_one
   type: left_outer
+  fields: []
   }
   join:  ereg_vw_dim_study {
     sql_on: ${ereg_vw_fact_transaction.fk_study} = ${ereg_vw_dim_study.pk_study};;
     relationship:  many_to_one
     type: left_outer
-    fields: []
+   # fields: []
   }
     join:  ereg_vw_dim_study_address {
     sql_on: ${ereg_vw_fact_transaction.fk_study_address} = ${ereg_vw_dim_study_address.pk_address};;
     relationship:  many_to_one
     type: left_outer
-    fields: []
+    # fields: []
   }
   join:  ereg_vw_dim_transaction {
     sql_on: ${ereg_vw_fact_transaction.fk_ereg_transaction} = ${ereg_vw_dim_transaction.pk_ereg_transaction} ;;
@@ -167,6 +175,7 @@ explore: ereg_vw_fact_transaction {
     sql_on: ${ereg_vw_fact_transaction.fk_date_expedition_signed} = ${Expedition_Signed.pk_date} ;;
     relationship: many_to_one
     type: left_outer
+    fields: []
   }
   join: Deed_Registered_AA {
     view_label: "Date Hierarchy"
@@ -174,6 +183,7 @@ explore: ereg_vw_fact_transaction {
     sql_on: ${ereg_vw_fact_transaction.fk_date_deed_registered_aa} = ${Deed_Registered_AA.pk_date} ;;
     relationship: many_to_one
     type: left_outer
+    fields: []
   }
   join: eDossier_Creation {
     view_label: "Date Hierarchy"
@@ -181,6 +191,7 @@ explore: ereg_vw_fact_transaction {
     sql_on: ${ereg_vw_fact_transaction.fk_date_edossier_creation} = ${eDossier_Creation.pk_date} ;;
     relationship: many_to_one
     type: left_outer
+    fields: []
   }
   join: Fednot_Received_Answer {
     view_label: "Date Hierarchy"
@@ -188,6 +199,7 @@ explore: ereg_vw_fact_transaction {
     sql_on: ${ereg_vw_fact_transaction.fk_date_fed_not_received_answer} = ${Fednot_Received_Answer.pk_date} ;;
     relationship: many_to_one
     type: left_outer
+    fields: []
   }
   join: Fednot_Sending {
     view_label: "Date Hierarchy"
@@ -195,6 +207,7 @@ explore: ereg_vw_fact_transaction {
     sql_on: ${ereg_vw_fact_transaction.fk_date_fed_not_sending} = ${Fednot_Sending.pk_date} ;;
     relationship: many_to_one
     type: left_outer
+    fields: []
   }
   join: Request {
     view_label: "Date Hierarchy"
@@ -202,6 +215,7 @@ explore: ereg_vw_fact_transaction {
     sql_on: ${ereg_vw_fact_transaction.fk_date_request} = ${Request.pk_date} ;;
     relationship: many_to_one
     type: left_outer
+    fields: []
     }
 }
 
