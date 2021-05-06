@@ -59,10 +59,6 @@ view: fact_prestation {
     sql: EXTRACT(MONTH from ${dim_days_sk}) < EXTRACT(MONTH from CURRENT_TIMESTAMP) ;;
   }
 
-  filter: is_ytd2 {
-
-  }
-
   dimension: qty {
     hidden: yes
     type: number
