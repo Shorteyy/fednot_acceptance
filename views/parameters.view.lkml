@@ -1,10 +1,6 @@
 view: parameters {
   extension: required
 
-  #####################
-  # COMMON PARAMETERS #
-  #####################
-
   # Timeframe
 
   parameter: timeframe_picker {
