@@ -1,4 +1,4 @@
-view: parameters {
+view: global_parameters {
   extension: required
 
   # Timeframe
