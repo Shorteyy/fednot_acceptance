@@ -239,6 +239,58 @@ view: ereg_vw_fact_transaction {
     sql: MOD(${fk_date_request},100) < EXTRACT(MONTH from CURRENT_TIMESTAMP);;
   }
 
+ parameter: metric_selector {
+    type: unquoted
+    allowed_value: {
+      label: "Deeds"
+      value: "CountDeed"
+    }
+    allowed_value: {
+      label: "Goods"
+      value: "CountGood"
+    }
+    allowed_value: {
+      label: "Party"
+      value: "CountParty"
+    }
+    allowed_value: {
+      label: "Transaction"
+      value: "CountTransaction"
+    }
+  }
+
+  measure: metric {
+    label_from_parameter: metric_selector
+    type: number
+    sql:
+        {% if metric_selector._parameter_value == 'CountDeed' %}
+          ${count_deed}
+        {% elsif metric_selector._parameter_value == 'CountGood' %}
+          ${count_good}
+        {% elsif metric_selector._parameter_value == 'CountParty' %}
+          ${count_party}
+        {% else metric_selector._parameter_value == 'CountTransaction' %}
+          ${count_transaction}
+        {% else %}
+          NULL
+        {% endif %} ;;
+  }
+
+  # parameter: metric_target {
+  #   type: number
+  # }
+
+  # measure: metric_targeted {
+  #   type: number
+  #   sql: ${metric_selector} ;;
+  #   html: {% assign var=_filters['_metric_target'] | plus:0 %}
+  #         {% if var < ereg_vw_fact_transaction.metric._value %}
+  #           <div style="color: black; background-color: red; font-size:100%; text-align:center">{{ rendered_value }}</div>
+  #         {% else %}
+  #           {{rendered_value}}
+  #         {% endif %} ;;
+  # }
+
   # dimension: sys_insert_update_date {
   #   type: string
   #   sql: ${TABLE}.Sys_InsertUpdateDate ;;

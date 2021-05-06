@@ -50,7 +50,7 @@ view: dim_date {
       concat(${year},if(length(${month}) = 1,"-0","-"),${month})
     {% elsif timeframe_picker._parameter_value == 'Year' %}
       ${year}
-      {% elsif timeframe_picker._parameter_value == 'Quarter' %}
+    {% elsif timeframe_picker._parameter_value == 'Quarter' %}
       concat(${year}," ",substr(${quarter_year},1,2))
     {% else %}
       ${year}

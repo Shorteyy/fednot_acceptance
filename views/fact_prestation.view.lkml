@@ -55,21 +55,9 @@ view: fact_prestation {
 
   dimension: is_ytd {
     type: yesno
-    label: "Compare YTD?"
+    label: "Compare YTD"
     sql: EXTRACT(MONTH from ${dim_days_sk}) < EXTRACT(MONTH from CURRENT_TIMESTAMP) ;;
   }
-
-  parameter: metric_selector {
-    type: string
-    allowed_value: {
-      label: "Amount in €"
-      value: "sum_amount"
-    }
-    allowed_value: {
-      label: "# Operations"
-      value: "sum_qty"
-    }
- }
 
   dimension: qty {
     hidden: yes
