@@ -105,6 +105,7 @@ view: fact_prestation {
     label: "Amount"
     type: sum
     sql: ${amount} ;;
+    value_format:"€#,##0.00;-€#,##0.00"
   }
 
   measure: avg_qty {
@@ -117,6 +118,7 @@ view: fact_prestation {
     label: "Average Amount"
     type:  average
     sql: ${amount} ;;
+    value_format:"€#,##0.00;-€#,##0.00"
   }
 
   measure: percent_of_total_operations {
@@ -151,5 +153,6 @@ view: fact_prestation {
       value: "yes"
     }
     sql: ${amount} ;;
+    value_format:"€#,##0.00;-€#,##0.00"
   }
 }
