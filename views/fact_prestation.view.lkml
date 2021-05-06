@@ -55,8 +55,12 @@ view: fact_prestation {
 
   dimension: is_ytd {
     type: yesno
-    label: "Prestation Is YTD?"
-    sql: EXTRACT(MONTH from ${dim_days_sk}) < EXTRACT(MONTH from CURRENT_TIMESTAMP);;
+    label: "Compare YTD?"
+    sql: EXTRACT(MONTH from ${dim_days_sk}) < EXTRACT(MONTH from CURRENT_TIMESTAMP) ;;
+  }
+
+  filter: is_ytd2 {
+
   }
 
   dimension: qty {
