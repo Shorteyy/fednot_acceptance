@@ -250,11 +250,11 @@ view: ereg_vw_fact_transaction {
       value: "CountGood"
     }
     allowed_value: {
-      label: "Party"
+      label: "Parties"
       value: "CountParty"
     }
     allowed_value: {
-      label: "Transaction"
+      label: "Transactions"
       value: "CountTransaction"
     }
   }
@@ -269,10 +269,8 @@ view: ereg_vw_fact_transaction {
           ${count_good}
         {% elsif metric_selector._parameter_value == 'CountParty' %}
           ${count_party}
-        {% else metric_selector._parameter_value == 'CountTransaction' %}
-          ${count_transaction}
         {% else %}
-          NULL
+          ${count_transaction}
         {% endif %} ;;
   }
 

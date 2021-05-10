@@ -91,13 +91,13 @@ explore: ereg_vw_fact_transaction {
     sql_on: ${ereg_vw_fact_transaction.fk_ereg_good} = ${ereg_vw_dim_good.pk_ereg_good} ;;
     relationship:  many_to_one
     type: left_outer
-    fields: []
+    # fields: []
   }
   join: ereg_vw_dim_good_address {
     sql_on: ${ereg_vw_fact_transaction.fk_ereg_good_address} = ${ereg_vw_dim_good_address.pk_address} ;;
   relationship:  many_to_one
   type: left_outer
-  fields: []
+  # fields: []
   }
   join:  ereg_vw_dim_party {
     sql_on:  ${ereg_vw_fact_transaction.fk_ereg_party} = ${ereg_vw_dim_party.pk_ereg_party};;
