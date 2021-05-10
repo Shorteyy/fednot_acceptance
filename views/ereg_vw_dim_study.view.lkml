@@ -130,7 +130,7 @@ view: ereg_vw_dim_study {
 
   dimension: is_msk {
     label: "Is MSK?"
-    type: yesno
+    type: number
     sql: ${TABLE}.IsMsk ;;
   }
 
@@ -243,7 +243,7 @@ view: ereg_vw_dim_study {
 
   dimension: study_is_association {
     label: "Notary is Association?"
-    type: yesno
+    type: number
     sql: ${TABLE}.StudyIsAssociation ;;
   }
 
