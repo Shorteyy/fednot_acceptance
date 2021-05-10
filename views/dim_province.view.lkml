@@ -191,47 +191,47 @@ view: dim_province {
     sql: ${TABLE}.regionRbr ;;
   }
 
-  dimension_group: row_end_dt {
-    type: time
-    hidden: yes
-    timeframes: [
-      raw,
-      time,
-      date,
-      week,
-      month,
-      quarter,
-      year
-    ]
-    sql: ${TABLE}.row_end_dt ;;
-  }
+  # dimension_group: row_end_dt {
+  #   type: time
+  #   hidden: yes
+  #   timeframes: [
+  #     raw,
+  #     time,
+  #     date,
+  #     week,
+  #     month,
+  #     quarter,
+  #     year
+  #   ]
+  #   sql: ${TABLE}.row_end_dt ;;
+  # }
 
-  dimension: row_is_current_flag {
-    type: number
-    hidden: yes
-    sql: ${TABLE}.row_is_current_flag ;;
-  }
+  # dimension: row_is_current_flag {
+  #   type: number
+  #   hidden: yes
+  #   sql: ${TABLE}.row_is_current_flag ;;
+  # }
 
-  dimension_group: row_start_dt {
-    type: time
-    hidden: yes
-    timeframes: [
-      raw,
-      time,
-      date,
-      week,
-      month,
-      quarter,
-      year
-    ]
-    sql: ${TABLE}.row_start_dt ;;
-  }
+  # dimension_group: row_start_dt {
+  #   type: time
+  #   hidden: yes
+  #   timeframes: [
+  #     raw,
+  #     time,
+  #     date,
+  #     week,
+  #     month,
+  #     quarter,
+  #     year
+  #   ]
+  #   sql: ${TABLE}.row_start_dt ;;
+  # }
 
-  dimension: m_model_run_id {
-    type: string
-    hidden: yes
-    sql: ${TABLE}.m_model_run_id ;;
-  }
+  # dimension: m_model_run_id {
+  #   type: string
+  #   hidden: yes
+  #   sql: ${TABLE}.m_model_run_id ;;
+  # }
 
   measure: count {
     type: count

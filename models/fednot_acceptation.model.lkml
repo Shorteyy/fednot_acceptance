@@ -20,15 +20,15 @@ map_layer: region_location_belgium {
   property_key: "reg_nl"
 }
 
-map_layer: region_location_belgium_ereg {
-  file: "/maps/belgium.json"
-  property_key: "reg_nis"
-}
+# map_layer: region_location_belgium_ereg {
+#   file: "/maps/belgium.json"
+#   property_key: "reg_nis"
+# }
 
-map_layer: province_location_belgium_ereg {
-  file: "/maps/belgium.json"
-  property_key: "prov_nis"
-}
+# map_layer: province_location_belgium_ereg {
+#   file: "/maps/belgium.json"
+#   property_key: "prov_nis"
+# }
 
 # explore: dim_notary_office {}
 

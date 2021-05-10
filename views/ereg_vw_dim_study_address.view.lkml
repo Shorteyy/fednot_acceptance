@@ -193,6 +193,14 @@ view: ereg_vw_dim_study_address {
     sql: ${TABLE}.ProvinceNameNL ;;
   }
 
+  dimension: province_area {
+    group_label: "Address"
+    group_item_label: "Province Area"
+    type: string
+    map_layer_name: province_location_belgium
+    sql: concat("Provincie " || trim(${TABLE}.ProvinceNameNL)) ;;
+  }
+
   dimension: region_id {
     type: string
     sql: ${TABLE}.regionId ;;
@@ -221,10 +229,24 @@ view: ereg_vw_dim_study_address {
     sql: ${TABLE}.RegionNameNL ;;
   }
 
-  dimension: region_name_tableau {
+  dimension: region_area {
+    group_label: "Address"
+    group_item_label: "Region Area"
     type: string
-    sql: ${TABLE}.RegionName_Tableau ;;
+    label: "Region Area"
+    drill_fields: [province_area]
+    map_layer_name: region_location_belgium
+    sql: CASE
+          WHEN ${TABLE}.RegionNameNL = "VLAAMS GEWEST" THEN "Vlaams Gewest"
+          WHEN ${TABLE}.RegionNameNL = "WAALS GEWEST" THEN "Waals Gewest"
+          ELSE "Brussels Hoofdstedelijk Gewest"
+          END ;;
   }
+
+  # dimension: region_name_tableau {
+  #   type: string
+  #   sql: ${TABLE}.RegionName_Tableau ;;
+  # }
 
   dimension: street_code {
     type: string

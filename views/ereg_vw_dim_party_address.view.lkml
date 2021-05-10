@@ -49,7 +49,7 @@ view: ereg_vw_dim_party_address {
 
   dimension: is_streets_belgian_coast {
     group_label: "Address"
-    group_item_label: "Streets Belgian Coast?"
+    group_item_label: "Street Belgian Coast?"
     type: string
     sql: ${TABLE}.isStreetsBelgianCoast ;;
   }
@@ -225,7 +225,7 @@ view: ereg_vw_dim_party_address {
     group_item_label: "Province Area"
     type: string
     map_layer_name: province_location_belgium
-    sql: ${TABLE}.ProvinceNameNL ;;
+    sql: concat("Provincie " || trim(${TABLE}.ProvinceNameNL)) ;;
   }
 
   dimension: region_id {
@@ -259,11 +259,11 @@ view: ereg_vw_dim_party_address {
     sql: ${TABLE}.RegionNameNL ;;
   }
 
-  dimension: region_name_tableau {
-    hidden: yes
-    type: string
-    sql: ${TABLE}.RegionName_Tableau ;;
-  }
+  # dimension: region_name_tableau {
+  #   hidden: yes
+  #   type: string
+  #   sql: ${TABLE}.RegionName_Tableau ;;
+  # }
 
   dimension: region_area {
     group_label: "Address"
@@ -271,10 +271,13 @@ view: ereg_vw_dim_party_address {
     type: string
     label: "Region Area"
     drill_fields: [province_area]
-    map_layer_name: region_location_belgium_ereg
-    sql: ${TABLE}.NisCode ;;
+    map_layer_name: region_location_belgium
+    sql: CASE
+          WHEN ${TABLE}.RegionNameNL = "VLAAMS GEWEST" THEN "Vlaams Gewest"
+          WHEN ${TABLE}.RegionNameNL = "WAALS GEWEST" THEN "Waals Gewest"
+          ELSE "Brussels Hoofdstedelijk Gewest"
+          END ;;
   }
-
 
   dimension: street_code {
     hidden: yes
