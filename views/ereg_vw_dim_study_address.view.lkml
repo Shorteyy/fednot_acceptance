@@ -4,16 +4,19 @@ view: ereg_vw_dim_study_address {
     ;;
 
   dimension: country_name {
+    group_label: "Address"
     type: string
     sql: ${TABLE}.CountryName ;;
   }
 
   dimension: district_id {
+    group_label: "Address"
     type: string
     sql: ${TABLE}.districtId ;;
   }
 
   dimension: district_name {
+    group_label: "Address"
     type: string
     sql: ${TABLE}.DistrictName ;;
   }
@@ -36,37 +39,43 @@ view: ereg_vw_dim_study_address {
     sql: ${TABLE}.DistrictNameNL ;;
   }
 
-  dimension: district_name_tableau {
-    type: string
-    sql: ${TABLE}.DistrictName_Tableau ;;
-  }
+  # dimension: district_name_tableau {
+  #   type: string
+  #   sql: ${TABLE}.DistrictName_Tableau ;;
+  # }
 
   dimension: is_streets_belgian_coast {
+    group_label: "Address"
     type: string
     sql: ${TABLE}.isStreetsBelgianCoast ;;
   }
 
   dimension: is_zip_belgian_coast {
+    group_label: "Address"
     type: string
     sql: ${TABLE}.isZipBelgianCoast ;;
   }
 
   dimension: is_zip_frontalier {
+    group_label: "Address"
     type: string
     sql: ${TABLE}.isZipFrontalier ;;
   }
 
   dimension: is_zip_town {
+    group_label: "Address"
     type: string
     sql: ${TABLE}.isZipTown ;;
   }
 
   dimension: locality_id {
+    group_label: "Address"
     type: string
     sql: ${TABLE}.localityId ;;
   }
 
   dimension: locality_name {
+    group_label: "Address"
     type: string
     sql: ${TABLE}.LocalityName ;;
   }
@@ -116,21 +125,25 @@ view: ereg_vw_dim_study_address {
   # }
 
   dimension: main_locality_name {
+    group_label: "Address"
     type: string
     sql: ${TABLE}.MainLocalityName ;;
   }
 
   dimension: matching_level {
+    group_label: "Address"
     type: string
     sql: ${TABLE}.MatchingLevel ;;
   }
 
   dimension: municipality_id {
+    group_label: "Address"
     type: string
     sql: ${TABLE}.municipalityId ;;
   }
 
   dimension: municipality_name {
+    group_label: "Address"
     type: string
     sql: ${TABLE}.MunicipalityName ;;
   }
@@ -154,6 +167,7 @@ view: ereg_vw_dim_study_address {
   }
 
   dimension: nis_code {
+    hidden: yes
     type: string
     sql: ${TABLE}.NisCode ;;
   }
@@ -166,11 +180,13 @@ view: ereg_vw_dim_study_address {
   }
 
   dimension: province_id {
+    group_label: "Address"
     type: string
     sql: ${TABLE}.provinceId ;;
   }
 
   dimension: province_name {
+    group_label: "Address"
     type: string
     sql: ${TABLE}.ProvinceName ;;
   }
@@ -202,11 +218,13 @@ view: ereg_vw_dim_study_address {
   }
 
   dimension: region_id {
+    group_label: "Address"
     type: string
     sql: ${TABLE}.regionId ;;
   }
 
   dimension: region_name {
+    group_label: "Address"
     type: string
     sql: ${TABLE}.RegionName ;;
   }
@@ -249,16 +267,19 @@ view: ereg_vw_dim_study_address {
   # }
 
   dimension: street_code {
+    group_label: "Address"
     type: string
     sql: ${TABLE}.StreetCode ;;
   }
 
   dimension: street_id {
+    group_label: "Address"
     type: string
     sql: ${TABLE}.streetId ;;
   }
 
   dimension: street_name {
+    group_label: "Address"
     type: string
     sql: ${TABLE}.StreetName ;;
   }
@@ -287,6 +308,7 @@ view: ereg_vw_dim_study_address {
   # }
 
   dimension: zip_code {
+    group_label: "Address"
     type: zipcode
     sql: ${TABLE}.ZipCode ;;
   }
