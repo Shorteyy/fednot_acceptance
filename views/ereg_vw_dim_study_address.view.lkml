@@ -1,5 +1,5 @@
 view: ereg_vw_dim_study_address {
-  label: "Notary Office Address"
+  label: "Notary Office"
   sql_table_name: `dwh.ereg_vwDimStudyAddress`
     ;;
 
@@ -10,6 +10,7 @@ view: ereg_vw_dim_study_address {
   }
 
   dimension: district_id {
+    hidden: yes
     group_label: "Address"
     type: string
     sql: ${TABLE}.districtId ;;
@@ -69,6 +70,7 @@ view: ereg_vw_dim_study_address {
   }
 
   dimension: locality_id {
+    hidden: yes
     group_label: "Address"
     type: string
     sql: ${TABLE}.localityId ;;
@@ -137,6 +139,7 @@ view: ereg_vw_dim_study_address {
   }
 
   dimension: municipality_id {
+    hidden: yes
     group_label: "Address"
     type: string
     sql: ${TABLE}.municipalityId ;;
@@ -180,6 +183,7 @@ view: ereg_vw_dim_study_address {
   }
 
   dimension: province_id {
+    hidden: yes
     group_label: "Address"
     type: string
     sql: ${TABLE}.provinceId ;;
@@ -218,6 +222,7 @@ view: ereg_vw_dim_study_address {
   }
 
   dimension: region_id {
+    hidden: yes
     group_label: "Address"
     type: string
     sql: ${TABLE}.regionId ;;
@@ -273,6 +278,7 @@ view: ereg_vw_dim_study_address {
   }
 
   dimension: street_id {
+    hidden: yes
     group_label: "Address"
     type: string
     sql: ${TABLE}.streetId ;;

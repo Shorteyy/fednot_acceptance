@@ -11,7 +11,7 @@ view: ereg_vw_dim_party {
   }
 
   dimension: party_source_label {
-    group_label: "Party"
+    # group_label: "Party"
     group_item_label: "Source"
     label_from_parameter: pick_language_party
     sql:
@@ -25,7 +25,7 @@ view: ereg_vw_dim_party {
   }
 
   dimension: party_type_label {
-    group_label: "Party"
+    # group_label: "Party"
     group_item_label: "Type"
     label_from_parameter: pick_language_party
     sql:
@@ -65,42 +65,42 @@ view: ereg_vw_dim_party {
   # }
 
   dimension: moral_party_bcenumber {
-    group_label: "Party"
+    # group_label: "Party"
     group_item_label: "BCE Number"
     type: string
     sql: ${TABLE}.MoralPartyBCENumber ;;
   }
 
   dimension: party_age {
-    group_label: "Party"
+   # group_label: "Party"
     group_item_label: "Age"
     type: string
     sql: ${TABLE}.PartyAge ;;
   }
 
   dimension: party_birth_year {
-    group_label: "Party"
+    # group_label: "Party"
     group_item_label: "Year of Birth"
     type: string
     sql: ${TABLE}.PartyBirthYear ;;
   }
 
   dimension: party_city {
-    group_label: "Party"
+    # group_label: "Party"
     group_item_label: "City"
     type: string
     sql: ${TABLE}.PartyCity ;;
   }
 
   dimension: party_country_code {
-    group_label: "Party"
+    # group_label: "Party"
     group_item_label: "Country Code"
     type: string
     sql: ${TABLE}.PartyCountryCode ;;
   }
 
   dimension: party_legal_form_label {
-    group_label: "Party"
+    # group_label: "Party"
     group_item_label: "Legal Form"
     type: string
     sql: ${TABLE}.PartyLegalFormLabel ;;
@@ -119,14 +119,14 @@ view: ereg_vw_dim_party {
   }
 
   dimension: party_postal_code {
-    group_label: "Party"
+    # group_label: "Party"
     group_item_label: "Postal Code"
     type: string
     sql: ${TABLE}.PartyPostalCode ;;
   }
 
   dimension: party_sending_reference {
-    group_label: "Party"
+    # group_label: "Party"
     group_item_label: "Sending Reference"
     type: string
     sql: ${TABLE}.PartySendingReference ;;
@@ -153,7 +153,7 @@ view: ereg_vw_dim_party {
   }
 
   dimension: party_street {
-    group_label: "Party"
+    # group_label: "Party"
     group_item_label: "Street"
     type: string
     sql: ${TABLE}.PartyStreet ;;
@@ -161,7 +161,7 @@ view: ereg_vw_dim_party {
 
   dimension: party_type {
     hidden: yes
-    group_label: "Party"
+    # group_label: "Party"
     group_item_label: "Type"
     type: string
     sql: ${TABLE}.PartyType ;;
