@@ -186,7 +186,7 @@ view: ereg_vw_dim_party {
   }
 
   dimension: sending_party_id {
-    group_label: "Party"
+    # group_label: "Party"
     group_item_label: "Sending ID"
     type: string
     sql: ${TABLE}.SendingPartyId ;;
