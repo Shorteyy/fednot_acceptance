@@ -12,6 +12,7 @@ view: ereg_vw_dim_study {
   }
 
   dimension: alternate_wording {
+    label: "Municipality Brussel Name"
     label_from_parameter: pick_language
     sql:
         {% if pick_language._parameter_value == "'NL'" %}
@@ -26,6 +27,7 @@ view: ereg_vw_dim_study {
   }
 
   dimension: locality_wording {
+    label: "Municipality Name"
     label_from_parameter: pick_language
     sql:
         {% if pick_language._parameter_value == "'NL'" %}
@@ -39,21 +41,22 @@ view: ereg_vw_dim_study {
         {% endif %};;
   }
 
-  dimension: short_wording {
-    label_from_parameter: pick_language
-    sql:
-        {% if pick_language._parameter_value == "'NL'" %}
-          ${short_wording_nl}
-        {% elsif pick_language._parameter_value == "'FR'" %}
-          ${short_wording_fr}
-        {% elsif pick_language._parameter_value == "'DE'" %}
-          ${short_wording_de}
-         {% else %}
-          coalesce(${short_wording_nl},${short_wording_fr},${short_wording_de})
-        {% endif %};;
-  }
+  # dimension: short_wording {
+  #   label_from_parameter: pick_language
+  #   sql:
+  #       {% if pick_language._parameter_value == "'NL'" %}
+  #         ${short_wording_nl}
+  #       {% elsif pick_language._parameter_value == "'FR'" %}
+  #         ${short_wording_fr}
+  #       {% elsif pick_language._parameter_value == "'DE'" %}
+  #         ${short_wording_de}
+  #       {% else %}
+  #         coalesce(${short_wording_nl},${short_wording_fr},${short_wording_de})
+  #       {% endif %};;
+  # }
 
   dimension: wording {
+    label: "Province Name"
     label_from_parameter: pick_language
     sql:
         {% if pick_language._parameter_value == "'NL'" %}
@@ -70,27 +73,29 @@ view: ereg_vw_dim_study {
   dimension: alternate_wording_de {
     hidden: yes
     type: string
-    sql: ${TABLE}.AlternateWordingDe ;;
+    sql: ifnull(${TABLE}.AlternateWordingDe,"Not Applicable") ;;
   }
 
   dimension: alternate_wording_fr {
     hidden: yes
     type: string
-    sql: ${TABLE}.AlternateWordingFr ;;
+    sql: ifnull(${TABLE}.AlternateWordingFr,"Not Applicable") ;;
   }
 
   dimension: alternate_wording_nl {
     hidden: yes
     type: string
-    sql: ${TABLE}.AlternateWordingNl ;;
+    sql: ifnull(${TABLE}.AlternateWordingNl,"Not Applicable") ;;
   }
 
   dimension: arrond_admin_id {
+    label: "Administrative District"
     type: number
     sql: ${TABLE}.ArrondAdminId ;;
   }
 
   dimension: arrond_judic_id {
+    label: "Judiciary District"
     type: number
     sql: ${TABLE}.ArrondJudicId ;;
   }
@@ -101,16 +106,19 @@ view: ereg_vw_dim_study {
   }
 
   dimension: company_id {
+    hidden: yes
     type: number
     sql: ${TABLE}.CompanyId ;;
   }
 
   dimension: count_collaborators {
+    hidden: yes
     type: number
     sql: ${TABLE}.CountCollaborators ;;
   }
 
   dimension: count_notary {
+    hidden: yes
     type: number
     sql: ${TABLE}.CountNotary ;;
   }
@@ -121,7 +129,8 @@ view: ereg_vw_dim_study {
   }
 
   dimension: is_msk {
-    type: number
+    label: "Is MSK?"
+    type: yesno
     sql: ${TABLE}.IsMsk ;;
   }
 
@@ -131,11 +140,13 @@ view: ereg_vw_dim_study {
   }
 
   dimension: locality_id {
+    hidden: yes
     type: number
     sql: ${TABLE}.LocalityId ;;
   }
 
   dimension: locality_seq {
+    label: "Sequence Number of Sub-locality"
     type: number
     sql: ${TABLE}.LocalitySeq ;;
   }
@@ -183,6 +194,7 @@ view: ereg_vw_dim_study {
   # }
 
   dimension: organization_name {
+    label: "Notary Office Name"
     type: string
     sql: ${TABLE}.OrganizationName ;;
   }
@@ -200,35 +212,38 @@ view: ereg_vw_dim_study {
   }
 
   dimension: region_id {
+    hidden: yes
     type: number
     sql: ${TABLE}.RegionId ;;
   }
 
-  dimension: short_wording_de {
-    hidden: yes
-    type: string
-    sql: ${TABLE}.ShortWordingDe ;;
-  }
+  # dimension: short_wording_de {
+  #   hidden: yes
+  #   type: string
+  #   sql: ${TABLE}.ShortWordingDe ;;
+  # }
 
-  dimension: short_wording_fr {
-    hidden: yes
-    type: string
-    sql: ${TABLE}.ShortWordingFr ;;
-  }
+  # dimension: short_wording_fr {
+  #   hidden: yes
+  #   type: string
+  #   sql: ${TABLE}.ShortWordingFr ;;
+  # }
 
-  dimension: short_wording_nl {
-    hidden: yes
-    type: string
-    sql: ${TABLE}.ShortWordingNl ;;
-  }
+  # dimension: short_wording_nl {
+  #   hidden: yes
+  #   type: string
+  #   sql: ${TABLE}.ShortWordingNl ;;
+  # }
 
   dimension: study_id {
+    hidden: yes
     type: number
     sql: ${TABLE}.StudyId ;;
   }
 
   dimension: study_is_association {
-    type: number
+    label: "Notary is Association?"
+    type: yesno
     sql: ${TABLE}.StudyIsAssociation ;;
   }
 
@@ -268,5 +283,17 @@ view: ereg_vw_dim_study {
     hidden: yes
     type: count
     drill_fields: [organization_name]
+  }
+
+  measure: sum_collaborators {
+    label: "# of Collaborators"
+    type: sum
+    sql: ${count_collaborators} ;;
+  }
+
+  measure: sum_notaries {
+    label: "# of Notaries"
+    type: sum
+    sql: ${count_notary} ;;
   }
 }
