@@ -46,7 +46,7 @@ explore: fact_prestation {
     sql_on: ${fact_prestation.dim_notary_office_sk} = ${dim_notary_office.dim_notary_office_sk} ;;
     relationship: many_to_one
     type: left_outer # Could be excluded since left_outer is the default
-    fields: [] #dit zou de hele study view moeten hiden
+    # fields: [] #dit zou de hele study view moeten hiden
   }
   join: dim_application {
     sql_on: ${fact_prestation.dim_application_sk} = ${dim_application.dim_application_sk} ;;
@@ -217,7 +217,7 @@ explore: ereg_vw_fact_transaction {
     type: left_outer
     fields: []
     }
-}
+  }
 
 # explore: m_job_run {
 # fields: []
