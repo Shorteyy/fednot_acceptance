@@ -22,3 +22,7 @@ project_name: "fednot_acceptation"
 #   {% else %} {{ rendered_value }}
 #   {% endif %}"
 # }
+
+constant: negative_format {
+  value: "{% if value < 0 %}<p style=\"color:red; \">({{rendered_value}}){% else %} {{rendered_value}} {% endif %}"
+}
