@@ -184,6 +184,7 @@ view: ereg_vw_dim_party_address {
   }
 
   dimension: pk_address {
+    primary_key: yes
     hidden:  yes
     type: string
     sql: ${TABLE}.PK_Address ;;
@@ -271,6 +272,12 @@ view: ereg_vw_dim_party_address {
     type: string
     label: "Region Area"
     drill_fields: [province_area]
+    # link: {label: "Show as Geographical Visualization"
+    #   url: "{% assign vis_config = '{
+    #       vis={\"map_plot_mode\":\"points\",\"heatmap_gridlines\":false,\"heatmap_gridlines_empty\":false,\"heatmap_opacity\":0.4,\"show_region_field\":true,\"draw_map_labels_above_data\":true,\"map_tile_provider\":\"outdoors\",\"map_position\":\"fit_data\",\"map_scale_indicator\":\"metric\",\"map_pannable\":true,\"map_zoomable\":true,\"map_marker_type\":\"circle\",\"map_marker_icon_name\":\"default\",\"map_marker_radius_mode\":\"proportional_value\",\"map_marker_units\":\"meters\",\"map_marker_proportional_scale_type\":\"linear\",\"map_marker_color_mode\":\"fixed\",\"show_view_names\":false,\"show_legend\":true,\"quantize_map_value_colors\":false,\"reverse_map_value_colors\":false,\"map_latitude\":50.161064818858684,\"map_longitude\":4.630737304687501,\"map_zoom\":8,\"type\":\"looker_map\",\"defaults_version\":1}
+    #     }' %}
+    #   {{ link }}&vis_config={{ vis_config | encode_uri }}&toggle=dat,pik,vis&limit=5000"
+    # }
     map_layer_name: region_location_belgium
     sql: CASE
           WHEN ${TABLE}.RegionNameNL = "VLAAMS GEWEST" THEN "Vlaams Gewest"
