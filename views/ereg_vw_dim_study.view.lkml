@@ -13,6 +13,7 @@ view: ereg_vw_dim_study {
 
   dimension: alternate_wording {
     label: "Municipality Brussel Name"
+    description: "The locality of the notarial office in Brussels in French, Dutch, or German (Not Applicable outside Brussels)"
     label_from_parameter: pick_language
     sql:
         {% if pick_language._parameter_value == "'NL'" %}
@@ -28,6 +29,7 @@ view: ereg_vw_dim_study {
 
   dimension: locality_wording {
     label: "Municipality Name"
+    description: "The municipality of the notarial office in French, Dutch, or German if existing, else in language of Region"
     label_from_parameter: pick_language
     sql:
         {% if pick_language._parameter_value == "'NL'" %}
@@ -57,6 +59,7 @@ view: ereg_vw_dim_study {
 
   dimension: wording {
     label: "Province Name"
+    description: "Name of the province of residence of the notarial office in French, Dutch, or German"
     label_from_parameter: pick_language
     sql:
         {% if pick_language._parameter_value == "'NL'" %}
@@ -90,12 +93,14 @@ view: ereg_vw_dim_study {
 
   dimension: arrond_admin_id {
     label: "Administrative District"
+    description: "Internal identifier of the administrative district of residence of the notarial study within BCN source system"
     type: number
     sql: ${TABLE}.ArrondAdminId ;;
   }
 
   dimension: arrond_judic_id {
     label: "Judiciary District"
+    description: "Internal identifier of the judiciary district of residence of the notarial study within BCN source system"
     type: number
     sql: ${TABLE}.ArrondJudicId ;;
   }
