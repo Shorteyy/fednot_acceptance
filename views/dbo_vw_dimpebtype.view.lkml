@@ -1,4 +1,4 @@
-view: dbo_vw_dimpebtype {
+view: dim_pebtype {
   sql_table_name: `dwh.dbo_vwDIMPEBType`
     ;;
 

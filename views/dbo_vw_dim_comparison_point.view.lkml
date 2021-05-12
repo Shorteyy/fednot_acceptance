@@ -1,4 +1,4 @@
-view: dbo_vw_dim_comparison_point {
+view: dim_comparison_point {
   sql_table_name: `dwh.dbo_vwDimComparisonPoint`
     ;;
 

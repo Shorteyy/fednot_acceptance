@@ -1,4 +1,4 @@
-view: dbo_vw_dim_selling_type {
+view: dim_selling_type {
   sql_table_name: `dwh.dbo_vwDimSellingType`
     ;;
 

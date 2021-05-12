@@ -1,4 +1,4 @@
-view: dbo_vw_dim_property_type {
+view: dim_property_type {
   sql_table_name: `dwh.dbo_vwDimPropertyType`
     ;;
 

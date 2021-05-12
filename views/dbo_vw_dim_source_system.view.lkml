@@ -1,4 +1,4 @@
-view: dbo_vw_dim_source_system {
+view: dim_source_system {
   sql_table_name: `dwh.dbo_vwDimSourceSystem`
     ;;
 

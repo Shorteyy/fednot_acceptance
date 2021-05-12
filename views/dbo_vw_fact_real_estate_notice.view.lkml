@@ -1,4 +1,4 @@
-view: dbo_vw_fact_real_estate_notice {
+view: fact_real_estate_notice {
   sql_table_name: `dwh.dbo_vwFactRealEstateNotice`
     ;;
 

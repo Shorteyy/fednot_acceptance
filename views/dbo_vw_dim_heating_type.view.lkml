@@ -1,4 +1,4 @@
-view: dbo_vw_dim_heating_type {
+view: dim_heating_type {
   sql_table_name: `dwh.dbo_vwDimHeatingType`
     ;;
 

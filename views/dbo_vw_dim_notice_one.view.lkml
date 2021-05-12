@@ -1,4 +1,4 @@
-view: dbo_vw_dim_notice_one {
+view: dim_notice_one {
   sql_table_name: `dwh.dbo_vwDimNoticeOne`
     ;;
 

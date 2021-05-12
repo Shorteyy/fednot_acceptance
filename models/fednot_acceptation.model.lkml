@@ -30,12 +30,6 @@ map_layer: region_location_belgium {
 #   property_key: "prov_nis"
 # }
 
-# explore: dim_notary_office {}
-
-# explore: dim_application {}
-
-# explore: dim_province {}
-
 explore: fact_prestation {
   label: "Prestation"
 #  access_filter: {
@@ -45,8 +39,7 @@ explore: fact_prestation {
   join: dim_notary_office {
     sql_on: ${fact_prestation.dim_notary_office_sk} = ${dim_notary_office.dim_notary_office_sk} ;;
     relationship: many_to_one
-    type: left_outer # Could be excluded since left_outer is the default
-    # fields: [] #dit zou de hele study view moeten hiden
+    type: left_outer
   }
   join: dim_application {
     sql_on: ${fact_prestation.dim_application_sk} = ${dim_application.dim_application_sk} ;;
@@ -67,14 +60,8 @@ explore: fact_prestation {
   }
 }
 
-# explore: dim_date {}
-
 explore: ereg_vw_fact_transaction {
   label: "eRegistration"
-#  access_filter: {
-#   field: province.region
-#   user_attribute: region
-#  }
   join: ereg_vw_dim_deed_edossier {
     sql_on: ${ereg_vw_fact_transaction.fk_ereg_deed_edossier} = ${ereg_vw_dim_deed_edossier.pk_ereg_deed_edossier} ;;
     relationship: many_to_one
@@ -217,25 +204,118 @@ explore: ereg_vw_fact_transaction {
     type: left_outer
     fields: []
     }
+}
+
+explore: fact_comparison_point {
+  label: "Real Estate Pricing"
+  join: dim_address {
+  sql_on: ${fact_comparison_point.fk_address} = ${dim_address.pk_address} ;;
+  relationship: many_to_one
+  type:  left_outer
   }
+  join: dim_heating_type {
+  sql_on: ${fact_comparison_point.fk_heating_type} = ${dim_heating_type.pk_heating_type} ;;
+  relationship: many_to_one
+  type: left_outer
+  }
+  join: dim_comparison_point {
+  sql_on: ${fact_comparison_point.fk_comparison_point} = ${dim_comparison_point.pk_comparison_point} ;;
+  relationship:  many_to_one
+  type:  left_outer
+  }
+  join: dim_notice_one {
+    sql_on: ${fact_comparison_point.fk_notice_one} =${dim_notice_one.pk_notice_one} ;;
+    relationship: many_to_one
+    type: left_outer
+  }
+  join: dim_pebtype {
+    sql_on: ${fact_comparison_point.fk_pebtype} =${dim_pebtype.pk_pebtype} ;;
+    relationship: many_to_one
+    type: left_outer
+  }
+  join: dim_property_type {
+    sql_on: ${fact_comparison_point.fk_property_type} =${dim_property_type.pk_property_type};;
+    relationship: many_to_one
+    type: left_outer
+  }
+  join: dim_selling_type {
+    sql_on: ${fact_comparison_point.fk_selling_type} =${dim_selling_type.pk_selling_type};;
+    relationship: many_to_one
+    type: left_outer
+  }
+  join: dim_source_system {
+    sql_on: ${fact_comparison_point.fk_source_system} =${dim_source_system.pk_source_system};;
+    relationship: many_to_one
+    type: left_outer
+  }
+  join: ereg_vw_dim_study {
+    sql_on: ${fact_comparison_point.fk_study} =${ereg_vw_dim_study.pk_study};;
+    relationship: many_to_one
+    type: left_outer
+  }
+  join: encoding {
+    view_label: "Date Hierarchy"
+    from: dim_date
+    sql_on: ${fact_comparison_point.fk_date_encoding} = ${encoding.pk_date} ;;
+    relationship: many_to_one
+    type: left_outer
+  }
+}
 
-# explore: m_job_run {
-# fields: []
-# }
-
-# explore: m_model_run {
-#   fields: []
-#   join: m_job_run {
-#   type: left_outer
-#   sql_on: ${m_model_run.m_job_run_id} = ${m_job_run.m_job_run_id} ;;
-#   relationship: many_to_one
-# }
-# }
-
-# explore: vw_dim_application {
-#   fields: []
-# }
-
-# explore: vw_dim_application_month {
-#   fields: []
-# }
+explore: fact_real_estate_notice {
+    label: "Real Estate Activity"
+    join: dim_address {
+    sql_on: ${fact_real_estate_notice.fk_address} =${dim_address.pk_address};;
+    relationship: many_to_one
+    type:  left_outer
+  }
+  join: dim_notice_one {
+    sql_on: ${fact_real_estate_notice.fk_address} = ${dim_address.pk_address};;
+    relationship: many_to_one
+    type: left_outer
+  }
+  join: dim_property_type {
+    sql_on: ${fact_real_estate_notice.fk_property_type} =${dim_property_type.pk_property_type};;
+    relationship: many_to_one
+    type: left_outer
+  }
+  join: dim_real_estate {
+    sql_on: ${fact_real_estate_notice.fk_real_estate} =${dim_real_estate.pk_real_estate};;
+    relationship: many_to_one
+    type: left_outer
+  }
+  join: dim_selling_type {
+    sql_on: ${fact_real_estate_notice.fk_selling_type} = ${dim_selling_type.pk_selling_type} ;;
+    relationship: many_to_one
+    type: left_outer
+  }
+  join: dim_source_system {
+    sql_on: ${fact_real_estate_notice.fk_source_system} =${dim_source_system.pk_source_system};;
+    relationship: many_to_one
+    type: left_outer
+  }
+  join: ereg_vw_dim_study {
+    sql_on: ${fact_real_estate_notice.fk_study} =${ereg_vw_dim_study.pk_study};;
+    relationship:  many_to_one
+    type: left_outer
+  }
+  join: ereg_vw_dim_transaction_type {
+    sql_on: ${fact_real_estate_notice.fk_transaction_type} =${ereg_vw_dim_transaction_type.pk_ereg_transaction_type};;
+    relationship: many_to_one
+    type: left_outer
+  }
+  join: first_enot_request {
+    view_label: "Date Hierarchy"
+    from: dim_date
+    sql_on: ${fact_real_estate_notice.fk_date_first_enot_request} = ${first_enot_request.pk_date} ;;
+    relationship: many_to_one
+    type: left_outer
+  }
+  join: first_received_function_ack {
+    view_label: "Date Hierarchy"
+    from: dim_date
+    sql_on: ${fact_real_estate_notice.fk_date_first_received_function_ack} = ${first_received_function_ack.pk_date} ;;
+    relationship: many_to_one
+    type: left_outer
+  }
+}

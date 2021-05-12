@@ -1,4 +1,4 @@
-view: dbo_vw_dim_real_estate {
+view: dim_real_estate {
   sql_table_name: `dwh.dbo_vwDimRealEstate`
     ;;
 

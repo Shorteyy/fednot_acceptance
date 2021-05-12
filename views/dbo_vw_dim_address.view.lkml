@@ -1,4 +1,4 @@
-view: dbo_vw_dim_address {
+view: dim_address {
   sql_table_name: `dwh.dbo_vwDimAddress`
     ;;
 
@@ -180,6 +180,7 @@ view: dbo_vw_dim_address {
   }
 
   dimension: pk_address {
+    primary_key: yes
     type: number
     sql: ${TABLE}.PK_Address ;;
   }
