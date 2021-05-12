@@ -3,6 +3,11 @@ view: dim_date {
   sql_table_name: `dwh.DimDate`
     ;;
 
+  parameter: date_selector {
+    type: date_time
+    description: "Use this field to select a date to filter results by."
+  }
+
   # dimension_group: date_group {
   #   type: time
   #   hidden: yes

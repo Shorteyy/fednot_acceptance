@@ -72,6 +72,16 @@ view: ereg_vw_dim_transaction_type {
     sql: ${TABLE}.IsGoodMandatory ;;
   }
 
+  dimension: notary_business {
+    type: string
+    sql: ${TABLE}.notaryBusiness ;;
+  }
+
+  dimension: notarial_act_type {
+    type: string
+    sql: ${TABLE}.akteTypeBusinessLayer ;;
+  }
+
   dimension: is_vlabel_concerned {
     type: string
     sql: ${TABLE}.IsVlabelConcerned ;;
