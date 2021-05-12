@@ -72,7 +72,7 @@ view: ereg_vw_dim_transaction_type {
     sql: ${TABLE}.IsGoodMandatory ;;
   }
 
-  dimension: notary_business {
+  dimension: notary_business_line {
     type: string
     sql: ${TABLE}.notaryBusiness ;;
   }
