@@ -2,6 +2,13 @@ view: fact_real_estate_notice {
   sql_table_name: `dwh.dbo_vwFactRealEstateNotice`
     ;;
 
+  dimension: real_estate_notice_compound_primary_key {
+    primary_key: yes
+    hidden: yes
+    type: string
+    sql: CONCAT(${TABLE}.FK_Address, ${TABLE}.FK_Date_FirstEnotRequest,${TABLE}.FK_Date_FirstRecievedFunctionACK,${TABLE}.FK_NoticeOne,${TABLE}.FK_PropertyType,${TABLE}.FK_RealEstate, ${TABLE}.FK_SellingType, ${TABLE}.FK_SourceSystem , ${TABLE}.FK_Study, ${TABLE}.FK_TransactionType ) ;;
+  }
+
   dimension: fk_address {
     hidden: yes
     type: number
