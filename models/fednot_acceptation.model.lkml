@@ -253,7 +253,7 @@ explore: fact_comparison_point {
 }
 
 explore: fact_real_estate_notice {
-    sql_always_where: ${ereg_vw_dim_transaction_type.pk_ereg_transaction_type} = 3;;
+    sql_always_where: ${ereg_vw_dim_transaction_type.pk_ereg_transaction_type} = 3 and ${fk_date_first_enot_request} > 20161231;;
     label: "Real Estate Activity"
     join: dim_address {
     sql_on: ${fact_real_estate_notice.fk_address} =${dim_address.pk_address};;
