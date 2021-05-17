@@ -2,184 +2,195 @@ view: fact_comparison_point {
   sql_table_name: `dwh.dbo_vwFactComparisonPoint`
     ;;
 
-  # dimension_group: _date1 {
-  #   type: time
-  #   timeframes: [
-  #     raw,
-  #     time,
-  #     date,
-  #     week,
-  #     month,
-  #     quarter,
-  #     year
-  #   ]
-  #   sql: ${TABLE}._date1 ;;
-  # }
-
-  # dimension_group: _date2 {
-  #   type: time
-  #   timeframes: [
-  #     raw,
-  #     time,
-  #     date,
-  #     week,
-  #     month,
-  #     quarter,
-  #     year
-  #   ]
-  #   sql: ${TABLE}._date2 ;;
-  # }
-
-  # dimension: _run_id {
-  #   type: string
-  #   sql: ${TABLE}._run_id ;;
-  # }
-
   dimension: fk_address {
+    hidden: yes
     type: number
     sql: ${TABLE}.FK_Address ;;
   }
 
   dimension: fk_comparison_point {
+    hidden: yes
     type: number
     sql: ${TABLE}.FK_ComparisonPoint ;;
   }
 
   dimension: fk_comparison_point_status {
+    hidden: yes
     type: number
     sql: ${TABLE}.FK_ComparisonPointStatus ;;
   }
 
   dimension: fk_date_encoding {
+    hidden: yes
     type: number
     sql: ${TABLE}.FK_Date_Encoding ;;
   }
 
   dimension: fk_heating_type {
+    hidden: yes
     type: number
     sql: ${TABLE}.FK_HeatingType ;;
   }
 
   dimension: fk_notice_one {
+    hidden: yes
     type: number
     sql: ${TABLE}.FK_NoticeOne ;;
   }
 
   dimension: fk_pebtype {
+    hidden: yes
     type: number
     sql: ${TABLE}.FK_PEBType ;;
   }
 
   dimension: fk_property_category {
+    hidden: yes
     type: number
     sql: ${TABLE}.FK_PropertyCategory ;;
   }
 
   dimension: fk_property_type {
+    hidden: yes
     type: number
     sql: ${TABLE}.FK_PropertyType ;;
   }
 
   dimension: fk_selling_type {
+    hidden: yes
     type: number
     sql: ${TABLE}.FK_SellingType ;;
   }
 
   dimension: fk_source_system {
+    hidden: yes
     type: number
     sql: ${TABLE}.FK_SourceSystem ;;
   }
 
   dimension: fk_statistical_sector {
+    hidden: yes
     type: number
     sql: ${TABLE}.FK_StatisticalSector ;;
   }
 
   dimension: fk_study {
+    hidden: yes
     type: number
     sql: ${TABLE}.FK_Study ;;
   }
 
   dimension: land_income {
+    hidden: yes
     type: number
     sql: ${TABLE}.landIncome ;;
   }
 
   dimension: living_surface_area {
+    hidden: yes
     type: number
     sql: ${TABLE}.livingSurfaceArea ;;
   }
 
-  # dimension_group: m_job_datetime {
-  #   type: time
-  #   timeframes: [
-  #     raw,
-  #     time,
-  #     date,
-  #     week,
-  #     month,
-  #     quarter,
-  #     year
-  #   ]
-  #   sql: ${TABLE}.m_job_datetime ;;
-  # }
-
-  # dimension: m_job_exec_id {
-  #   type: string
-  #   sql: ${TABLE}.m_job_exec_id ;;
-  # }
-
-  # dimension: m_model_exec_id {
-  #   type: string
-  #   sql: ${TABLE}.m_model_exec_id ;;
-  # }
-
   dimension: price {
+    hidden: yes
     type: number
     sql: ${TABLE}.price ;;
   }
 
   dimension: price_sqm {
+    hidden: yes
     type: number
     sql: ${TABLE}.price_Sqm ;;
   }
 
   dimension: showroom_surface {
+    hidden: yes
     type: number
     sql: ${TABLE}.showroomSurface ;;
   }
 
   dimension: surface_area {
+    hidden: yes
     type: number
     sql: ${TABLE}.surfaceArea ;;
   }
 
-  # dimension_group: sys_insert_update {
-  #   type: time
-  #   timeframes: [
-  #     raw,
-  #     time,
-  #     date,
-  #     week,
-  #     month,
-  #     quarter,
-  #     year
-  #   ]
-  #   sql: ${TABLE}.Sys_InsertUpdateDate ;;
-  # }
-
   dimension: working_surface {
+    hidden: yes
     type: number
     sql: ${TABLE}.workingSurface ;;
   }
 
   dimension: yearly_rent {
+    hidden: yes
     type: number
     sql: ${TABLE}.yearlyRent ;;
   }
 
   measure: count {
+    hidden: yes
     type: count
     drill_fields: []
   }
+
+  measure: sum_yearly_rent {
+    label: "Yearly Rent"
+    type: sum
+    sql: ${yearly_rent} ;;
+    value_format:"€#,##0.00;-€#,##0.00"
+    drill_fields: []
+  }
+
+  measure: sum_price {
+    label: "Price"
+    type: sum
+    sql: ${price} ;;
+    value_format:"€#,##0.00;-€#,##0.00"
+    drill_fields: []
+  }
+
+  measure: sum_land_income {
+    label: "Land Income"
+    type: sum
+    sql: ${land_income} ;;
+    value_format:"€#,##0.00;-€#,##0.00"
+    drill_fields: []
+  }
+
+  measure: sum_surface_area {
+    label: "Surface Area"
+    type: sum
+    sql: ${surface_area} ;;
+    drill_fields: []
+  }
+
+  measure: sum_living_surface {
+    label: "Living Surface Area"
+    type: sum
+    sql: ${living_surface_area} ;;
+    drill_fields: []
+  }
+
+  measure: sum_showroom_surface {
+    label: "Showroom Surface Area"
+    type: sum
+    sql: ${showroom_surface} ;;
+    drill_fields: []
+  }
+
+  measure: sum_working_surface {
+    label: "Working Surface Area"
+    type: sum
+    sql: ${working_surface} ;;
+    drill_fields: []
+  }
+
+  measure: avg_price_sqm {
+    label: "Average Price Sqm"
+    type:  average
+    sql: ${price_sqm} ;;
+    value_format:"€#,##0.00;-€#,##0.00"
+  }
+
 }

@@ -76,13 +76,7 @@ view: dim_application {
     sql: ${TABLE}.isITApplication ;;
   }
 
-  # dimension: m_model_run_id {
-  #   type: string
-  #   hidden: yes
-  #   sql: ${TABLE}.m_model_run_id ;;
-  # }
-
-  dimension: notary_business {
+ dimension: notary_business {
     label: "Notary Business"
     drill_fields: [description]
     type: string
@@ -153,6 +147,12 @@ view: dim_application {
   #     year
   #   ]
   #   sql: ${TABLE}.row_start_dt_orig ;;
+  # }
+
+   # dimension: m_model_run_id {
+  #   type: string
+  #   hidden: yes
+  #   sql: ${TABLE}.m_model_run_id ;;
   # }
 
   measure: count {

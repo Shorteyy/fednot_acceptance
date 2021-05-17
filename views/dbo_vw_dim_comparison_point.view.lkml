@@ -2,45 +2,13 @@ view: dim_comparison_point {
   sql_table_name: `dwh.dbo_vwDimComparisonPoint`
     ;;
 
-  # dimension_group: _date1 {
-  #   type: time
-  #   timeframes: [
-  #     raw,
-  #     time,
-  #     date,
-  #     week,
-  #     month,
-  #     quarter,
-  #     year
-  #   ]
-  #   sql: ${TABLE}._date1 ;;
-  # }
-
-  # dimension_group: _date2 {
-  #   type: time
-  #   timeframes: [
-  #     raw,
-  #     time,
-  #     date,
-  #     week,
-  #     month,
-  #     quarter,
-  #     year
-  #   ]
-  #   sql: ${TABLE}._date2 ;;
-  # }
-
-  # dimension: _run_id {
-  #   type: string
-  #   sql: ${TABLE}._run_id ;;
-  # }
-
   dimension: application_source {
     type: string
     sql: ${TABLE}.applicationSource ;;
   }
 
   dimension: asf_id {
+    hidden: yes
     type: string
     sql: ${TABLE}.asfId ;;
   }
@@ -201,6 +169,7 @@ view: dim_comparison_point {
   }
 
   dimension: land_income {
+    hidden: yes
     type: number
     sql: ${TABLE}.landIncome ;;
   }
@@ -210,51 +179,31 @@ view: dim_comparison_point {
     sql: ${TABLE}.livingSurfaceArea ;;
   }
 
-  # dimension_group: m_job_datetime {
-  #   type: time
-  #   timeframes: [
-  #     raw,
-  #     time,
-  #     date,
-  #     week,
-  #     month,
-  #     quarter,
-  #     year
-  #   ]
-  #   sql: ${TABLE}.m_job_datetime ;;
-  # }
-
-  # dimension: m_job_exec_id {
-  #   type: string
-  #   sql: ${TABLE}.m_job_exec_id ;;
-  # }
-
-  # dimension: m_model_exec_id {
-  #   type: string
-  #   sql: ${TABLE}.m_model_exec_id ;;
-  # }
-
   dimension: migration_real_estate_id {
     type: number
     sql: ${TABLE}.migrationRealEstateId ;;
   }
 
   dimension: number_of_facades {
+    hidden: yes
     type: number
     sql: ${TABLE}.numberOfFacades ;;
   }
 
   dimension: number_of_floors {
+    hidden: yes
     type: number
     sql: ${TABLE}.numberOfFloors ;;
   }
 
   dimension: number_of_rooms {
+    hidden: yes
     type: number
     sql: ${TABLE}.numberOfRooms ;;
   }
 
   dimension: number_of_water_rooms {
+    hidden: yes
     type: number
     sql: ${TABLE}.numberOfWaterRooms ;;
   }
@@ -265,11 +214,14 @@ view: dim_comparison_point {
   }
 
   dimension: pk_comparison_point {
+    hidden: yes
+    primary_key: yes
     type: number
     sql: ${TABLE}.PK_ComparisonPoint ;;
   }
 
   dimension: price {
+    hidden: yes
     type: number
     sql: ${TABLE}.price ;;
   }
@@ -285,11 +237,13 @@ view: dim_comparison_point {
   }
 
   dimension: showroom_surface {
+    hidden: yes
     type: number
     sql: ${TABLE}.showroomSurface ;;
   }
 
   dimension: surface_area {
+    hidden: yes
     type: number
     sql: ${TABLE}.surfaceArea ;;
   }
@@ -364,17 +318,48 @@ view: dim_comparison_point {
   }
 
   dimension: working_surface {
+    hidden: yes
     type: number
     sql: ${TABLE}.workingSurface ;;
   }
 
   dimension: yearly_rent {
+    hidden: yes
     type: number
     sql: ${TABLE}.yearlyRent ;;
   }
 
   measure: count {
+    hidden: yes
     type: count
+    drill_fields: []
+  }
+
+  measure: sum_facades {
+    label: "# of Facades"
+    type: sum
+    sql: ${number_of_facades} ;;
+    drill_fields: []
+  }
+
+  measure: sum_rooms {
+    label: "# of Rooms"
+    type: sum
+    sql: ${number_of_rooms} ;;
+    drill_fields: []
+  }
+
+  measure: sum_floors {
+    label: "# of Floors"
+    type: sum
+    sql: ${number_of_floors} ;;
+    drill_fields: []
+  }
+
+  measure: sum_water_rooms {
+    label: "# of Water Rooms"
+    type: sum
+    sql: ${number_of_water_rooms} ;;
     drill_fields: []
   }
 }

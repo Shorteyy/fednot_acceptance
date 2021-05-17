@@ -30,10 +30,10 @@ view: dim_real_estate {
   #   sql: ${TABLE}._date2 ;;
   # }
 
-  dimension: _run_id {
-    type: string
-    sql: ${TABLE}._run_id ;;
-  }
+  # dimension: _run_id {
+  #   type: string
+  #   sql: ${TABLE}._run_id ;;
+  # }
 
   dimension: acquisition_date_and_mode {
     type: string
@@ -61,16 +61,19 @@ view: dim_real_estate {
   }
 
   dimension: estimated_value {
+    hidden: yes
     type: number
     sql: ${TABLE}.EstimatedValue ;;
   }
 
   dimension: land_income {
+    hidden: yes
     type: number
     sql: ${TABLE}.LandIncome ;;
   }
 
   dimension: living_surface_area {
+    hidden: yes
     type: number
     sql: ${TABLE}.LivingSurfaceArea ;;
   }
@@ -110,11 +113,13 @@ view: dim_real_estate {
   }
 
   dimension: nbr_facades {
+    hidden: yes
     type: number
     sql: ${TABLE}.NbrFacades ;;
   }
 
   dimension: nbr_rooms {
+    hidden: yes
     type: number
     sql: ${TABLE}.NbrRooms ;;
   }
@@ -125,6 +130,8 @@ view: dim_real_estate {
   }
 
   dimension: pk_real_estate {
+    hidden:  yes
+    primary_key: yes
     type: number
     sql: ${TABLE}.PK_RealEstate ;;
   }
@@ -145,6 +152,7 @@ view: dim_real_estate {
   }
 
   dimension: selling_price {
+    hidden: yes
     type: number
     sql: ${TABLE}.SellingPrice ;;
   }
@@ -155,6 +163,7 @@ view: dim_real_estate {
   }
 
   dimension: showroom_surface_area {
+    hidden: yes
     type: number
     sql: ${TABLE}.ShowroomSurfaceArea ;;
   }
@@ -194,12 +203,74 @@ view: dim_real_estate {
   }
 
   dimension: working_surface_area {
+    hidden: yes
     type: number
     sql: ${TABLE}.WorkingSurfaceArea ;;
   }
 
   measure: count {
+    hidden: yes
     type: count
     drill_fields: []
   }
+
+measure: sum_estimated_value {
+  label: "Estimated Value"
+  type: sum
+  sql: ${estimated_value} ;;
+  value_format:"€#,##0.00;-€#,##0.00"
+  drill_fields: []
+}
+
+  measure: sum_land_income {
+    label: "Land Income"
+    type: sum
+    sql: ${land_income};;
+    value_format:"€#,##0.00;-€#,##0.00"
+    drill_fields: []
+  }
+
+measure: sum_selling_price {
+  label: "Selling Price"
+  type: sum
+  sql: ${selling_price} ;;
+  value_format:"€#,##0.00;-€#,##0.00"
+  drill_fields: []
+}
+
+  measure: sum_facades {
+    label: "# of Facades"
+    type: sum
+    sql: ${nbr_facades} ;;
+    drill_fields: []
+  }
+
+  measure: sum_rooms {
+    label: "# of Rooms"
+    type: sum
+    sql: ${nbr_rooms} ;;
+    drill_fields: []
+  }
+
+  measure: sum_living_surface {
+    label: "Living Surface Area"
+    type: sum
+    sql: ${living_surface_area};;
+    drill_fields: []
+  }
+
+  measure: sum_showroom_surface {
+    label: "Showroom Surface Area"
+    type: sum
+    sql: ${showroom_surface_area};;
+    drill_fields: []
+  }
+
+  measure: sum_working_surface {
+    label: "Working Surface Area"
+    type: sum
+    sql: ${working_surface_area};;
+    drill_fields: []
+  }
+
 }

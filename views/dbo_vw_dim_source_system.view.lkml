@@ -60,6 +60,8 @@ view: dim_source_system {
   # }
 
   dimension: pk_source_system {
+    hidden: yes
+    primary_key: yes
     type: number
     sql: ${TABLE}.PK_SourceSystem ;;
   }

@@ -295,18 +295,18 @@ explore: fact_real_estate_notice {
     relationship: many_to_one
     type: left_outer
   }
-  join: first_enot_request {
+  join: first_sending_notary {
     view_label: "Date Hierarchy"
     from: dim_date
-    sql_on: ${fact_real_estate_notice.fk_date_first_enot_request} = ${first_enot_request.pk_date} ;;
+    sql_on: ${fact_real_estate_notice.fk_date_first_enot_request} = ${first_sending_notary.pk_date} ;;
     relationship: many_to_one
     type: left_outer
   }
-  join: first_received_function_ack {
-    view_label: "Date Hierarchy"
-    from: dim_date
-    sql_on: ${fact_real_estate_notice.fk_date_first_received_function_ack} = ${first_received_function_ack.pk_date} ;;
-    relationship: many_to_one
-    type: left_outer
-  }
+  # join: first_received_function_ack {
+  #   view_label: "Date Hierarchy"
+  #   from: dim_date
+  #   sql_on: ${fact_real_estate_notice.fk_date_first_received_function_ack} = ${first_received_function_ack.pk_date} ;;
+  #   relationship: many_to_one
+  #   type: left_outer
+  # }
 }

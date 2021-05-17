@@ -70,6 +70,8 @@ view: dim_heating_type {
   # }
 
   dimension: pk_heating_type {
+    hidden: yes
+    primary_key: yes
     type: number
     sql: ${TABLE}.PK_HeatingType ;;
   }

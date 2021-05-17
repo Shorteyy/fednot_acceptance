@@ -75,6 +75,8 @@ view: dim_pebtype {
   }
 
   dimension: pk_pebtype {
+    hidden: yes
+    primary_key: yes
     type: number
     sql: ${TABLE}.PK_PEBType ;;
   }

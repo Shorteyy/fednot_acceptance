@@ -60,6 +60,8 @@ view: dim_selling_type {
   # }
 
   dimension: pk_selling_type {
+    hidden: yes
+    primary_key: yes
     type: number
     sql: ${TABLE}.PK_SellingType ;;
   }

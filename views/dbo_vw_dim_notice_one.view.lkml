@@ -114,6 +114,8 @@ view: dim_notice_one {
   }
 
   dimension: pk_notice_one {
+    hidden: yes
+    primary_key: yes
     type: number
     sql: ${TABLE}.PK_NoticeOne ;;
   }

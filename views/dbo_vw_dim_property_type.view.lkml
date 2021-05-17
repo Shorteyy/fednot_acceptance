@@ -70,6 +70,8 @@ view: dim_property_type {
   # }
 
   dimension: pk_property_type {
+    hidden: yes
+    primary_key: yes
     type: number
     sql: ${TABLE}.PK_PropertyType ;;
   }
