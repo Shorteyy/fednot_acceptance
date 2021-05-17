@@ -261,7 +261,7 @@ explore: fact_real_estate_notice {
     type:  left_outer
   }
   join: dim_notice_one {
-    sql_on: ${fact_real_estate_notice.fk_address} = ${dim_address.pk_address};;
+    sql_on: ${fact_real_estate_notice.fk_notice_one} = ${dim_notice_one.pk_notice_one};;
     relationship: many_to_one
     type: left_outer
   }
@@ -306,6 +306,13 @@ explore: fact_real_estate_notice {
   #   view_label: "Date Hierarchy"
   #   from: dim_date
   #   sql_on: ${fact_real_estate_notice.fk_date_first_received_function_ack} = ${first_received_function_ack.pk_date} ;;
+  #   relationship: many_to_one
+  #   type: left_outer
+  # }
+  # join: notice_one_creation {
+  #   view_label: "Date Hierarchy"
+  #   from: dim_date
+  #   sql_on: ${dim_notice_one.creation} = ${notice_one_creation.pk_date} ;;
   #   relationship: many_to_one
   #   type: left_outer
   # }

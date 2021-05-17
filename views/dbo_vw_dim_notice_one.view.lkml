@@ -35,17 +35,9 @@ view: dim_notice_one {
   #   sql: ${TABLE}._run_id ;;
   # }
 
-  dimension_group: creation {
-    type: time
-    timeframes: [
-      raw,
-      time,
-      date,
-      week,
-      month,
-      quarter,
-      year
-    ]
+  dimension: creation {
+    hidden: yes
+    type: date
     sql: ${TABLE}.CreationDate ;;
   }
 
