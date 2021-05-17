@@ -1,6 +1,5 @@
 view: fact_real_estate_notice {
-  sql_table_name: `dwh.dbo_vwFactRealEstateNotice`
-    ;;
+  sql_table_name: SELECT * FROM `dwh.dbo_vwFactRealEstateNotice` WHERE FK_Date_FirstEnotRequest > 20161231 ;;
 
   dimension: fact_real_estate_notice_compound_primary_key {
     primary_key: yes
