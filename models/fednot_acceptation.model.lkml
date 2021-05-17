@@ -57,6 +57,7 @@ explore: fact_prestation {
 }
 
 explore: ereg_vw_fact_transaction {
+  view_name: ereg_vw_fact_transaction
   label: "eRegistration"
 #   access_filter: {
 #   field: province.region
@@ -321,6 +322,6 @@ explore: fact_real_estate_notice {
 }
 
 explore: ereg_vw_fact_transaction_f {
-  from: ereg_vw_fact_transaction
+  extends: [ereg_vw_fact_transaction]
   label: "eRegistration (Finance)"
 }
