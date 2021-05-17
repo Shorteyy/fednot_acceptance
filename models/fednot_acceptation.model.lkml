@@ -302,6 +302,7 @@ explore: fact_real_estate_notice {
     relationship: many_to_one
     type: left_outer
   }
+
   # join: first_received_function_ack {
   #   view_label: "Date Hierarchy"
   #   from: dim_date
@@ -316,4 +317,7 @@ explore: fact_real_estate_notice {
   #   relationship: many_to_one
   #   type: left_outer
   # }
+}
+explore: test_extend{
+
 }
