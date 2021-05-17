@@ -32,10 +32,6 @@ map_layer: region_location_belgium {
 
 explore: fact_prestation {
   label: "Prestation"
-#  access_filter: {
-#   field: province.region
-#   user_attribute: region
-#  }
   join: dim_notary_office {
     sql_on: ${fact_prestation.dim_notary_office_sk} = ${dim_notary_office.dim_notary_office_sk} ;;
     relationship: many_to_one
@@ -62,6 +58,10 @@ explore: fact_prestation {
 
 explore: ereg_vw_fact_transaction {
   label: "eRegistration"
+#   access_filter: {
+#   field: province.region
+#   user_attribute: region
+#  }
   join: ereg_vw_dim_deed_edossier {
     sql_on: ${ereg_vw_fact_transaction.fk_ereg_deed_edossier} = ${ereg_vw_dim_deed_edossier.pk_ereg_deed_edossier} ;;
     relationship: many_to_one
@@ -82,9 +82,9 @@ explore: ereg_vw_fact_transaction {
   }
   join: ereg_vw_dim_good_address {
     sql_on: ${ereg_vw_fact_transaction.fk_ereg_good_address} = ${ereg_vw_dim_good_address.pk_address} ;;
-  relationship:  many_to_one
-  type: left_outer
-  # fields: []
+    relationship:  many_to_one
+    type: left_outer
+    # fields: []
   }
   join:  ereg_vw_dim_party {
     sql_on:  ${ereg_vw_fact_transaction.fk_ereg_party} = ${ereg_vw_dim_party.pk_ereg_party};;
@@ -124,7 +124,7 @@ explore: ereg_vw_fact_transaction {
     sql_on: ${ereg_vw_fact_transaction.fk_study} = ${ereg_vw_dim_study.pk_study};;
     relationship:  many_to_one
     type: left_outer
-   # fields: []
+    fields: []
   }
     join:  ereg_vw_dim_study_address {
     sql_on: ${ereg_vw_fact_transaction.fk_study_address} = ${ereg_vw_dim_study_address.pk_address};;
@@ -318,4 +318,9 @@ explore: fact_real_estate_notice {
     relationship: many_to_one
     type: left_outer
   }
+}
+
+explore: ereg_vw_fact_transaction_f {
+  from: ereg_vw_fact_transaction
+  label: "eRegistration (Finance)"
 }
