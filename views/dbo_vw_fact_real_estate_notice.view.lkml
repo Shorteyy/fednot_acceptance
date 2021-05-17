@@ -2,7 +2,7 @@ view: fact_real_estate_notice {
   sql_table_name: `dwh.dbo_vwFactRealEstateNotice`
     ;;
 
-  dimension: real_estate_notice_compound_primary_key {
+  dimension: fact_real_estate_notice_compound_primary_key {
     primary_key: yes
     hidden: yes
     type: string

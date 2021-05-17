@@ -2,6 +2,14 @@ view: fact_comparison_point {
   sql_table_name: `dwh.dbo_vwFactComparisonPoint`
     ;;
 
+  dimension: fact_comparison_point_compound_primary_key {
+    primary_key: yes
+    hidden: yes
+    type: string
+    sql: CONCAT(${TABLE}.FK_Address, ${TABLE}.FK_ComparisonPoint,${TABLE}.FK_ComparisonPointStatus,${TABLE}.FK_DateEncodig,${TABLE}.FK_HeatingType, ${TABLE}.FK_NoticeOne,${TABLE}.FK_PEBType,${TABLE}.FK_PropertyCategory,${TABLE}.FK_PropertyType, ${TABLE}.FK_SellingType, ${TABLE}.FK_SourceSystem , ${TABLE}.FK_StatisticalSector, ${TABLE}.FK_Study ) ;;
+  }
+
+
   dimension: fk_address {
     hidden: yes
     type: number
