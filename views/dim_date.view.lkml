@@ -1,9 +1,24 @@
-include: "/views/global_parameters.view.lkml"
+# include: "/views/global_parameters.view.lkml"
 view: dim_date {
-  extends: [global_parameters]
+#  extends: [global_parameters]
   # label: "Date Hierarchy"
   sql_table_name: `dwh.DimDate`
     ;;
+
+  parameter: timeframe_picker {
+    label: "{% assign groupname = _field._name | replace: \".timeframe_picker\" , \" \" | replace: \"_\" , \" \" | capitalize %} {{groupname}} Period Selector"
+    type: unquoted
+    allowed_value: {
+      label: "Month"
+      value: "Month" }
+    allowed_value: {
+      label: "Quarter"
+      value: "Quarter" }
+    allowed_value: {
+      label: "Year"
+      value: "Year" }
+    default_value: "Month"
+  }
 
   dimension: date {
     group_label: "{% assign groupname = _field._name | replace: \".date\" , \"\" | replace: \"_\" , \" \" | capitalize %} {{groupname}}"

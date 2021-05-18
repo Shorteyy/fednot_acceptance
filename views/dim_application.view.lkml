@@ -34,8 +34,8 @@ view: dim_application {
   }
 
   dimension: description_fr {
-    type: string
     hidden: yes
+    type: string
     sql: ${TABLE}.descriptionFr ;;
   }
 
@@ -65,9 +65,9 @@ view: dim_application {
   }
 
   dimension: h_application_bk {
+    hidden: yes
     label: "Operation"
     type: string
-    hidden: yes
     sql: ${TABLE}.h_application_bk ;;
   }
 
@@ -101,61 +101,10 @@ view: dim_application {
   }
 
   dimension: row_current {
-    type: number
     hidden: yes
+    type: number
     sql: ${TABLE}.row_current ;;
   }
-
-  # dimension_group: row_end_dt {
-  #   type: time
-  #   hidden: yes
-  #   timeframes: [
-  #     raw,
-  #     time,
-  #     date,
-  #     week,
-  #     month,
-  #     quarter,
-  #     year
-  #   ]
-  #   sql: ${TABLE}.row_end_dt ;;
-  # }
-
-  # dimension_group: row_start_dt {
-  #   type: time
-  #   hidden: yes
-  #   timeframes: [
-  #     raw,
-  #     time,
-  #     date,
-  #     week,
-  #     month,
-  #     quarter,
-  #     year
-  #   ]
-  #   sql: ${TABLE}.row_start_dt ;;
-  # }
-
-  # dimension_group: row_start_dt_orig {
-  #   type: time
-  #   hidden: yes
-  #   timeframes: [
-  #     raw,
-  #     time,
-  #     date,
-  #     week,
-  #     month,
-  #     quarter,
-  #     year
-  #   ]
-  #   sql: ${TABLE}.row_start_dt_orig ;;
-  # }
-
-   # dimension: m_model_run_id {
-  #   type: string
-  #   hidden: yes
-  #   sql: ${TABLE}.m_model_run_id ;;
-  # }
 
   measure: count {
     hidden: yes
