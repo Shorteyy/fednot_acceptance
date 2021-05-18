@@ -200,4 +200,25 @@ view: fact_comparison_point {
     value_format:"€#,##0.00;-€#,##0.00"
   }
 
+  measure: median_price_sqm {
+    label: "Median Price Sqm"
+    type:  median
+    sql: ${price_sqm} ;;
+    value_format:"€#,##0.00;-€#,##0.00"
+  }
+
+  measure: avg_price {
+    label: "Average Price"
+    type:  average
+    sql: ${price} ;;
+    value_format:"€#,##0.00;-€#,##0.00"
+  }
+
+  measure: median_price {
+    label: "Median Price"
+    type:  median
+    sql: ${price} ;;
+    value_format:"€#,##0.00;-€#,##0.00"
+  }
+
 }

@@ -46,7 +46,7 @@ view: dim_application {
   }
 
   dimension: description {
-    view_label: "Operation Description"
+    label: "Operation Description"
     label_from_parameter: language_picker
     sql:
         {% if language_picker._parameter_value == "'NL'" %}
