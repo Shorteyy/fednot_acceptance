@@ -228,4 +228,14 @@ view: fact_comparison_point {
     value_format:"€#,##0.00;-€#,##0.00"
   }
 
+  measure: price_ytd {
+    label: "Price YTD"
+    type: sum
+    filters: {
+      field: is_ytd
+      value: "yes"
+    }
+    sql: ${price} ;;
+    value_format:"€#,##0.00;-€#,##0.00"
+  }
 }

@@ -207,6 +207,7 @@ explore: fact_comparison_point {
   sql_on: ${fact_comparison_point.fk_heating_type} = ${dim_heating_type.pk_heating_type} ;;
   relationship: many_to_one
   type: left_outer
+  fields: []
   }
   join: dim_comparison_point {
   sql_on: ${fact_comparison_point.fk_comparison_point} = ${dim_comparison_point.pk_comparison_point} ;;
@@ -222,6 +223,7 @@ explore: fact_comparison_point {
     sql_on: ${fact_comparison_point.fk_pebtype} =${dim_pebtype.pk_pebtype} ;;
     relationship: many_to_one
     type: left_outer
+    fields: []
   }
   join: dim_property_type {
     sql_on: ${fact_comparison_point.fk_property_type} =${dim_property_type.pk_property_type};;
