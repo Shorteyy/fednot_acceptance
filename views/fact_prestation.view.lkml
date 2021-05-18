@@ -8,20 +8,6 @@ view: fact_prestation {
     sql: ${TABLE}.dim_application_sk ;;
   }
 
-  # dimension_group: dim_days_sk {
-  #   type: time
-  #   timeframes: [
-  #     raw,
-  #     time,
-  #     date,
-  #     week,
-  #     month,
-  #     quarter,
-  #     year
-  #   ]
-  #   sql: ${TABLE}.dim_days_sk ;;
-  # }
-
   dimension: dim_days_sk {
     hidden: yes
     type: date
@@ -47,12 +33,6 @@ view: fact_prestation {
     sql: CONCAT(cast(${TABLE}.dim_days_sk as string ), ${TABLE}.dim_notaryOffice_sk, ${TABLE}.dim_province_sk, ${TABLE}.dim_application_sk ) ;;
   }
 
-  # dimension: m_model_run_id {
-  #   type: string
-  #   hidden: yes
-  #   sql: ${TABLE}.m_model_run_id ;;
-  # }
-
   dimension: is_ytd {
     type: yesno
     label: "Compare YTD"
@@ -70,25 +50,6 @@ view: fact_prestation {
     type: number
     sql: ${TABLE}.amountWVAT ;;
   }
-
-  # dimension_group: row_start_dt {
-  #   type: time
-  #   timeframes: [
-  #     raw,
-  #     time,
-  #     date,
-  #     week,
-  #     month,
-  #     quarter,
-  #     year
-  #   ]
-  #   sql: ${TABLE}.row_start_dt ;;
-  # }
-
-  # dimension: year_month {
-  #   type: string
-  #   sql: ${TABLE}.yearMonth ;;
-  # }
 
   measure: count {
     type: count

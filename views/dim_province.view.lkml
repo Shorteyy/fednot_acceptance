@@ -1,14 +1,9 @@
+include: "/views/global_parameters.view.lkml"
 view: dim_province {
+  extends: [global_parameters]
   label: "Province"
   sql_table_name: `dwh.dim_province`
     ;;
-
-  parameter: pick_language {
-    label: "Geography Language Selector"
-    type: string
-    allowed_value: { value: "NL" }
-    allowed_value: { value: "FR" }
-  }
 
   dimension: country_nl {
     hidden: yes
@@ -26,11 +21,11 @@ view: dim_province {
     label: "Country"
     map_layer_name: countries
     drill_fields: [region_description, province_description]
-    label_from_parameter: pick_language
+    label_from_parameter: language_picker
     sql:
-        {% if pick_language._parameter_value == "'NL'" %}
+        {% if language_picker._parameter_value == "'NL'" %}
           ${country_nl}
-        {% elsif pick_language._parameter_value == "'FR'" %}
+        {% elsif language_picker._parameter_value == "'FR'" %}
           ${country_fr}
         {% else %}
           ${country_nl}
@@ -82,11 +77,11 @@ view: dim_province {
 
   dimension: province_description {
     label: "Province"
-    label_from_parameter: pick_language
+    label_from_parameter: language_picker
     sql:
-        {% if pick_language._parameter_value == "'NL'" %}
+        {% if language_picker._parameter_value == "'NL'" %}
           ${province_nl}
-        {% elsif pick_language._parameter_value == "'FR'" %}
+        {% elsif language_picker._parameter_value == "'FR'" %}
           ${province_fr}
          {% else %}
            ${province_nl}
@@ -138,11 +133,11 @@ view: dim_province {
 
   dimension: region_description {
     label: "Region"
-    label_from_parameter: pick_language
+    label_from_parameter: language_picker
     sql:
-        {% if pick_language._parameter_value == "'NL'" %}
+        {% if language_picker._parameter_value == "'NL'" %}
           ${region_nl}
-        {% elsif pick_language._parameter_value == "'FR'" %}
+        {% elsif language_picker._parameter_value == "'FR'" %}
           ${region_fr}
          {% else %}
            ${region_nl}
@@ -190,48 +185,6 @@ view: dim_province {
     type: string
     sql: ${TABLE}.regionRbr ;;
   }
-
-  # dimension_group: row_end_dt {
-  #   type: time
-  #   hidden: yes
-  #   timeframes: [
-  #     raw,
-  #     time,
-  #     date,
-  #     week,
-  #     month,
-  #     quarter,
-  #     year
-  #   ]
-  #   sql: ${TABLE}.row_end_dt ;;
-  # }
-
-  # dimension: row_is_current_flag {
-  #   type: number
-  #   hidden: yes
-  #   sql: ${TABLE}.row_is_current_flag ;;
-  # }
-
-  # dimension_group: row_start_dt {
-  #   type: time
-  #   hidden: yes
-  #   timeframes: [
-  #     raw,
-  #     time,
-  #     date,
-  #     week,
-  #     month,
-  #     quarter,
-  #     year
-  #   ]
-  #   sql: ${TABLE}.row_start_dt ;;
-  # }
-
-  # dimension: m_model_run_id {
-  #   type: string
-  #   hidden: yes
-  #   sql: ${TABLE}.m_model_run_id ;;
-  # }
 
   measure: count {
     type: count

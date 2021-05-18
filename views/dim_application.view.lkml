@@ -1,14 +1,16 @@
+include: "/views/global_parameters.view.lkml"
 view: dim_application {
+  extends: [global_parameters]
   label: "Application"
   sql_table_name: `dwh.dim_application`
     ;;
 
-  parameter: pick_language {
-    label: "Operation Language Selector"
-    type: string
-    allowed_value: { value: "NL" }
-    allowed_value: { value: "FR" }
-  }
+  # parameter: pick_language {
+  #   label: "Operation Language Selector"
+  #   type: string
+  #   allowed_value: { value: "NL" }
+  #   allowed_value: { value: "FR" }
+  # }
 
   parameter: operation_group_picker {
     label: "Operation Group Selector"
@@ -44,12 +46,12 @@ view: dim_application {
   }
 
   dimension: description {
-    label: "Operation Description"
-    label_from_parameter: pick_language
+    view_label: "Operation Description"
+    label_from_parameter: language_picker
     sql:
-        {% if pick_language._parameter_value == "'NL'" %}
+        {% if language_picker._parameter_value == "'NL'" %}
           ${description_nl}
-        {% elsif pick_language._parameter_value == "'FR'" %}
+        {% elsif language_picker._parameter_value == "'FR'" %}
           ${description_fr}
          {% else %}
            ${description_nl}

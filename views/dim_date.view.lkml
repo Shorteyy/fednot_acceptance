@@ -1,43 +1,9 @@
+include: "/views/global_parameters.view.lkml"
 view: dim_date {
+  extends: [global_parameters]
   # label: "Date Hierarchy"
   sql_table_name: `dwh.DimDate`
     ;;
-
-  # parameter: date_selector {
-  #   type: date_time
-  #   description: "Use this field to select a date to filter results by."
-  # }
-
-  # dimension_group: date_group {
-  #   type: time
-  #   hidden: yes
-  #   timeframes: [
-  #     raw,
-  #     date,
-  #     week,
-  #     month,
-  #     quarter,
-  #     year
-  #   ]
-  #   convert_tz: no
-  #   datatype: date
-  #   sql: ${TABLE}.Date ;;
-  # }
-
-  parameter: timeframe_picker {
-    label: "{% assign groupname = _field._name | replace: \".timeframe_picker\" , \" \" | replace: \"_\" , \" \" | capitalize %} {{groupname}} Period Selector"
-    type: unquoted
-    allowed_value: {
-      label: "Month"
-      value: "Month" }
-    allowed_value: {
-      label: "Quarter"
-      value: "Quarter" }
-    allowed_value: {
-      label: "Year"
-      value: "Year" }
-    default_value: "Month"
-  }
 
   dimension: date {
     group_label: "{% assign groupname = _field._name | replace: \".date\" , \"\" | replace: \"_\" , \" \" | capitalize %} {{groupname}}"
@@ -110,21 +76,6 @@ view: dim_date {
     sql: ${TABLE}.DaySuffix ;;
   }
 
-  # dimension_group: first_day_of_month {
-  #   type: time
-  #   timeframes: [
-  #     raw,
-  #     date,
-  #     week,
-  #     month,
-  #     quarter,
-  #     year
-  #   ]
-  #   convert_tz: no
-  #   datatype: date
-  #   sql: ${TABLE}.FirstDayOfMonth ;;
-  # }
-
   dimension: first_day_of_month {
     group_label: "{% assign groupname = _field._name | replace: \".first_day_of_month\" , \"\" | replace: \"_\" , \" \" | capitalize %} {{groupname}}"
     type: date
@@ -132,42 +83,12 @@ view: dim_date {
     sql: ${TABLE}.FirstDayOfMonth ;;
   }
 
-  # dimension_group: first_day_of_quarter {
-  #   type: time
-  #   timeframes: [
-  #     raw,
-  #     date,
-  #     week,
-  #     month,
-  #     quarter,
-  #     year
-  #   ]
-  #   convert_tz: no
-  #   datatype: date
-  #   sql: ${TABLE}.FirstDayOfQuarter ;;
-  # }
-
   dimension: first_day_of_quarter {
     group_label: "{% assign groupname = _field._name | replace: \".first_day_of_quarter\" , \"\" | replace: \"_\" , \" \" | capitalize %} {{groupname}}"
     type: date
     datatype: date
     sql: ${TABLE}.FirstDayOfQuarter ;;
   }
-
-  # dimension_group: first_day_of_year {
-  #   type: time
-  #   timeframes: [
-  #     raw,
-  #     date,
-  #     week,
-  #     month,
-  #     quarter,
-  #     year
-  #   ]
-  #   convert_tz: no
-  #   datatype: date
-  #   sql: ${TABLE}.FirstDayOfYear ;;
-  # }
 
   dimension: first_day_of_year {
     group_label: "{% assign groupname = _field._name | replace: \".first_day_of_year\" , \"\" | replace: \"_\" , \" \" | capitalize %} {{groupname}}"
@@ -194,21 +115,6 @@ view: dim_date {
     sql: ${TABLE}.IsWeekday ;;
   }
 
-  # dimension_group: last_day_of_month {
-  #   type: time
-  #   timeframes: [
-  #     raw,
-  #     date,
-  #     week,
-  #     month,
-  #     quarter,
-  #     year
-  #   ]
-  #   convert_tz: no
-  #   datatype: date
-  #   sql: ${TABLE}.LastDayOfMonth ;;
-  # }
-
   dimension: last_day_of_month {
     group_label: "{% assign groupname = _field._name | replace: \".last_day_of_month\" , \"\" | replace: \"_\" , \" \" | capitalize %} {{groupname}}"
     type: date
@@ -216,42 +122,12 @@ view: dim_date {
     sql: ${TABLE}.LastDayOfMonth ;;
   }
 
-  # dimension_group: last_day_of_quarter {
-  #   type: time
-  #   timeframes: [
-  #     raw,
-  #     date,
-  #     week,
-  #     month,
-  #     quarter,
-  #     year
-  #   ]
-  #   convert_tz: no
-  #   datatype: date
-  #   sql: ${TABLE}.LastDayOfQuarter ;;
-  # }
-
   dimension: last_day_of_quarter {
     group_label: "{% assign groupname = _field._name | replace: \".last_day_of_quarter\" , \"\" | replace: \"_\" , \" \" | capitalize %} {{groupname}}"
     type: date
     datatype: date
     sql: ${TABLE}.LastDayOfQuarter ;;
   }
-
-  # dimension_group: last_day_of_year {
-  #   type: time
-  #   timeframes: [
-  #     raw,
-  #     date,
-  #     week,
-  #     month,
-  #     quarter,
-  #     year
-  #   ]
-  #   convert_tz: no
-  #   datatype: date
-  #   sql: ${TABLE}.LastDayOfYear ;;
-  # }
 
   dimension: last_day_of_year {
     group_label: "{% assign groupname = _field._name | replace: \".last_day_of_year\" , \"\" | replace: \"_\" , \" \" | capitalize %} {{groupname}}"
