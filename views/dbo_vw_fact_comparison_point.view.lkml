@@ -135,6 +135,13 @@ view: fact_comparison_point {
     sql: ${TABLE}.yearlyRent ;;
   }
 
+  dimension: is_ytd {
+    type: yesno
+    label: "Compare YTD"
+    sql: EXTRACT(MONTH from ${fk_date_encoding}) < EXTRACT(MONTH from CURRENT_TIMESTAMP) ;;
+  }
+
+
   measure: count {
     hidden: yes
     type: count

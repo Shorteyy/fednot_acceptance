@@ -73,6 +73,12 @@ view: fact_real_estate_notice {
     sql: ${TABLE}.Nb_Enot_Non_Additive ;;
   }
 
+  dimension: is_ytd {
+    type: yesno
+    label: "Compare YTD"
+    sql: EXTRACT(MONTH from ${fk_date_first_enot_request}) < EXTRACT(MONTH from CURRENT_TIMESTAMP) ;;
+  }
+
   measure: count_real_estate {
     label: "# of Real Estate"
     type: count_distinct

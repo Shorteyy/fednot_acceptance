@@ -147,32 +147,6 @@ view: ereg_vw_fact_transaction {
     sql: ${TABLE}.IsPartyFromCommunity ;;
   }
 
-  # dimension_group: m_job_datetime {
-  #   type: time
-  #   timeframes: [
-  #     raw,
-  #     time,
-  #     date,
-  #     week,
-  #     month,
-  #     quarter,
-  #     year
-  #   ]
-  #   sql: ${TABLE}.m_job_datetime ;;
-  # }
-
-  # dimension: m_job_run_id {
-  #   type: string
-  #   # hidden: yes
-  #   sql: ${TABLE}.m_job_run_id ;;
-  # }
-
-  # dimension: m_model_run_id {
-  #   type: string
-  #   # hidden: yes
-  #   sql: ${TABLE}.m_model_run_id ;;
-  # }
-
   dimension: quota_denominator {
     type: string
     sql: ${TABLE}.QuotaDenominator ;;
@@ -273,26 +247,6 @@ view: ereg_vw_fact_transaction {
           ${count_transaction}
         {% endif %} ;;
   }
-
-  # parameter: metric_target {
-  #   type: number
-  # }
-
-  # measure: metric_targeted {
-  #   type: number
-  #   sql: ${metric_selector} ;;
-  #   html: {% assign var=_filters['_metric_target'] | plus:0 %}
-  #         {% if var < ereg_vw_fact_transaction.metric._value %}
-  #           <div style="color: black; background-color: red; font-size:100%; text-align:center">{{ rendered_value }}</div>
-  #         {% else %}
-  #           {{rendered_value}}
-  #         {% endif %} ;;
-  # }
-
-  # dimension: sys_insert_update_date {
-  #   type: string
-  #   sql: ${TABLE}.Sys_InsertUpdateDate ;;
-  # }
 
   measure: count_transaction {
     type: count_distinct
