@@ -8,7 +8,6 @@ view: dim_comparison_point {
   }
 
   dimension: asf_id {
-    hidden: yes
     type: string
     sql: ${TABLE}.asfId ;;
   }
@@ -175,6 +174,7 @@ view: dim_comparison_point {
   }
 
   dimension: living_surface_area {
+    hidden: yes
     type: number
     sql: ${TABLE}.livingSurfaceArea ;;
   }
@@ -248,41 +248,31 @@ view: dim_comparison_point {
     sql: ${TABLE}.surfaceArea ;;
   }
 
-  # dimension_group: sys_insert_update {
-  #   type: time
-  #   timeframes: [
-  #     raw,
-  #     time,
-  #     date,
-  #     week,
-  #     month,
-  #     quarter,
-  #     year
-  #   ]
-  #   sql: ${TABLE}.Sys_InsertUpdateDate ;;
-  # }
-
   dimension: vgp_city {
     type: string
     sql: ${TABLE}.VGP_city ;;
   }
 
   dimension: vgp_city_de {
+    hidden: yes
     type: string
     sql: ${TABLE}.VGP_cityDe ;;
   }
 
   dimension: vgp_city_fr {
+    hidden: yes
     type: string
     sql: ${TABLE}.VGP_cityFr ;;
   }
 
   dimension: vgp_city_nl {
+    hidden: yes
     type: string
     sql: ${TABLE}.VGP_cityNl ;;
   }
 
   dimension: vgp_nis_code {
+    hidden: yes
     type: number
     sql: ${TABLE}.VGP_nisCode ;;
   }
@@ -303,16 +293,19 @@ view: dim_comparison_point {
   }
 
   dimension: vgp_street_de {
+    hidden: yes
     type: string
     sql: ${TABLE}.VGP_streetDe ;;
   }
 
   dimension: vgp_street_fr {
+    hidden: yes
     type: string
     sql: ${TABLE}.VGP_streetFr ;;
   }
 
   dimension: vgp_street_nl {
+    hidden: yes
     type: string
     sql: ${TABLE}.VGP_streetNl ;;
   }

@@ -351,11 +351,7 @@ view: ereg_vw_dim_party_address {
       region_name,
       municipality_name,
       district_name,
-      main_locality_name,
-      m_job_run.m_job_run_id,
-      m_job_run.m_job_name,
-      m_model_run.m_model_run_id,
-      m_model_run.m_model_name
+      main_locality_name
     ]
   }
 }

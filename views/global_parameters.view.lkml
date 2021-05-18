@@ -5,7 +5,7 @@ view: global_parameters {
 
   parameter: timeframe_picker {
     view_label: "-- Parameters"
-    label: "Date Granularity"
+    label: "Period Granularity"
     type: unquoted
     allowed_value: { value: "Month" }
     allowed_value: { value: "Quarter" }

@@ -2,39 +2,6 @@ view: dim_real_estate {
   sql_table_name: `dwh.dbo_vwDimRealEstate`
     ;;
 
-  # dimension_group: _date1 {
-  #   type: time
-  #   timeframes: [
-  #     raw,
-  #     time,
-  #     date,
-  #     week,
-  #     month,
-  #     quarter,
-  #     year
-  #   ]
-  #   sql: ${TABLE}._date1 ;;
-  # }
-
-  # dimension_group: _date2 {
-  #   type: time
-  #   timeframes: [
-  #     raw,
-  #     time,
-  #     date,
-  #     week,
-  #     month,
-  #     quarter,
-  #     year
-  #   ]
-  #   sql: ${TABLE}._date2 ;;
-  # }
-
-  # dimension: _run_id {
-  #   type: string
-  #   sql: ${TABLE}._run_id ;;
-  # }
-
   dimension: acquisition_date_and_mode {
     type: string
     sql: ${TABLE}.AcquisitionDateAndMode ;;
@@ -77,30 +44,6 @@ view: dim_real_estate {
     type: number
     sql: ${TABLE}.LivingSurfaceArea ;;
   }
-
-  # dimension_group: m_job_datetime {
-  #   type: time
-  #   timeframes: [
-  #     raw,
-  #     time,
-  #     date,
-  #     week,
-  #     month,
-  #     quarter,
-  #     year
-  #   ]
-  #   sql: ${TABLE}.m_job_datetime ;;
-  # }
-
-  # dimension: m_job_exec_id {
-  #   type: string
-  #   sql: ${TABLE}.m_job_exec_id ;;
-  # }
-
-  # dimension: m_model_exec_id {
-  #   type: string
-  #   sql: ${TABLE}.m_model_exec_id ;;
-  # }
 
   dimension: mortgage_status {
     type: string
@@ -177,20 +120,6 @@ view: dim_real_estate {
     type: string
     sql: ${TABLE}.SuperficieUnit ;;
   }
-
-  # dimension_group: sys_insert_update {
-  #   type: time
-  #   timeframes: [
-  #     raw,
-  #     time,
-  #     date,
-  #     week,
-  #     month,
-  #     quarter,
-  #     year
-  #   ]
-  #   sql: ${TABLE}.Sys_InsertUpdateDate ;;
-  # }
 
   dimension: vatalienation {
     type: yesno
