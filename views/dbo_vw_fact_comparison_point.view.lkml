@@ -228,6 +228,36 @@ view: fact_comparison_point {
     value_format:"€#,##0.00;-€#,##0.00"
   }
 
+  measure: min_price {
+    label: "Minimum Price"
+    type: min
+    sql: ${price} ;;
+    value_format:"€#,##0.00;-€#,##0.00"
+  }
+
+  measure: max_price {
+    label: "Maximum Price"
+    type: max
+    sql: ${price} ;;
+    value_format:"€#,##0.00;-€#,##0.00"
+  }
+
+  measure: price_25th {
+    label: "Price in 25th Percentile"
+    type: percentile
+    percentile: 25
+    sql: ${price} ;;
+    value_format:"€#,##0.00;-€#,##0.00"
+  }
+
+  measure: price_75th {
+    label: "Price in 75th Percentile"
+    type: percentile
+    percentile: 75
+    sql: ${price} ;;
+    value_format:"€#,##0.00;-€#,##0.00"
+  }
+
   measure: price_ytd {
     label: "Price YTD"
     type: sum
