@@ -117,32 +117,6 @@ view: ereg_vw_dim_sending_answer {
     sql: ${TABLE}.HasAnswerError ;;
   }
 
-  # dimension_group: m_job_datetime {
-  #   type: time
-  #   timeframes: [
-  #     raw,
-  #     time,
-  #     date,
-  #     week,
-  #     month,
-  #     quarter,
-  #     year
-  #   ]
-  #   sql: ${TABLE}.m_job_datetime ;;
-  # }
-
-  # dimension: m_job_run_id {
-  #   type: string
-  #   # hidden: yes
-  #   sql: ${TABLE}.m_job_run_id ;;
-  # }
-
-  # dimension: m_model_run_id {
-  #   type: string
-  #   # hidden: yes
-  #   sql: ${TABLE}.m_model_run_id ;;
-  # }
-
   dimension: pk_ereg_sending_answer {
     type: string
     sql: ${TABLE}.PK_EregSendingAnswer ;;
@@ -172,11 +146,6 @@ view: ereg_vw_dim_sending_answer {
     type: string
     sql: ${TABLE}.StudyBCENumber ;;
   }
-
-  # dimension: sys_insert_update_date {
-  #   type: string
-  #   sql: ${TABLE}.Sys_InsertUpdateDate ;;
-  # }
 
   measure: count {
     hidden: yes

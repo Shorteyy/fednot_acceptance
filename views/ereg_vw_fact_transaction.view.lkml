@@ -157,63 +157,62 @@ view: ereg_vw_fact_transaction {
     sql: ${TABLE}.QuotaNumerator ;;
   }
 
-  dimension: is_ytd_deed {
-    hidden: yes
-    type: yesno
-    label: "Is YTD?"
-    sql: MOD(${fk_date_deed},100) < EXTRACT(MONTH from CURRENT_TIMESTAMP);;
-  }
+  # dimension: is_ytd_deed {
+  #   hidden: yes
+  #   type: yesno
+  #   label: "Is YTD?"
+  #   sql: MOD(${fk_date_deed},100) < EXTRACT(MONTH from CURRENT_TIMESTAMP);;
+  # }
 
-  dimension: is_ytd_first_fednot_sending {
-    hidden: yes
+  dimension: is_ytd_date_first_fednot_sending {
     type: yesno
     label: "Is YTD?"
     sql: MOD(${fk_date_first_fed_not_sending},100) < EXTRACT(MONTH from CURRENT_TIMESTAMP);;
   }
 
-  dimension: is_ytd_expedition_signed {
-    hidden: yes
-    type: yesno
-    label: "Is YTD?"
-    sql: MOD(${fk_date_expedition_signed},100) < EXTRACT(MONTH from CURRENT_TIMESTAMP);;
-  }
+  # dimension: is_ytd_expedition_signed {
+  #   hidden: yes
+  #   type: yesno
+  #   label: "Is YTD?"
+  #   sql: MOD(${fk_date_expedition_signed},100) < EXTRACT(MONTH from CURRENT_TIMESTAMP);;
+  # }
 
-  dimension: is_ytd_deed_registered_aa {
-    hidden: yes
-    type: yesno
-    label: "Is YTD?"
-    sql: MOD(${fk_date_deed_registered_aa},100) < EXTRACT(MONTH from CURRENT_TIMESTAMP);;
-  }
+  # dimension: is_ytd_deed_registered_aa {
+  #   hidden: yes
+  #   type: yesno
+  #   label: "Is YTD?"
+  #   sql: MOD(${fk_date_deed_registered_aa},100) < EXTRACT(MONTH from CURRENT_TIMESTAMP);;
+  # }
 
-  dimension: is_ytd_edossier_creation {
-    hidden: yes
-    type: yesno
-    label: "Is YTD?"
-    sql: MOD(${fk_date_edossier_creation},100) < EXTRACT(MONTH from CURRENT_TIMESTAMP);;
-  }
+  # dimension: is_ytd_edossier_creation {
+  #   hidden: yes
+  #   type: yesno
+  #   label: "Is YTD?"
+  #   sql: MOD(${fk_date_edossier_creation},100) < EXTRACT(MONTH from CURRENT_TIMESTAMP);;
+  # }
 
-  dimension: is_ytd_fednot_received_answer {
-    hidden: yes
-    type: yesno
-    label: "Is YTD?"
-    sql: MOD(${fk_date_fed_not_received_answer},100) < EXTRACT(MONTH from CURRENT_TIMESTAMP);;
-  }
+  # dimension: is_ytd_fednot_received_answer {
+  #   hidden: yes
+  #   type: yesno
+  #   label: "Is YTD?"
+  #   sql: MOD(${fk_date_fed_not_received_answer},100) < EXTRACT(MONTH from CURRENT_TIMESTAMP);;
+  # }
 
-  dimension: is_ytd_fednot_sending {
-    hidden: yes
-    type: yesno
-    label: "Is YTD?"
-    sql: MOD(${fk_date_fed_not_sending},100) < EXTRACT(MONTH from CURRENT_TIMESTAMP);;
-  }
+  # dimension: is_ytd_fednot_sending {
+  #   hidden: yes
+  #   type: yesno
+  #   label: "Is YTD?"
+  #   sql: MOD(${fk_date_fed_not_sending},100) < EXTRACT(MONTH from CURRENT_TIMESTAMP);;
+  # }
 
-  dimension: is_ytd_request {
-    hidden: yes
-    type: yesno
-    label: "Is YTD?"
-    sql: MOD(${fk_date_request},100) < EXTRACT(MONTH from CURRENT_TIMESTAMP);;
-  }
+  # dimension: is_ytd_request {
+  #   hidden: yes
+  #   type: yesno
+  #   label: "Is YTD?"
+  #   sql: MOD(${fk_date_request},100) < EXTRACT(MONTH from CURRENT_TIMESTAMP);;
+  # }
 
- parameter: metric_selector {
+parameter: metric_selector {
     type: unquoted
     allowed_value: {
       label: "Deeds"
@@ -233,7 +232,7 @@ view: ereg_vw_fact_transaction {
     }
   }
 
-  measure: count_based_on_selector {
+  measure: count_based_on_metric_selector {
     label_from_parameter: metric_selector
     type: number
     sql:
@@ -248,7 +247,7 @@ view: ereg_vw_fact_transaction {
         {% endif %} ;;
   }
 
-  measure: percent_of_total_based_on_selector {
+  measure: percent_of_total_based_on_metric_selector {
     label_from_parameter: metric_selector
     type: percent_of_total
     sql:
@@ -318,13 +317,32 @@ view: ereg_vw_fact_transaction {
     sql: ${count_good} ;;
   }
 
-  # measure: total_sum_ytd_deed {
-  #   label: "# Transactions YTD"
-  #   type: sum
+  # measure: count_ytd_first_fednot_sending_based_on_selector {
+  #   label_from_parameter: metric_selector
+  #   type: count_distinct
   #   filters: {
-  #     field: is_ytd_deed
+  #     field: is_ytd_date_first_fednot_sending
   #     value: "yes"
   #   }
-  #   sql: ${count} ;;
+  #   sql:
+  #       {% if metric_selector._parameter_value == 'Deed' %}
+  #         ${fk_ereg_deed_edossier}
+  #       {% elsif metric_selector._parameter_value == 'Good' %}
+  #         ${fk_ereg_good}
+  #       {% elsif metric_selector._parameter_value == 'Party' %}
+  #         ${fk_ereg_party}
+  #       {% else %}
+  #         ${fk_ereg_transaction}
+  #       {% endif %} ;;
   # }
+
+  measure: total_sum_transactions_ytd_first_fednot_sending {
+    label: "Count Transaction YTD Date First FedNot Sending"
+    type: count_distinct
+    filters: {
+      field: is_ytd_date_first_fednot_sending
+      value: "yes"
+    }
+    sql: ${fk_ereg_transaction} ;;
+  }
 }

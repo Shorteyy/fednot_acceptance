@@ -8,43 +8,12 @@ view: ereg_vw_dim_transaction {
     sql: ${TABLE}.isMainTransaction ;;
   }
 
-  # dimension_group: m_job_datetime {
-  #   type: time
-  #   timeframes: [
-  #     raw,
-  #     time,
-  #     date,
-  #     week,
-  #     month,
-  #     quarter,
-  #     year
-  #   ]
-  #   sql: ${TABLE}.m_job_datetime ;;
-  # }
-
-  # dimension: m_job_run_id {
-  #   type: string
-  #   # hidden: yes
-  #   sql: ${TABLE}.m_job_run_id ;;
-  # }
-
-  # dimension: m_model_run_id {
-  #   type: string
-  #   # hidden: yes
-  #   sql: ${TABLE}.m_model_run_id ;;
-  # }
-
   dimension: pk_ereg_transaction {
     hidden: yes
     primary_key: yes
     type: string
     sql: ${TABLE}.PK_EregTransaction ;;
   }
-
-  # dimension: sys_insert_update_date {
-  #   type: string
-  #   sql: ${TABLE}.Sys_InsertUpdateDate ;;
-  # }
 
   dimension: transaction_id {
     type: string

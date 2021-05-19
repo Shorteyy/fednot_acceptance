@@ -40,11 +40,6 @@ view: ereg_vw_dim_study_address {
     sql: ${TABLE}.DistrictNameNL ;;
   }
 
-  # dimension: district_name_tableau {
-  #   type: string
-  #   sql: ${TABLE}.DistrictName_Tableau ;;
-  # }
-
   dimension: is_streets_belgian_coast {
     group_label: "Address"
     type: string
@@ -99,32 +94,6 @@ view: ereg_vw_dim_study_address {
     type: string
     sql: ${TABLE}.LocalityNameNL ;;
   }
-
-  # dimension_group: m_job_datetime {
-  #   type: time
-  #   timeframes: [
-  #     raw,
-  #     time,
-  #     date,
-  #     week,
-  #     month,
-  #     quarter,
-  #     year
-  #   ]
-  #   sql: ${TABLE}.m_job_datetime ;;
-  # }
-
-  # dimension: m_job_run_id {
-  #   type: string
-  #   # hidden: yes
-  #   sql: ${TABLE}.m_job_run_id ;;
-  # }
-
-  # dimension: m_model_run_id {
-  #   type: string
-  #   # hidden: yes
-  #   sql: ${TABLE}.m_model_run_id ;;
-  # }
 
   dimension: main_locality_name {
     group_label: "Address"
@@ -266,11 +235,6 @@ view: ereg_vw_dim_study_address {
           END ;;
   }
 
-  # dimension: region_name_tableau {
-  #   type: string
-  #   sql: ${TABLE}.RegionName_Tableau ;;
-  # }
-
   dimension: street_code {
     group_label: "Address"
     type: string
@@ -307,11 +271,6 @@ view: ereg_vw_dim_study_address {
     type: string
     sql: ${TABLE}.StreetNameNL ;;
   }
-
-  # dimension: sys_insert_update_date {
-  #   type: string
-  #   sql: ${TABLE}.Sys_InsertUpdateDate ;;
-  # }
 
   dimension: zip_code {
     group_label: "Address"

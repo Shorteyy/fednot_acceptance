@@ -87,32 +87,6 @@ view: ereg_vw_dim_transaction_type {
     sql: ${TABLE}.IsVlabelConcerned ;;
   }
 
-  # dimension_group: m_job_datetime {
-  #   type: time
-  #   timeframes: [
-  #     raw,
-  #     time,
-  #     date,
-  #     week,
-  #     month,
-  #     quarter,
-  #     year
-  #   ]
-  #   sql: ${TABLE}.m_job_datetime ;;
-  #}
-
-  # dimension: m_job_run_id {
-  #   type: string
-  #   # hidden: yes
-  #   sql: ${TABLE}.m_job_run_id ;;
-  # }
-
-  # dimension: m_model_run_id {
-  #   type: string
-  #   # hidden: yes
-  #   sql: ${TABLE}.m_model_run_id ;;
-  # }
-
   dimension: party_implication_description {
     type: string
     sql: ${TABLE}.PartyImplicationDescription ;;
@@ -143,11 +117,6 @@ view: ereg_vw_dim_transaction_type {
     sql: ${TABLE}.SubCategoryLabelNL ;;
   }
 
-  # dimension: sys_insert_update_date {
-  #   type: string
-  #   sql: ${TABLE}.Sys_InsertUpdateDate ;;
-  # }
-
   dimension: transaction_type_code {
     hidden: yes
     type: string
@@ -177,5 +146,4 @@ view: ereg_vw_dim_transaction_type {
     type: count
     drill_fields: []
   }
-
 }

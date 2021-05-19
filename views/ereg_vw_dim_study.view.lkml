@@ -174,30 +174,6 @@ view: ereg_vw_dim_study {
     sql: ${TABLE}.Locality_WordingNl ;;
   }
 
-  # dimension_group: m_job_datetime {
-  #   type: time
-  #   timeframes: [
-  #     raw,
-  #     time,
-  #     date,
-  #     week,
-  #     month,
-  #     quarter,
-  #     year
-  #   ]
-  #   sql: ${TABLE}.m_job_datetime ;;
-  # }
-
-  # dimension: m_job_run_id {
-  #   type: string
-  #   sql: ${TABLE}.m_job_run_id ;;
-  # }
-
-  # dimension: m_model_run_id {
-  #   type: string
-  #   sql: ${TABLE}.m_model_run_id ;;
-  # }
-
   dimension: organization_name {
     label: "Notary Office Name"
     type: string
@@ -222,24 +198,6 @@ view: ereg_vw_dim_study {
     sql: ${TABLE}.RegionId ;;
   }
 
-  # dimension: short_wording_de {
-  #   hidden: yes
-  #   type: string
-  #   sql: ${TABLE}.ShortWordingDe ;;
-  # }
-
-  # dimension: short_wording_fr {
-  #   hidden: yes
-  #   type: string
-  #   sql: ${TABLE}.ShortWordingFr ;;
-  # }
-
-  # dimension: short_wording_nl {
-  #   hidden: yes
-  #   type: string
-  #   sql: ${TABLE}.ShortWordingNl ;;
-  # }
-
   dimension: study_id {
     hidden: yes
     type: number
@@ -251,20 +209,6 @@ view: ereg_vw_dim_study {
     type: number
     sql: ${TABLE}.StudyIsAssociation ;;
   }
-
-  # dimension_group: sys_insert_update {
-  #   type: time
-  #   timeframes: [
-  #     raw,
-  #     time,
-  #     date,
-  #     week,
-  #     month,
-  #     quarter,
-  #     year
-  #   ]
-  #   sql: ${TABLE}.Sys_InsertUpdateDate ;;
-  # }
 
   dimension: wording_de {
     hidden: yes
