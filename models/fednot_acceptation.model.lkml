@@ -255,7 +255,7 @@ explore: fact_comparison_point {
 }
 
 explore: fact_real_estate_notice {
-    sql_always_where: ${ereg_vw_dim_transaction_type.pk_ereg_transaction_type} = 3 and ${fk_date_first_enot_request} > 20161231;;
+    sql_always_where: ${fact_real_estate_notice.fk_transaction_type} = 3 and ${fk_date_first_enot_request} > 20161231;;
     label: "Real Estate Activity"
     join: dim_address {
     sql_on: ${fact_real_estate_notice.fk_address} =${dim_address.pk_address};;
@@ -290,11 +290,6 @@ explore: fact_real_estate_notice {
   join: ereg_vw_dim_study {
     sql_on: ${fact_real_estate_notice.fk_study} =${ereg_vw_dim_study.pk_study};;
     relationship:  many_to_one
-    type: left_outer
-  }
-  join: ereg_vw_dim_transaction_type {
-    sql_on: ${fact_real_estate_notice.fk_transaction_type} =${ereg_vw_dim_transaction_type.pk_ereg_transaction_type};;
-    relationship: many_to_one
     type: left_outer
   }
   join: first_sending_notary {

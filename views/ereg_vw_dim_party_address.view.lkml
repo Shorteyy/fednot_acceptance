@@ -106,32 +106,6 @@ view: ereg_vw_dim_party_address {
     sql: ${TABLE}.LocalityNameNL ;;
   }
 
-  # dimension_group: m_job_datetime {
-  #   type: time
-  #   timeframes: [
-  #     raw,
-  #     time,
-  #     date,
-  #     week,
-  #     month,
-  #     quarter,
-  #     year
-  #   ]
-  #   sql: ${TABLE}.m_job_datetime ;;
-  # }
-
-  # dimension: m_job_run_id {
-  #   type: string
-  #   # hidden: yes
-  #   sql: ${TABLE}.m_job_run_id ;;
-  # }
-
-  # dimension: m_model_run_id {
-  #   type: string
-  #   # hidden: yes
-  #   sql: ${TABLE}.m_model_run_id ;;
-  # }
-
   dimension: main_locality_name {
     group_label: "Address"
     group_item_label: "Main Locality"
@@ -260,12 +234,6 @@ view: ereg_vw_dim_party_address {
     sql: ${TABLE}.RegionNameNL ;;
   }
 
-  # dimension: region_name_tableau {
-  #   hidden: yes
-  #   type: string
-  #   sql: ${TABLE}.RegionName_Tableau ;;
-  # }
-
   dimension: region_area {
     group_label: "Address"
     group_item_label: "Region Area"
@@ -322,11 +290,6 @@ view: ereg_vw_dim_party_address {
     type: string
     sql: ${TABLE}.StreetNameNL ;;
   }
-
-  # dimension: sys_insert_update_date {
-  #   type: string
-  #   sql: ${TABLE}.Sys_InsertUpdateDate ;;
-  # }
 
   dimension: zip_code {
     group_label: "Address"

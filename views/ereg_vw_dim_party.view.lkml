@@ -38,32 +38,6 @@ view: ereg_vw_dim_party {
         {% endif %};;
   }
 
-  # dimension_group: m_job_datetime {
-  #   type: time
-  #   timeframes: [
-  #     raw,
-  #     time,
-  #     date,
-  #     week,
-  #     month,
-  #     quarter,
-  #     year
-  #   ]
-  #   sql: ${TABLE}.m_job_datetime ;;
-  # }
-
-  # dimension: m_job_run_id {
-  #   type: string
-  #   # hidden: yes
-  #   sql: ${TABLE}.m_job_run_id ;;
-  # }
-
-  # dimension: m_model_run_id {
-  #   type: string
-  #   # hidden: yes
-  #   sql: ${TABLE}.m_model_run_id ;;
-  # }
-
   dimension: moral_party_bcenumber {
     # group_label: "Party"
     group_item_label: "BCE Number"
@@ -191,11 +165,6 @@ view: ereg_vw_dim_party {
     type: string
     sql: ${TABLE}.SendingPartyId ;;
   }
-
-  # dimension: sys_insert_update_date {
-  #   type: string
-  #   sql: ${TABLE}.Sys_InsertUpdateDate ;;
-  # }
 
   measure: count {
     hidden: yes
