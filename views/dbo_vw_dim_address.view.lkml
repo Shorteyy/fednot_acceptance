@@ -1,10 +1,11 @@
 view: dim_address {
+  label: "Dim Geography"
   sql_table_name: `dwh.dbo_vwDimAddress`
     ;;
 
   dimension: country_name {
-    group_label: "Address"
-    group_item_label: "Country"
+    # group_label: "Address"
+    label: "Country"
     type: string
     sql: ${TABLE}.CountryName ;;
   }
@@ -16,8 +17,8 @@ view: dim_address {
   }
 
   dimension: district_name {
-    group_label: "Address"
-    group_item_label: "District"
+    # group_label: "Address"
+    label: "District"
     type: string
     sql: ${TABLE}.DistrictName ;;
   }
@@ -40,36 +41,30 @@ view: dim_address {
     sql: ${TABLE}.DistrictNameNL ;;
   }
 
-  # dimension: district_name_tableau {
-  #   hidden: yes
-  #   type: string
-  #   sql: ${TABLE}.DistrictName_Tableau ;;
-  # }
-
   dimension: is_streets_belgian_coast {
-    group_label: "Address"
-    group_item_label: "Street Belgian Coast?"
+    # group_label: "Address"
+    label: "Street Belgian Coast?"
     type: string
     sql: ${TABLE}.isStreetsBelgianCoast ;;
   }
 
   dimension: is_zip_belgian_coast {
-    group_label: "Address"
-    group_item_label: "Zip Belgian Coast?"
+    # group_label: "Address"
+    label: "Zip Belgian Coast?"
     type: string
     sql: ${TABLE}.isZipBelgianCoast ;;
   }
 
   dimension: is_zip_frontalier {
-    group_label: "Address"
-    group_item_label: "Zip Frontalier?"
+    # group_label: "Address"
+    label: "Zip Frontalier?"
     type: string
     sql: ${TABLE}.isZipFrontalier ;;
   }
 
   dimension: is_zip_town {
-    group_label: "Address"
-    group_item_label: "Zip Town?"
+    # group_label: "Address"
+    label: "Zip Town?"
     type: string
     sql: ${TABLE}.isZipTown ;;
   }
@@ -81,8 +76,8 @@ view: dim_address {
   }
 
   dimension: locality_name {
-    group_label: "Address"
-    group_item_label: "Locality"
+    # group_label: "Address"
+    label: "Locality"
     type: string
     sql: ${TABLE}.LocalityName ;;
   }
@@ -106,15 +101,15 @@ view: dim_address {
   }
 
   dimension: main_locality_name {
-    group_label: "Address"
-    group_item_label: "Main Locality"
+    # group_label: "Address"
+    label: "Main Locality"
     type: string
     sql: ${TABLE}.MainLocalityName ;;
   }
 
   dimension: matching_level {
-    group_label: "Address"
-    group_item_label: "Matching Level"
+    # group_label: "Address"
+    label: "Matching Level"
     type: string
     sql: ${TABLE}.MatchingLevel ;;
   }
@@ -126,8 +121,8 @@ view: dim_address {
   }
 
   dimension: municipality_name {
-    group_label: "Address"
-    group_item_label: "Municipality"
+    # group_label: "Address"
+    label: "Municipality"
     type: string
     sql: ${TABLE}.MunicipalityName ;;
   }
@@ -170,8 +165,7 @@ view: dim_address {
   }
 
   dimension: province_name {
-    group_label: "Address"
-    group_item_label: "Province"
+    label: "Province"
     type: string
     sql: ${TABLE}.ProvinceName ;;
   }
@@ -195,8 +189,7 @@ view: dim_address {
   }
 
   dimension: province_area {
-    group_label: "Address"
-    group_item_label: "Province Area"
+    label: "Province Area"
     type: string
     map_layer_name: province_location_belgium
     sql: concat("Provincie " || trim(${TABLE}.ProvinceNameNL)) ;;
@@ -209,8 +202,7 @@ view: dim_address {
   }
 
   dimension: region_name {
-    group_label: "Address"
-    group_item_label: "Region"
+    label: "Region"
     type: string
     sql: ${TABLE}.RegionName ;;
   }
@@ -240,10 +232,8 @@ view: dim_address {
   # }
 
   dimension: region_area {
-    group_label: "Address"
-    group_item_label: "Region Area"
-    type: string
     label: "Region Area"
+    type: string
     drill_fields: [province_area]
     map_layer_name: region_location_belgium
     sql: CASE
@@ -266,8 +256,8 @@ view: dim_address {
   }
 
   dimension: street_name {
-    group_label: "Address"
-    group_item_label: "Street"
+    # group_label: "Address"
+    label: "Street"
     type: string
     sql: ${TABLE}.StreetName ;;
   }
@@ -291,8 +281,8 @@ view: dim_address {
   }
 
   dimension: zip_code {
-    group_label: "Address"
-    group_item_label: "Zip Code"
+    # group_label: "Address"
+    label: "Zip Code"
     type: zipcode
     sql: ${TABLE}.ZipCode ;;
   }

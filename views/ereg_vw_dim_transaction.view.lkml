@@ -1,5 +1,5 @@
 view: ereg_vw_dim_transaction {
-  label: "Transaction"
+  label: "Dim Transaction"
   sql_table_name: `dwh.ereg_vwDimTransaction`
     ;;
 

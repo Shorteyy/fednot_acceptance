@@ -1,5 +1,5 @@
 view: ereg_vw_dim_good {
-  label: "Good"
+  label: "Dim Good"
   sql_table_name: `dwh.ereg_vwDimGood`
     ;;
 

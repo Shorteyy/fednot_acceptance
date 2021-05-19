@@ -1,5 +1,5 @@
 view: ereg_vw_dim_sp25 {
-  label: "SP25"
+  label: "Dim SP25"
   sql_table_name: `dwh.ereg_vwDimSP25`
     ;;
 

@@ -1,5 +1,5 @@
 view: ereg_vw_dim_party_address {
-  label: "Party"
+  label: "Dim Party"
   sql_table_name: `dwh.ereg_vwDimPartyAddress`
     ;;
 

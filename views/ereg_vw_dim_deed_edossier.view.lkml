@@ -1,5 +1,5 @@
 view: ereg_vw_dim_deed_edossier {
-  label: "Deed eDossier"
+  label: "Dim Deed"
   sql_table_name: `dwh.ereg_vwDimDeedEdossier`
     ;;
 

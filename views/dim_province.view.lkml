@@ -1,7 +1,7 @@
 include: "/views/global_parameters.view.lkml"
 view: dim_province {
   extends: [global_parameters]
-  label: "Geography"
+  label: "Dim Geography"
   sql_table_name: `dwh.dim_province`
     ;;
 

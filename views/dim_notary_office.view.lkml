@@ -1,5 +1,5 @@
 view: dim_notary_office {
-  label: "Notary Office"
+  label: "Dim Notary Office"
   sql_table_name: `dwh.dim_notaryOffice`
     ;;
 
