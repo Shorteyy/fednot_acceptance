@@ -233,7 +233,7 @@ view: ereg_vw_fact_transaction {
     }
   }
 
-  measure: count_selector {
+  measure: count_based_on_selector {
     label_from_parameter: metric_selector
     type: number
     sql:
@@ -248,7 +248,7 @@ view: ereg_vw_fact_transaction {
         {% endif %} ;;
   }
 
-  measure: total_selector {
+  measure: percent_of_total_based_on_selector {
     label_from_parameter: metric_selector
     type: percent_of_total
     sql:
