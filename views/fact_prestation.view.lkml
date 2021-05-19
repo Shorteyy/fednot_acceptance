@@ -83,7 +83,7 @@ view: fact_prestation {
   }
 
   measure: percent_of_total_operations {
-    label: "% of Total # Operations"
+    label: "% of Total Operations"
     type: percent_of_total
     value_format: "0.00\%"
     sql: ${sum_qty} ;;

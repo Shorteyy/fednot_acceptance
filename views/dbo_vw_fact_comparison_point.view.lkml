@@ -221,6 +221,13 @@ view: fact_comparison_point {
     value_format:"€#,##0.00;-€#,##0.00"
   }
 
+  measure: percent_of_total_price {
+    label: "% of Total Price"
+    type: percent_of_total
+    value_format: "0.00\%"
+    sql: ${price} ;;
+  }
+
   measure: median_price {
     label: "Median Price"
     type:  median

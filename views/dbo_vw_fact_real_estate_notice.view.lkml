@@ -85,4 +85,11 @@ view: fact_real_estate_notice {
     sql: ${fk_real_estate} ;;
     drill_fields: []
   }
+
+  measure: percent_of_total_real_estate {
+    label: "% of Total Real Estate"
+    type: percent_of_total
+    value_format: "0.00\%"
+    sql: ${count_real_estate} ;;
+  }
 }

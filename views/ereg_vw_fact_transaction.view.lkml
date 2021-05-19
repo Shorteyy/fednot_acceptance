@@ -291,24 +291,28 @@ view: ereg_vw_fact_transaction {
   }
 
   measure: percent_of_total_transaction {
+    label: "% of Total Transactions"
     type: percent_of_total
     value_format: "0.00\%"
     sql: ${count_transaction} ;;
   }
 
   measure: percent_of_total_deed {
+    label: "% of Total Deeds"
     type: percent_of_total
     value_format: "0.00\%"
     sql: ${count_deed} ;;
   }
 
   measure: percent_of_total_party {
+    label: "% of Total Parties"
     type: percent_of_total
     value_format: "0.00\%"
     sql: ${count_party} ;;
   }
 
   measure: percent_of_total_good {
+    label: "% of Total Goods"
     type: percent_of_total
     value_format: "0.00\%"
     sql: ${count_good} ;;
