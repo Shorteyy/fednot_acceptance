@@ -217,35 +217,51 @@ view: ereg_vw_fact_transaction {
     type: unquoted
     allowed_value: {
       label: "Deeds"
-      value: "CountDeed"
+      value: "Deed"
     }
     allowed_value: {
       label: "Goods"
-      value: "CountGood"
+      value: "Good"
     }
     allowed_value: {
       label: "Parties"
-      value: "CountParty"
+      value: "Party"
     }
     allowed_value: {
       label: "Transactions"
-      value: "CountTransaction"
+      value: "Transaction"
     }
   }
 
-  measure: metric {
+  measure: count_selector {
     label_from_parameter: metric_selector
     type: number
     sql:
-        {% if metric_selector._parameter_value == 'CountDeed' %}
+        {% if metric_selector._parameter_value == 'Deed' %}
           ${count_deed}
-        {% elsif metric_selector._parameter_value == 'CountGood' %}
+        {% elsif metric_selector._parameter_value == 'Good' %}
           ${count_good}
-        {% elsif metric_selector._parameter_value == 'CountParty' %}
+        {% elsif metric_selector._parameter_value == 'Party' %}
           ${count_party}
         {% else %}
           ${count_transaction}
         {% endif %} ;;
+  }
+
+  measure: total_selector {
+    label_from_parameter: metric_selector
+    type: percent_of_total
+    sql:
+        {% if metric_selector._parameter_value == 'Deed' %}
+          ${percent_of_total_deed}
+        {% elsif metric_selector._parameter_value == 'Good' %}
+          ${percent_of_total_good}
+        {% elsif metric_selector._parameter_value == 'Party' %}
+          ${percent_of_total_party}
+        {% else %}
+          ${percent_of_total_transaction}
+        {% endif %} ;;
+    value_format: "0.00\%"
   }
 
   measure: count_transaction {
@@ -269,8 +285,33 @@ view: ereg_vw_fact_transaction {
   }
 
   measure: count {
+    hidden: yes
     type: count
     drill_fields: []
+  }
+
+  measure: percent_of_total_transaction {
+    type: percent_of_total
+    value_format: "0.00\%"
+    sql: ${count_transaction} ;;
+  }
+
+  measure: percent_of_total_deed {
+    type: percent_of_total
+    value_format: "0.00\%"
+    sql: ${count_deed} ;;
+  }
+
+  measure: percent_of_total_party {
+    type: percent_of_total
+    value_format: "0.00\%"
+    sql: ${count_party} ;;
+  }
+
+  measure: percent_of_total_good {
+    type: percent_of_total
+    value_format: "0.00\%"
+    sql: ${count_good} ;;
   }
 
   # measure: total_sum_ytd_deed {
