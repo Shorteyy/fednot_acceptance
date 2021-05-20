@@ -20,10 +20,20 @@ map_layer: region_location_belgium {
   property_key: "reg_nl"
 }
 
-# map_layer: region_location_belgium_ereg {
-#   file: "/maps/belgium.json"
-#   property_key: "reg_nis"
-# }
+map_layer: region_location_belgium_ereg {
+  file: "/maps/belgium.json"
+  property_key: "reg_nis"
+}
+
+map_layer: municipality_location_belgium {
+  file: "/maps/belgium.json"
+  property_key: "nis"
+}
+
+map_layer: arrondissement_location_belgium {
+  file: "/maps/belgium.json"
+  property_key: "arr_nis"
+}
 
 # map_layer: province_location_belgium_ereg {
 #   file: "/maps/belgium.json"
@@ -111,7 +121,7 @@ explore: ereg_vw_fact_transaction {
 
 explore: ereg_vw_fact_transaction_f {
   extends: [ereg_vw_fact_transaction]
-  label: "eRegistration (Finance)"
+  label: "eRegistration (Study)"
   join:  ereg_vw_dim_study {
     sql_on: ${ereg_vw_fact_transaction.fk_study} = ${ereg_vw_dim_study.pk_study};;
     relationship:  many_to_one

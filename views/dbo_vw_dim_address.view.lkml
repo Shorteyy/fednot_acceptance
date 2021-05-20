@@ -174,6 +174,37 @@ view: dim_address {
     sql: ${TABLE}.NisCode ;;
   }
 
+  dimension: nis_code_municipality {
+    hidden: yes
+    type: string
+    sql: ${TABLE}.NisCode ;;
+  }
+
+  dimension: nis_code_arrondissement {
+    hidden: yes
+    type: string
+    sql: CONCAT(LEFT(${TABLE}.NisCode,2),"000") ;;
+  }
+
+  dimension: nis_code_province {
+    # hidden: yes
+    type: string
+    sql: CASE
+           WHEN LEFT(${TABLE}.NisCode,2) = "21" THEN ${nis_code_region}
+           WHEN ${TABLE}.NisCode = "20001" THEN ${TABLE}.NisCode
+           WHEN ${TABLE}.NisCode = "20002" THEN ${TABLE}.NisCode
+           ELSE CONCAT(LEFT(${TABLE}.NisCode,1),"0000") END ;;
+  }
+
+  dimension: nis_code_region {
+    hidden: yes
+    type: string
+    sql: CASE
+           WHEN LEFT(${TABLE}.NisCode,2) = "21" THEN "04000"
+           WHEN LEFT(${TABLE}.NisCode,2) in ("11","12","13","23","24","31","32","33","34","35","36","37","38","41","42","43","44","45","46","71","72","73") THEN "02000"
+           ELSE "03000" END ;;
+  }
+
   dimension: pk_address {
     primary_key: yes
     hidden:  yes
@@ -258,16 +289,38 @@ view: dim_address {
   #   sql: ${TABLE}.RegionName_Tableau ;;
   # }
 
+  # dimension: region_area {
+  #   label: "Region Area"
+  #   type: string
+  #   drill_fields: [province_area]
+  #   map_layer_name: region_location_belgium
+  #   sql: CASE
+  #         WHEN ${TABLE}.RegionNameNL = "VLAAMS GEWEST" THEN "Vlaams Gewest"
+  #         WHEN ${TABLE}.RegionNameNL = "WAALS GEWEST" THEN "Waals Gewest"
+  #         ELSE "Brussels Hoofdstedelijk Gewest"
+  #         END ;;
+  # }
+
+  dimension: municipality_area {
+    label: "Municipality Area"
+    type: string
+    map_layer_name: municipality_location_belgium
+    sql: ${nis_code_municipality} ;;
+  }
+
+  dimension: arrondissement_area {
+    label: "Arrondissement Area"
+    type: string
+    map_layer_name: arrondissement_location_belgium
+    sql: ${nis_code_arrondissement} ;;
+  }
+
   dimension: region_area {
     label: "Region Area"
     type: string
     drill_fields: [province_area]
-    map_layer_name: region_location_belgium
-    sql: CASE
-          WHEN ${TABLE}.RegionNameNL = "VLAAMS GEWEST" THEN "Vlaams Gewest"
-          WHEN ${TABLE}.RegionNameNL = "WAALS GEWEST" THEN "Waals Gewest"
-          ELSE "Brussels Hoofdstedelijk Gewest"
-          END ;;
+    map_layer_name: region_location_belgium_ereg
+    sql: ${nis_code_region} ;;
   }
 
   dimension: street_code {

@@ -151,10 +151,25 @@ view: ereg_vw_dim_party_address {
     sql: ${TABLE}.MunicipalityNameNL ;;
   }
 
-  dimension: nis_code {
-    hidden: yes
+  dimension: nis_code_municipality {
+    # hidden: yes
     type: string
     sql: ${TABLE}.NisCode ;;
+  }
+
+  dimension: nis_code_arrondissement {
+    # hidden: yes
+    type: string
+    sql: CONCAT(LEFT(${TABLE}.NisCode,2),"000") ;;
+  }
+
+  dimension: nis_code_province {
+    # hidden: yes
+    type: string
+    sql: CASE
+           WHEN ${TABLE}.NisCode = "'20001'" THEN ${TABLE}.NisCode
+           WHEN ${TABLE}.NisCode = "'20002'" THEN ${TABLE}.NisCode
+           ELSE CONCAT(LEFT(${TABLE}.NisCode,1),"0000") END ;;
   }
 
   dimension: pk_address {
