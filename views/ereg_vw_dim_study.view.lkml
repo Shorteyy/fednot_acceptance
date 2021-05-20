@@ -123,6 +123,7 @@ view: ereg_vw_dim_study {
 
   dimension: is_msk {
     label: "Is MSK?"
+    description: "Flag to indicate whether the notarial office is an MSK"
     type: number
     sql: ${TABLE}.IsMsk ;;
   }
@@ -142,6 +143,7 @@ view: ereg_vw_dim_study {
 
   dimension: locality_seq {
     label: "Sequence Number of Sub-locality"
+    description: "Sequence number of the sub-locality of residence of the notarial study generated within the BCN source system"
     type: number
     sql: ${TABLE}.LocalitySeq ;;
   }
@@ -166,6 +168,7 @@ view: ereg_vw_dim_study {
 
   dimension: organization_name {
     label: "Notary Office Name"
+    description: "Legal name of the notarial office"
     type: string
     sql: ${TABLE}.OrganizationName ;;
   }
@@ -191,6 +194,7 @@ view: ereg_vw_dim_study {
   }
 
   dimension: study_id {
+    description: "Internal unique reference of the notarial office"
     hidden: yes
     type: number
     sql: ${TABLE}.StudyId ;;
@@ -198,6 +202,7 @@ view: ereg_vw_dim_study {
 
   dimension: study_is_association {
     label: "Notary is Association?"
+    description: "Flag to indicate that the study results from an association of two or more notaries"
     type: number
     sql: ${TABLE}.StudyIsAssociation ;;
   }
@@ -228,12 +233,14 @@ view: ereg_vw_dim_study {
 
   measure: sum_collaborators {
     label: "# of Collaborators"
+    description: "Number of collaborators (without notaries) currently working in the office"
     type: sum
     sql: ${count_collaborators} ;;
   }
 
   measure: sum_notaries {
     label: "# of Notaries"
+    description: "Number of notaries currently working in the office"
     type: sum
     sql: ${count_notary} ;;
   }

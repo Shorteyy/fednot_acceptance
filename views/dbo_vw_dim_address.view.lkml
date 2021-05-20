@@ -6,11 +6,13 @@ view: dim_address {
   dimension: country_name {
     # group_label: "Address"
     label: "Country"
+    description: "Name of country"
     type: string
     sql: ${TABLE}.CountryName ;;
   }
 
   dimension: district_id {
+    description: "Address Service internal identifier of the district deducted from NIS or postal code (0 for level 5)"
     hidden: yes
     type: string
     sql: ${TABLE}.districtId ;;
@@ -19,6 +21,7 @@ view: dim_address {
   dimension: district_name {
     # group_label: "Address"
     label: "District"
+    description: "Name of the district in language of the region deducted from NIS or postal code ('Unknown' for level 5)"
     type: string
     sql: ${TABLE}.DistrictName ;;
   }
@@ -44,6 +47,7 @@ view: dim_address {
   dimension: is_streets_belgian_coast {
     # group_label: "Address"
     label: "Street Belgian Coast?"
+    description: "Flag to indicate that the street located on the belgian dike (sea sight; 0 for other levels than 1)"
     type: string
     sql: ${TABLE}.isStreetsBelgianCoast ;;
   }
@@ -51,6 +55,7 @@ view: dim_address {
   dimension: is_zip_belgian_coast {
     # group_label: "Address"
     label: "Zip Belgian Coast?"
+    description: "Flag to indicate that the postal code is from a locality located on the belgian coast  (0 for level 5; random / irrelevant for level 4)"
     type: string
     sql: ${TABLE}.isZipBelgianCoast ;;
   }
@@ -58,6 +63,7 @@ view: dim_address {
   dimension: is_zip_frontalier {
     # group_label: "Address"
     label: "Zip Frontalier?"
+    description: "Flag to indicate that the postal code is from a locality located on the belgian border (0 for level 5; random / irrelevant for level 4)"
     type: string
     sql: ${TABLE}.isZipFrontalier ;;
   }
@@ -65,11 +71,13 @@ view: dim_address {
   dimension: is_zip_town {
     # group_label: "Address"
     label: "Zip Town?"
+    description: "Flag to indicate that the postal code is from a locality is part of an urban area (0 for level 5; random / irrelevant for level 4)"
     type: string
     sql: ${TABLE}.isZipTown ;;
   }
 
   dimension: locality_id {
+    description: "Address Service internal identifier of the locality deducted from postal code (0 for level 5; random / irrelevant for level 4)"
     hidden: yes
     type: string
     sql: ${TABLE}.localityId ;;
@@ -78,6 +86,7 @@ view: dim_address {
   dimension: locality_name {
     # group_label: "Address"
     label: "Locality"
+    description: "Name of the locality in the language of the region deducted from postal code ('Unknown' level 5; random / irrelevant for level 4)"
     type: string
     sql: ${TABLE}.LocalityName ;;
   }
@@ -127,12 +136,14 @@ view: dim_address {
   }
 
   dimension: municipality_id {
+    description: "Address Service internal identifier of the municipality deducted from NIS or postal code (0 for level 5)"
     hidden: yes
     type: string
     sql: ${TABLE}.municipalityId ;;
   }
 
   dimension: municipality_name {
+    description: "Name of the municipality in the language of the region deducted from NIS or postal code ('Unknown' for level 5)"
     # group_label: "Address"
     label: "Municipality"
     type: string
@@ -158,7 +169,7 @@ view: dim_address {
   }
 
   dimension: nis_code {
-    hidden: yes
+    description: "5-digits NIS Code of the municipality (0 for levels 3 and 5)"
     type: string
     sql: ${TABLE}.NisCode ;;
   }
@@ -171,6 +182,7 @@ view: dim_address {
   }
 
   dimension: province_id {
+    description: "Address Service internal identifier of the province deducted from NIS or postal code (0 for level 5)"
     hidden: yes
     type: string
     sql: ${TABLE}.provinceId ;;
@@ -178,6 +190,7 @@ view: dim_address {
 
   dimension: province_name {
     label: "Province"
+    description: "Name of the province in language of the region deducted from NIS or postal code ('Unknown' for level 5)"
     type: string
     sql: ${TABLE}.ProvinceName ;;
   }
@@ -208,6 +221,7 @@ view: dim_address {
   }
 
   dimension: region_id {
+    description: "Address Service internal identifier of the region deducted from NIS or postal code for levels 1 to 4; level 5 being dedicated to region level"
     hidden: yes
     type: string
     sql: ${TABLE}.regionId ;;
@@ -215,6 +229,7 @@ view: dim_address {
 
   dimension: region_name {
     label: "Region"
+    description: "Name of the region in language of the region deducted from NIS or postal code for levels 1 to 4; level 5 being dedicated to region level (UPPERCASE)"
     type: string
     sql: ${TABLE}.RegionName ;;
   }
@@ -256,12 +271,14 @@ view: dim_address {
   }
 
   dimension: street_code {
+    description: "4-digits street code of the street (0 for other levels than 1)"
     hidden: yes
     type: string
     sql: ${TABLE}.StreetCode ;;
   }
 
   dimension: street_id {
+    description: "Address Service internal identifier of the street (only level 1)"
     hidden: yes
     type: string
     sql: ${TABLE}.streetId ;;
@@ -270,6 +287,7 @@ view: dim_address {
   dimension: street_name {
     # group_label: "Address"
     label: "Street"
+    description: "Name of the street in the language of the region (only level 1; 'Unknown' for other levels)"
     type: string
     sql: ${TABLE}.StreetName ;;
   }
@@ -295,6 +313,7 @@ view: dim_address {
   dimension: zip_code {
     # group_label: "Address"
     label: "Zip Code"
+    description: "4-digits Postal Code of the geolocation (0 for levels 4 and 5)"
     type: zipcode
     sql: ${TABLE}.ZipCode ;;
   }

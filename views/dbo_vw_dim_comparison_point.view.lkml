@@ -62,10 +62,10 @@ view: dim_comparison_point {
   #   sql: ${TABLE}.flagKeepOutlierStrict_priceSurface ;;
   # }
 
-  # dimension: flag_keep_rule_ratios_price {
-  #   type: number
-  #   sql: ${TABLE}.flagKeepRuleRatios_price ;;
-  # }
+  dimension: flag_keep_rule_ratios_price {
+    type: number
+    sql: ${TABLE}.flagKeepRuleRatios_price ;;
+  }
 
   # dimension: flag_keep_rule_ratios_price_surface {
   #   type: number
