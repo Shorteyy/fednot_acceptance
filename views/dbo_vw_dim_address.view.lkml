@@ -20,7 +20,7 @@ view: dim_address {
 
   dimension: district_name {
     # group_label: "Address"
-    label: "District"
+    label: "District Name"
     description: "Name of the district in language of the region deducted from NIS or postal code ('Unknown' for level 5)"
     type: string
     sql: ${TABLE}.DistrictName ;;
@@ -145,7 +145,7 @@ view: dim_address {
   dimension: municipality_name {
     description: "Name of the municipality in the language of the region deducted from NIS or postal code ('Unknown' for level 5)"
     # group_label: "Address"
-    label: "Municipality"
+    label: "Municipality Name"
     type: string
     sql: ${TABLE}.MunicipalityName ;;
   }
@@ -170,6 +170,7 @@ view: dim_address {
 
   dimension: nis_code {
     description: "5-digits NIS Code of the municipality (0 for levels 3 and 5)"
+    hidden: yes
     type: string
     sql: ${TABLE}.NisCode ;;
   }
@@ -180,7 +181,7 @@ view: dim_address {
     sql: ${TABLE}.NisCode ;;
   }
 
-  dimension: nis_code_arrondissement {
+  dimension: nis_code_district {
     hidden: yes
     type: string
     sql: CONCAT(LEFT(${TABLE}.NisCode,2),"000") ;;
@@ -220,7 +221,7 @@ view: dim_address {
   }
 
   dimension: province_name {
-    label: "Province"
+    label: "Province Name"
     description: "Name of the province in language of the region deducted from NIS or postal code ('Unknown' for level 5)"
     type: string
     sql: ${TABLE}.ProvinceName ;;
@@ -244,13 +245,6 @@ view: dim_address {
     sql: ${TABLE}.ProvinceNameNL ;;
   }
 
-  dimension: province_area {
-    label: "Province Area"
-    type: string
-    map_layer_name: province_location_belgium_ereg
-    sql: ${nis_code_province} ;;
-  }
-
   dimension: region_id {
     description: "Address Service internal identifier of the region deducted from NIS or postal code for levels 1 to 4; level 5 being dedicated to region level"
     hidden: yes
@@ -259,7 +253,7 @@ view: dim_address {
   }
 
   dimension: region_name {
-    label: "Region"
+    label: "Region Name"
     description: "Name of the region in language of the region deducted from NIS or postal code for levels 1 to 4; level 5 being dedicated to region level (UPPERCASE)"
     type: string
     sql: ${TABLE}.RegionName ;;
@@ -283,44 +277,39 @@ view: dim_address {
     sql: ${TABLE}.RegionNameNL ;;
   }
 
-  # dimension: region_name_tableau {
-  #   hidden: yes
-  #   type: string
-  #   sql: ${TABLE}.RegionName_Tableau ;;
-  # }
-
-  # dimension: region_area {
-  #   label: "Region Area"
-  #   type: string
-  #   drill_fields: [province_area]
-  #   map_layer_name: region_location_belgium
-  #   sql: CASE
-  #         WHEN ${TABLE}.RegionNameNL = "VLAAMS GEWEST" THEN "Vlaams Gewest"
-  #         WHEN ${TABLE}.RegionNameNL = "WAALS GEWEST" THEN "Waals Gewest"
-  #         ELSE "Brussels Hoofdstedelijk Gewest"
-  #         END ;;
-  # }
-
-  dimension: municipality_area {
-    label: "Municipality Area"
+  dimension: municipality {
+    label: "Municipality"
     type: string
     map_layer_name: municipality_location_belgium
     sql: ${nis_code_municipality} ;;
+    html: {{ municipality_name._rendered_value}} ;;
   }
 
-  dimension: arrondissement_area {
-    label: "Arrondissement Area"
+  dimension: district {
+    label: "District"
     type: string
+    drill_fields: [municipality]
     map_layer_name: arrondissement_location_belgium
-    sql: ${nis_code_arrondissement} ;;
+    sql: ${nis_code_district} ;;
+    html: {{district_name._rendered_value}} ;;
   }
 
-  dimension: region_area {
-    label: "Region Area"
+  dimension: province {
+    label: "Province"
     type: string
-    drill_fields: [province_area]
+    drill_fields: [district, municipality]
+    map_layer_name: province_location_belgium_ereg
+    sql: ${nis_code_province} ;;
+    html: {{ province_name._rendered_value }} ;;
+  }
+
+  dimension: region {
+    label: "Region"
+    type: string
+    drill_fields: [province, district, municipality]
     map_layer_name: region_location_belgium_ereg
     sql: ${nis_code_region} ;;
+    html: {{region_name._rendered_value}} ;;
   }
 
   dimension: street_code {
