@@ -10,8 +10,10 @@ view: ereg_vw_dim_sp25 {
     allowed_value: { value: "FR" }
   }
 
-  dimension: sp25_label {
+  dimension: sp25 {
+    label: "SP25"
     label_from_parameter: pick_language
+    description: "The categorization of the workflow used to process the transaction at FodFin side"
     sql:
         {% if pick_language._parameter_value == "'NL'" %}
           IF(${sp25_label_nl} = "NULL",${sp25_label_fr},${sp25_label_nl})
@@ -29,6 +31,7 @@ view: ereg_vw_dim_sp25 {
   }
 
   dimension: sp25_code {
+    hidden: yes
     type: string
     sql: ${TABLE}.SP25Code ;;
   }

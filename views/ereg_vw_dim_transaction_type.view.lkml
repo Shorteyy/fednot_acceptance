@@ -13,6 +13,7 @@ view: ereg_vw_dim_transaction_type {
   dimension: category_label {
     label_from_parameter: pick_language
     label: "Category"
+    description: "Second level of categorization of the transaction"
     sql:
         {% if pick_language._parameter_value == "'NL'" %}
           IF(${category_label_nl} = "NULL",${category_label_fr},${category_label_nl})
@@ -26,6 +27,7 @@ view: ereg_vw_dim_transaction_type {
   dimension: sub_category_label {
     label_from_parameter: pick_language
     label: "Deed Type"
+    description: "Third and lowest level of categorization of the transaction; sometimes referred as Deedtype"
     sql:
         {% if pick_language._parameter_value == "'NL'" %}
           IF(${sub_category_label_nl} = "NULL",${sub_category_label_fr},${sub_category_label_nl})
@@ -39,6 +41,7 @@ view: ereg_vw_dim_transaction_type {
   dimension: transaction_type_family_label {
     label_from_parameter: pick_language
     label: "Family"
+    description: "Specifies if the transaction implies real estates and transfer of rights (only real estate); iow. with or without real estate - if real estate, with or without transfer of right"
     sql:
         {% if pick_language._parameter_value == "'NL'" %}
           IF(${transaction_type_family_label_nl} = "NULL",${transaction_type_family_label_fr},${transaction_type_family_label_nl})
@@ -68,6 +71,7 @@ view: ereg_vw_dim_transaction_type {
   }
 
   dimension: is_good_mandatory {
+    description: "flag to indicate if a real estate is required for this type of transaction"
     type: string
     sql: ${TABLE}.IsGoodMandatory ;;
   }
@@ -83,11 +87,13 @@ view: ereg_vw_dim_transaction_type {
   }
 
   dimension: is_vlabel_concerned {
+    description: "Flag to indicate if Vlabel may be involved in the registration process for this type of transaction"
     type: string
     sql: ${TABLE}.IsVlabelConcerned ;;
   }
 
   dimension: party_implication_description {
+    description: "Indicate how many parties are required and of which quality (role)"
     type: string
     sql: ${TABLE}.PartyImplicationDescription ;;
   }
@@ -118,7 +124,7 @@ view: ereg_vw_dim_transaction_type {
   }
 
   dimension: transaction_type_code {
-    hidden: yes
+    description: "Internal unique reference of the transaction type; format TT-UID-nnn (lowest/first level of categorization)"
     type: string
     sql: ${TABLE}.TransactionTypeCode ;;
   }
