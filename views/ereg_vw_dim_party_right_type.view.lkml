@@ -11,9 +11,13 @@ view: ereg_vw_dim_party_right_type {
   }
 
   dimension: party_right_type_label {
-    group_label: "Right Type"
-    group_item_label: "Label"
+    # group_label: "Right Type"
+    label: "Right Type"
     label_from_parameter: pick_language_right_type
+    description: "Type of right that links a given receiving party to a given good (real estate);
+As the receiving right type binds a given receiving party to a given good, one can fall in transactions where :
+ - the party yields the rights of the good; then the party will get a receiving right type value: 'DUMMY' - the party is linked to a given good without any right transfer; the party will get a receiving right type 'DUMMY (T1)' or 'DUMMY (T2)' depending on the TransactioTypeFamily (cfr. Transaction Type)
+Moreover, if the notary decides that the right is too complex to be categorized in the system, then the receiving right will get the type value: 'COMPLEX'"
     sql:
         {% if pick_language_right_type._parameter_value == "'NL'" %}
           IF(${party_right_type_label_nl} = "NULL",${party_right_type_label_fr},${party_right_type_label_nl})
@@ -26,7 +30,8 @@ view: ereg_vw_dim_party_right_type {
 
   dimension: party_right_type_code {
     group_label: "Right Type"
-    group_item_label: "Code"
+    label: "Code"
+    hidden: yes
     type: string
     sql: ${TABLE}.PartyRightTypeCode ;;
   }
