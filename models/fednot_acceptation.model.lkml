@@ -255,6 +255,8 @@ explore: fact_comparison_point {
 }
 
 explore: fact_real_estate_notice {
+  description: "Used to measure real estate activity and distribution by type of real estate in Belgium. For this purpose,
+  ASF data pertaining to the social and fiscal procedure for alienation is used."
     sql_always_where: ${fact_real_estate_notice.fk_transaction_type} = 3 and ${fk_date_first_enot_request} > 20161231;;
     label: "Real Estate Activity"
     join: dim_address {
