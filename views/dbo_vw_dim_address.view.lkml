@@ -108,6 +108,18 @@ view: dim_address {
   }
 
   dimension: matching_level {
+    description: "The geo dimension (lowest level : Street); is a stack of 5 dimensions within one table;
+    the different dimensions can be distinguished thanks to the 'matchingLevel' attribute (see field
+    description below); i.e. in order to link various systems data to address referential, {streetCode -
+      NISCode and Postal Code} have been used; the levels result from a process searching for correspondance
+    between systems and address data by using all combinations of these 3 fields; if no match found, then
+    a combination of 2 fields taken among the 3 is performed and so on until match found. The more the
+    level, the less the precision of the address found:
+    - matchinglevel 1: Street
+    - matchinglevel 2: Postal code AND NIS code
+    - matchinglevel 3: Locality (Postal code)
+    - matchinglevel 4: Municipality (NIS code)
+    - matchinglevel 5: Region"
     # group_label: "Address"
     label: "Matching Level"
     type: string

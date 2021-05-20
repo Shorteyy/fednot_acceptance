@@ -43,20 +43,6 @@ view: ereg_vw_dim_study {
         {% endif %};;
   }
 
-  # dimension: short_wording {
-  #   label_from_parameter: pick_language
-  #   sql:
-  #       {% if pick_language._parameter_value == "'NL'" %}
-  #         ${short_wording_nl}
-  #       {% elsif pick_language._parameter_value == "'FR'" %}
-  #         ${short_wording_fr}
-  #       {% elsif pick_language._parameter_value == "'DE'" %}
-  #         ${short_wording_de}
-  #       {% else %}
-  #         coalesce(${short_wording_nl},${short_wording_fr},${short_wording_de})
-  #       {% endif %};;
-  # }
-
   dimension: wording {
     label: "Province Name"
     description: "Name of the province of residence of the notarial office in French, Dutch, or German"
@@ -106,11 +92,13 @@ view: ereg_vw_dim_study {
   }
 
   dimension: comment {
+    description: "Comment related to the notarial office"
     type: string
     sql: ${TABLE}.Comment ;;
   }
 
   dimension: company_id {
+    description: "Internal identifier of the province of residence of the notarial office within BCN source system"
     hidden: yes
     type: number
     sql: ${TABLE}.CompanyId ;;
@@ -140,11 +128,13 @@ view: ereg_vw_dim_study {
   }
 
   dimension: language_id {
+    description: "Identifier of language of the notarial office (10: French; 20: Dutch)"
     type: number
     sql: ${TABLE}.LanguageId ;;
   }
 
   dimension: locality_id {
+    description: "Internal identifier of the locality of residence of the notarial study within BCN source system"
     hidden: yes
     type: number
     sql: ${TABLE}.LocalityId ;;
@@ -188,11 +178,13 @@ view: ereg_vw_dim_study {
   }
 
   dimension: postal_code {
+    description: "Postal code of residence of the notarial study"
     type: string
     sql: ${TABLE}.PostalCode ;;
   }
 
   dimension: region_id {
+    description: "Internal identifier of the region of residence of the notarial study within BCN source system (1: Brussels; 2: Flemish; 3: Wallonie)"
     hidden: yes
     type: number
     sql: ${TABLE}.RegionId ;;
