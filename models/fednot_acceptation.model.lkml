@@ -18,21 +18,31 @@ map_layer: province_location_belgium {
 map_layer: region_location_belgium {
   file: "/maps/belgium.json"
   property_key: "reg_nl"
+  property_label_key: "reg_nl"
 }
 
 map_layer: region_location_belgium_ereg {
   file: "/maps/belgium.json"
   property_key: "reg_nis"
+  property_label_key: "reg_nl"
 }
 
 map_layer: municipality_location_belgium {
   file: "/maps/belgium.json"
   property_key: "nis"
+  property_label_key: "name_nl"
 }
 
 map_layer: arrondissement_location_belgium {
   file: "/maps/belgium.json"
   property_key: "arr_nis"
+  property_label_key: "arr_nl"
+}
+
+map_layer: province_location_belgium_ereg {
+  file: "/maps/belgium.json"
+  property_key: "prov_nis"
+  property_label_key: "prov_nl"
 }
 
 # map_layer: province_location_belgium_ereg {

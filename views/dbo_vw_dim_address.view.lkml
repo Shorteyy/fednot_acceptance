@@ -187,12 +187,12 @@ view: dim_address {
   }
 
   dimension: nis_code_province {
-    # hidden: yes
+    hidden: yes
     type: string
     sql: CASE
-           WHEN LEFT(${TABLE}.NisCode,2) = "21" THEN ${nis_code_region}
-           WHEN ${TABLE}.NisCode = "20001" THEN ${TABLE}.NisCode
-           WHEN ${TABLE}.NisCode = "20002" THEN ${TABLE}.NisCode
+           WHEN LEFT(${TABLE}.NisCode,2) = "21" THEN "04000"
+           WHEN LEFT(${TABLE}.NisCode,2) in ("23","24") THEN "20001"
+           WHEN LEFT(${TABLE}.NisCode,2) = "25" THEN "20002"
            ELSE CONCAT(LEFT(${TABLE}.NisCode,1),"0000") END ;;
   }
 
@@ -247,8 +247,8 @@ view: dim_address {
   dimension: province_area {
     label: "Province Area"
     type: string
-    map_layer_name: province_location_belgium
-    sql: concat("Provincie " || trim(${TABLE}.ProvinceNameNL)) ;;
+    map_layer_name: province_location_belgium_ereg
+    sql: ${nis_code_province} ;;
   }
 
   dimension: region_id {
