@@ -280,18 +280,18 @@ view: dim_address {
   dimension: municipality {
     label: "Municipality"
     type: string
-    map_layer_name: municipality_location_belgium
+    map_layer_name: municipality_location_belgium_ereg
     sql: ${nis_code_municipality} ;;
-    html: {{ municipality_name._rendered_value}} ;;
+    html: {{ municipality_name._linked_value}} ;;
   }
 
   dimension: district {
     label: "District"
     type: string
     drill_fields: [municipality]
-    map_layer_name: arrondissement_location_belgium
+    map_layer_name: district_location_belgium_ereg
     sql: ${nis_code_district} ;;
-    html: {{district_name._rendered_value}} ;;
+    html: {{district_name._linked_value}} ;;
   }
 
   dimension: province {
@@ -300,7 +300,7 @@ view: dim_address {
     drill_fields: [district, municipality]
     map_layer_name: province_location_belgium_ereg
     sql: ${nis_code_province} ;;
-    html: {{ province_name._rendered_value }} ;;
+    html: {{ province_name._linked_value }} ;;
   }
 
   dimension: region {
@@ -309,7 +309,7 @@ view: dim_address {
     drill_fields: [province, district, municipality]
     map_layer_name: region_location_belgium_ereg
     sql: ${nis_code_region} ;;
-    html: {{region_name._rendered_value}} ;;
+    html: {{region_name._linked_value}} ;;
   }
 
   dimension: street_code {
