@@ -1,4 +1,5 @@
 view: fact_prestation {
+  label: "Measures"
   sql_table_name: `dwh.fact_prestation`
     ;;
 

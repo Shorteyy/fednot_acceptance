@@ -1,23 +1,26 @@
 include: "/views/global_parameters.view.lkml"
 view: dim_province {
   extends: [global_parameters]
-  label: "Geography"
+  label: "Dimensions"
   sql_table_name: `dwh.dim_province`
     ;;
 
   dimension: country_nl {
+    group_label: "Geography"
     hidden: yes
     type: string
     sql: ${TABLE}.countryNl ;;
   }
 
   dimension: country_fr {
+    group_label: "Geography"
     hidden: yes
     type: string
     sql: ${TABLE}.countryFr ;;
   }
 
   dimension: country_name {
+    group_label: "Geography"
     label: "Country Name"
     map_layer_name: countries
     drill_fields: [region_name, province_name]
@@ -33,24 +36,28 @@ view: dim_province {
   }
 
   dimension: country_lat {
+    group_label: "Geography"
     hidden: yes
     type: number
     sql: ${TABLE}.countryLat ;;
   }
 
   dimension: country_lon {
+    group_label: "Geography"
     hidden:  yes
     type: number
     sql: ${TABLE}.countryLon ;;
   }
 
   dimension: country_location {
+    group_label: "Geography"
     type: location
     sql_latitude: ${TABLE}.country_lat ;;
     sql_longitude: ${TABLE}.country_lon ;;
   }
 
   dimension: dim_province_sk {
+    group_label: "Geography"
     primary_key: yes
     hidden: yes
     type: string
@@ -58,24 +65,28 @@ view: dim_province {
   }
 
   dimension: h_province_bk {
+    group_label: "Geography"
     hidden: yes
     type: string
     sql: ${TABLE}.h_province_bk ;;
   }
 
    dimension: province_fr {
+    group_label: "Geography"
     hidden: yes
     type: string
     sql: ${TABLE}.provinceFr ;;
   }
 
   dimension: province_nl {
+    group_label: "Geography"
     hidden: yes
     type: string
     sql: ${TABLE}.provinceNl ;;
   }
 
   dimension: province_name {
+    group_label: "Geography"
     label: "Province Name"
     label_from_parameter: language_picker
     sql:
@@ -96,6 +107,7 @@ view: dim_province {
   # }
 
   dimension: province {
+    group_label: "Geography"
     label: "Province"
     type: string
     map_layer_name: province_location_belgium_ereg
@@ -104,6 +116,7 @@ view: dim_province {
   }
 
   dimension: region {
+    group_label: "Geography"
     label: "Region"
     type: string
     drill_fields: [province]
@@ -113,42 +126,49 @@ view: dim_province {
   }
 
   dimension: province_lat {
+    group_label: "Geography"
     hidden: yes
     type: number
     sql: ${TABLE}.provinceLat ;;
   }
 
   dimension: province_lon {
+    group_label: "Geography"
     hidden: yes
     type: number
     sql: ${TABLE}.provinceLon ;;
   }
 
   dimension: province_location {
+    group_label: "Geography"
     type: location
     sql_latitude: ${TABLE}.province_lat ;;
     sql_longitude: ${TABLE}.province_lon ;;
   }
 
   dimension: province_rbr {
+    group_label: "Geography"
     hidden: yes
     type: string
     sql: ${TABLE}.provinceRbr ;;
   }
 
   dimension: region_nl {
+    group_label: "Geography"
     hidden: yes
     type: string
     sql: ${TABLE}.regionNl ;;
   }
 
   dimension: region_fr {
+    group_label: "Geography"
     hidden: yes
     type: string
     sql: ${TABLE}.regionFr ;;
   }
 
   dimension: nis_code_province {
+    group_label: "Geography"
     hidden: yes
     type: string
     sql: CASE WHEN ${TABLE}.provnis = "4000" THEN "04000" ELSE ${TABLE}.provnis END;;
@@ -160,6 +180,7 @@ view: dim_province {
   }
 
   dimension: nis_code_region {
+    group_label: "Geography"
     hidden: yes
     type: string
     sql: CONCAT("0" || ${TABLE}.regnis);;
@@ -170,6 +191,7 @@ view: dim_province {
   }
 
   dimension: region_name {
+    group_label: "Geography"
     label: "Region Name"
     label_from_parameter: language_picker
     sql:
@@ -195,36 +217,42 @@ view: dim_province {
   # }
 
   dimension: region_id {
+    group_label: "Geography"
     hidden: yes
     type: number
     sql: ${TABLE}.regionId ;;
   }
 
   dimension: region_lat {
+    group_label: "Geography"
     hidden: yes
     type: number
     sql: ${TABLE}.regionLat ;;
   }
 
   dimension: region_lon {
+    group_label: "Geography"
     hidden: yes
     type: number
     sql: ${TABLE}.regionLon ;;
   }
 
   dimension: region_location {
+    group_label: "Geography"
     type: location
     sql_latitude: ${TABLE}.region_lat ;;
     sql_longitude: ${TABLE}.region_lon ;;
   }
 
   dimension: region_rbr {
+    group_label: "Geography"
     hidden: yes
     type: string
     sql: ${TABLE}.regionRbr ;;
   }
 
   measure: count {
+    group_label: "Geography"
     type: count
     hidden: yes
     drill_fields: []

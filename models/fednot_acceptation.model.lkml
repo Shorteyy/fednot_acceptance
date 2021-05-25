@@ -64,7 +64,7 @@ explore: fact_prestation {
   }
   join: prestation {
     from:  dim_date
-    view_label: "Dim Date Hierarchy"
+    view_label: "Dimensions"
     sql_on: ${fact_prestation.dim_days_sk} = ${prestation.date} ;;
     relationship:  many_to_one
     type: left_outer

@@ -1,7 +1,7 @@
 include: "/views/global_parameters.view.lkml"
 view: dim_application {
   extends: [global_parameters]
-  label: "Dim Application"
+  label: "Dimensions"
   sql_table_name: `dwh.dim_application`
     ;;
 
@@ -21,31 +21,36 @@ view: dim_application {
   }
 
   dimension: application_code {
-    drill_fields: [description]
+    group_label: "Application"
     label: "Application"
+    drill_fields: [description]
     type: string
     sql: ${TABLE}.applicationCode ;;
   }
 
   dimension: business_group {
+    group_label: "Application"
     drill_fields: [description]
     type: string
     sql: ${TABLE}.businessGroup ;;
   }
 
   dimension: description_fr {
+    group_label: "Application"
     hidden: yes
     type: string
     sql: ${TABLE}.descriptionFr ;;
   }
 
   dimension: description_nl {
-    type: string
+    group_label: "Application"
     hidden: yes
+    type: string
     sql: ${TABLE}.descriptionNl ;;
   }
 
   dimension: description {
+    group_label: "Application"
     label: "Operation Description"
     label_from_parameter: language_picker
     sql:
@@ -59,26 +64,30 @@ view: dim_application {
   }
 
   dimension: dim_application_sk {
+    group_label: "Application"
     type: string
     hidden: yes
     sql: ${TABLE}.dim_application_sk ;;
   }
 
   dimension: h_application_bk {
-    hidden: yes
+    group_label: "Application"
     label: "Operation"
+    hidden: yes
     type: string
     sql: ${TABLE}.h_application_bk ;;
   }
 
   dimension: is_itapplication {
-    drill_fields: [application_code, description]
+    group_label: "Application"
     label: "IT Application"
+    drill_fields: [application_code, description]
     type: yesno
     sql: ${TABLE}.isITApplication ;;
   }
 
  dimension: notary_business {
+    group_label: "Application"
     label: "Notary Business"
     drill_fields: [description]
     type: string
@@ -86,6 +95,7 @@ view: dim_application {
   }
 
   dimension: operation_group {
+    group_label: "Application"
     label_from_parameter: operation_group_picker
     type: string
     sql:
@@ -101,12 +111,14 @@ view: dim_application {
   }
 
   dimension: row_current {
+    group_label: "Application"
     hidden: yes
     type: number
     sql: ${TABLE}.row_current ;;
   }
 
   measure: count {
+    group_label: "Application"
     hidden: yes
     type: count
     drill_fields: []
