@@ -1,4 +1,5 @@
 view: fact_real_estate_notice {
+  label: "Measures"
   sql_table_name: `dwh.dbo_vwFactRealEstateNotice` ;;
 
   dimension: fact_real_estate_notice_compound_primary_key {
@@ -69,6 +70,7 @@ view: fact_real_estate_notice {
   }
 
   dimension: nb_enot_non_additive {
+    hidden: yes
     type: number
     sql: ${TABLE}.Nb_Enot_Non_Additive ;;
   }

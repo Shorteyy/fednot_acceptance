@@ -1,7 +1,7 @@
 include: "/views/global_parameters.view.lkml"
 view: dim_province {
   extends: [global_parameters]
-  label: "Dim Geography"
+  label: "Geography"
   sql_table_name: `dwh.dim_province`
     ;;
 
@@ -17,10 +17,10 @@ view: dim_province {
     sql: ${TABLE}.countryFr ;;
   }
 
-  dimension: country_description {
-    label: "Country"
+  dimension: country_name {
+    label: "Country Name"
     map_layer_name: countries
-    drill_fields: [region_description, province_description]
+    drill_fields: [region_name, province_name]
     label_from_parameter: language_picker
     sql:
         {% if language_picker._parameter_value == "'NL'" %}
@@ -75,8 +75,8 @@ view: dim_province {
     sql: ${TABLE}.provinceNl ;;
   }
 
-  dimension: province_description {
-    label: "Province"
+  dimension: province_name {
+    label: "Province Name"
     label_from_parameter: language_picker
     sql:
         {% if language_picker._parameter_value == "'NL'" %}
@@ -88,11 +88,28 @@ view: dim_province {
         {% endif %};;
   }
 
-  dimension: province_area {
-    label: "Province Area"
+  # dimension: province_area {
+  #   label: "Province Area"
+  #   type: string
+  #   map_layer_name: province_location_belgium
+  #   sql: concat("Provincie " || trim(${TABLE}.provinceNl)) ;;
+  # }
+
+  dimension: province {
+    label: "Province"
     type: string
-    map_layer_name: province_location_belgium
-    sql: concat("Provincie " || trim(${TABLE}.provinceNl)) ;;
+    map_layer_name: province_location_belgium_ereg
+    sql: ${nis_code_province} ;;
+    html: {{ province_name._linked_value }} ;;
+  }
+
+  dimension: region {
+    label: "Region"
+    type: string
+    drill_fields: [province]
+    map_layer_name: region_location_belgium_ereg
+    sql: ${nis_code_region} ;;
+    html: {{region_name._linked_value}} ;;
   }
 
   dimension: province_lat {
@@ -131,8 +148,29 @@ view: dim_province {
     sql: ${TABLE}.regionFr ;;
   }
 
-  dimension: region_description {
-    label: "Region"
+  dimension: nis_code_province {
+    hidden: yes
+    type: string
+    sql: CASE WHEN ${TABLE}.provnis = "4000" THEN "04000" ELSE ${TABLE}.provnis END;;
+    # sql: CASE
+    #   WHEN LEFT(${TABLE}.provnis,2) = "21" THEN "04000"
+    #   WHEN LEFT(${TABLE}.provnis,2) in ("23","24") THEN "20001"
+    #   WHEN LEFT(${TABLE}.provnis,2) = "25" THEN "20002"
+    #   ELSE CONCAT(LEFT(${TABLE}.provnis,1),"0000") END ;;
+  }
+
+  dimension: nis_code_region {
+    hidden: yes
+    type: string
+    sql: CONCAT("0" || ${TABLE}.regnis);;
+    # sql: CASE
+    #   WHEN LEFT(${TABLE}.regnis,2) = "21" THEN "04000"
+    #   WHEN LEFT(${TABLE}.regnis,2) in ("11","12","13","23","24","31","32","33","34","35","36","37","38","41","42","43","44","45","46","71","72","73") THEN "02000"
+    #   ELSE "03000" END ;;
+  }
+
+  dimension: region_name {
+    label: "Region Name"
     label_from_parameter: language_picker
     sql:
         {% if language_picker._parameter_value == "'NL'" %}
@@ -144,17 +182,17 @@ view: dim_province {
         {% endif %};;
   }
 
-  dimension: region_area {
-    type: string
-    label: "Region Area"
-    drill_fields: [province_area]
-    map_layer_name: region_location_belgium
-    sql: CASE
-          WHEN ${TABLE}.regionNl = "Vlaanderen" THEN "Vlaams Gewest"
-          WHEN ${TABLE}.regionNl = "Wallonië" THEN "Waals Gewest"
-          ELSE "Brussels Hoofdstedelijk Gewest"
-          END ;;
-  }
+  # dimension: region_area {
+  #   type: string
+  #   label: "Region Area"
+  #   drill_fields: [province_area]
+  #   map_layer_name: region_location_belgium
+  #   sql: CASE
+  #         WHEN ${TABLE}.regionNl = "Vlaanderen" THEN "Vlaams Gewest"
+  #         WHEN ${TABLE}.regionNl = "Wallonië" THEN "Waals Gewest"
+  #         ELSE "Brussels Hoofdstedelijk Gewest"
+  #         END ;;
+  # }
 
   dimension: region_id {
     hidden: yes

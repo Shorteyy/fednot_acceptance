@@ -45,11 +45,6 @@ map_layer: province_location_belgium_ereg {
   property_label_key: "prov_nl"
 }
 
-# map_layer: province_location_belgium_ereg {
-#   file: "/maps/belgium.json"
-#   property_key: "prov_nis"
-# }
-
 explore: fact_prestation {
   label: "Prestation"
   join: dim_notary_office {
@@ -288,6 +283,7 @@ explore: fact_real_estate_notice {
     sql_on: ${fact_real_estate_notice.fk_notice_one} = ${dim_notice_one.pk_notice_one};;
     relationship: many_to_one
     type: left_outer
+    fields: []
   }
   join: dim_property_type {
     sql_on: ${fact_real_estate_notice.fk_property_type} =${dim_property_type.pk_property_type};;
@@ -298,6 +294,7 @@ explore: fact_real_estate_notice {
     sql_on: ${fact_real_estate_notice.fk_real_estate} =${dim_real_estate.pk_real_estate};;
     relationship: many_to_one
     type: left_outer
+    fields: []
   }
   join: dim_selling_type {
     sql_on: ${fact_real_estate_notice.fk_selling_type} = ${dim_selling_type.pk_selling_type} ;;
@@ -308,14 +305,16 @@ explore: fact_real_estate_notice {
     sql_on: ${fact_real_estate_notice.fk_source_system} =${dim_source_system.pk_source_system};;
     relationship: many_to_one
     type: left_outer
+    fields: []
   }
   join: ereg_vw_dim_study {
     sql_on: ${fact_real_estate_notice.fk_study} =${ereg_vw_dim_study.pk_study};;
     relationship:  many_to_one
     type: left_outer
+    fields: []
   }
   join: first_sending_notary {
-    view_label: "Dim Date Hierarchy"
+    view_label: "Dimensions"
     from: dim_date
     sql_on: ${fact_real_estate_notice.fk_date_first_enot_request} = ${first_sending_notary.pk_date} ;;
     relationship: many_to_one
