@@ -82,10 +82,44 @@ view: fact_real_estate_notice {
   }
 
   measure: count_real_estate {
-    label: "# of Real Estate"
+    label: "# Real Estate"
     type: count_distinct
     sql: ${fk_real_estate} ;;
     drill_fields: []
+  }
+
+  measure: count_notices {
+    label: "# Notices"
+    type: count_distinct
+    sql: ${nb_enot_non_additive} ;;
+    drill_fields: []
+  }
+
+  measure: real_estate_ytd {
+    label: "# Real Estate YTD"
+    type: count_distinct
+    filters: {
+      field: is_ytd
+      value: "yes"
+    }
+    sql: ${fk_real_estate} ;;
+  }
+
+  measure: notices_ytd {
+    label: "# Notices YTD"
+    type: count_distinct
+    filters: {
+      field: is_ytd
+      value: "yes"
+    }
+    sql: ${nb_enot_non_additive} ;;
+  }
+
+  measure: percent_of_total_notices {
+    label: "% of Total Notices"
+    type: percent_of_total
+    value_format: "0.00\%"
+    sql: ${count_notices} ;;
   }
 
   measure: percent_of_total_real_estate {

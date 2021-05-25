@@ -14,7 +14,10 @@ view: dim_selling_type {
   dimension: selling_type_name {
     label: "Selling Type"
     type: string
-    sql: ${TABLE}.SellingTypeName ;;
+    sql: CASE WHEN ${TABLE}.SellingTypeName = "MUTUAL_AGREEMENT" THEN "Verkoop uit de hand / Vente gré-à-gré"
+      WHEN ${TABLE}.SellingTypeName = "PUBLIC_AUCTION" THEN "Openbare verkoop / Vente Publique"
+      WHEN ${TABLE}.SellingTypeName = "OTHER" THEN "Anders / Autre"
+      ELSE "Onbekend / Inconnu" END ;;
   }
 
   measure: count {
