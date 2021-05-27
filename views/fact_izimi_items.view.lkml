@@ -6,7 +6,7 @@ view: fact_izimi_items {
   dimension: dim_days_sk {
     hidden: yes
     type: date
-    sql: CAST(${TABLE}.dim_days_sk as date);;
+    sql: ${TABLE}.dim_days_sk ;;
   }
 
   dimension: dim_izimi_category_group_sk {

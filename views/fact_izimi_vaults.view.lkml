@@ -6,7 +6,7 @@ view: fact_izimi_vaults {
   dimension: dim_days_sk {
     hidden: yes
     type: date
-    sql: CAST(${TABLE}.dim_days_sk as date);;
+    sql: ${TABLE}.dim_days_sk ;;
   }
 
   dimension: dim_izimiuser_sk {
@@ -50,7 +50,7 @@ view: fact_izimi_vaults {
   dimension: registered {
     hidden: yes
     type: date
-    sql: CAST(${TABLE}.registeredOn as dqte);;
+    sql: ${TABLE}.registeredOn ;;
   }
 
   dimension: used_size {

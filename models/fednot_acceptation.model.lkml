@@ -357,7 +357,7 @@ explore: fact_izimi_events {
   join: event_date {
     from:  dim_date
     view_label: "Dimensions"
-    sql_on: ${fact_izimi_events.dim_days_sk} = ${event_date.pk_date} ;;
+    sql_on: ${fact_izimi_events.dim_days_sk} = ${event_date.date} ;;
     relationship:  many_to_one
     type: left_outer
   }
@@ -383,7 +383,7 @@ explore: fact_izimi_items {
   join: item_date {
     from:  dim_date
     view_label: "Dimensions"
-    sql_on: ${fact_izimi_items.dim_days_sk} = ${item_date.pk_date} ;;
+    sql_on: ${fact_izimi_items.dim_days_sk} = ${item_date.date} ;;
     relationship:  many_to_one
     type: left_outer
   }
@@ -404,14 +404,14 @@ explore: fact_izimi_vaults {
   join: vault_creation_date {
       from:  dim_date
       view_label: "Dimensions"
-      sql_on: ${fact_izimi_vaults.dim_days_sk} = ${vault_creation_date.pk_date} ;;
+      sql_on: ${fact_izimi_vaults.dim_days_sk} = ${vault_creation_date.date} ;;
       relationship:  many_to_one
       type: left_outer
     }
   join: registered_date {
     from:  dim_date
     view_label: "Dimensions"
-    sql_on: ${fact_izimi_vaults.registered} = ${registered_date.pk_date} ;;
+    sql_on: ${fact_izimi_vaults.registered} = ${registered_date.date} ;;
     relationship:  many_to_one
     type: left_outer
   }
