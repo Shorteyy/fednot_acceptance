@@ -333,7 +333,7 @@ explore: fact_izimi_events {
     type:  left_outer
   }
   join: dim_izimi_event_types {
-    sql_on: ${dim_izimi_event_types.dim_izimievent_type_sk} = ${dim_izimi_event_types.dim_izimievent_type_sk} ;;
+    sql_on: ${fact_izimi_events.dim_izimievent_type_sk} = ${dim_izimi_event_types.dim_izimievent_type_sk} ;;
     relationship: many_to_one
     type:  left_outer
   }
