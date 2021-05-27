@@ -97,17 +97,17 @@ explore: ereg_vw_fact_transaction {
   relationship:  many_to_one
   type: left_outer
   }
-  join: deed {
+  join: deed_date {
     view_label: "Dim Date Hierarchy"
     from: dim_date
-    sql_on: ${ereg_vw_fact_transaction.fk_date_deed} = ${deed.pk_date} ;;
+    sql_on: ${ereg_vw_fact_transaction.fk_date_deed} = ${deed_date.pk_date} ;;
   relationship: many_to_one
   type: left_outer
   }
-  join: First_Fednot_Sending {
+  join: First_Fednot_Sending_date {
     view_label: "Dim Date Hierarchy"
     from: dim_date
-    sql_on: ${ereg_vw_fact_transaction.fk_date_first_fed_not_sending} = ${First_Fednot_Sending.pk_date} ;;
+    sql_on: ${ereg_vw_fact_transaction.fk_date_first_fed_not_sending} = ${First_Fednot_Sending_date.pk_date} ;;
     relationship: many_to_one
     type: left_outer
   }
@@ -156,45 +156,45 @@ explore: ereg_vw_fact_transaction_f {
     relationship:  many_to_one
     type: left_outer
   }
-  join: Expedition_Signed {
+  join: Expedition_Signed_date {
     view_label: "Dim Date Hierarchy"
     from: dim_date
-    sql_on: ${ereg_vw_fact_transaction.fk_date_expedition_signed} = ${Expedition_Signed.pk_date} ;;
+    sql_on: ${ereg_vw_fact_transaction.fk_date_expedition_signed} = ${Expedition_Signed_date.pk_date} ;;
     relationship: many_to_one
     type: left_outer
   }
-  join: Deed_Registered_AA {
+  join: Deed_Registered_AA_date {
     view_label: "Dim Date Hierarchy"
     from: dim_date
-    sql_on: ${ereg_vw_fact_transaction.fk_date_deed_registered_aa} = ${Deed_Registered_AA.pk_date} ;;
+    sql_on: ${ereg_vw_fact_transaction.fk_date_deed_registered_aa} = ${Deed_Registered_AA_date.pk_date} ;;
     relationship: many_to_one
     type: left_outer
   }
-  join: eDossier_Creation {
+  join: eDossier_Creation_date {
     view_label: "Dim Date Hierarchy"
     from: dim_date
-    sql_on: ${ereg_vw_fact_transaction.fk_date_edossier_creation} = ${eDossier_Creation.pk_date} ;;
+    sql_on: ${ereg_vw_fact_transaction.fk_date_edossier_creation} = ${eDossier_Creation_date.pk_date} ;;
     relationship: many_to_one
     type: left_outer
   }
-  join: Fednot_Received_Answer {
+  join: Fednot_Received_Answer_date {
     view_label: "Dim Date Hierarchy"
     from: dim_date
-    sql_on: ${ereg_vw_fact_transaction.fk_date_fed_not_received_answer} = ${Fednot_Received_Answer.pk_date} ;;
+    sql_on: ${ereg_vw_fact_transaction.fk_date_fed_not_received_answer} = ${Fednot_Received_Answer_date.pk_date} ;;
     relationship: many_to_one
     type: left_outer
   }
-  join: Fednot_Sending {
+  join: Fednot_Sending_date {
     view_label: "Dim Date Hierarchy"
     from: dim_date
-    sql_on: ${ereg_vw_fact_transaction.fk_date_fed_not_sending} = ${Fednot_Sending.pk_date} ;;
+    sql_on: ${ereg_vw_fact_transaction.fk_date_fed_not_sending} = ${Fednot_Sending_date.pk_date} ;;
     relationship: many_to_one
     type: left_outer
   }
-  join: Request {
+  join: Request_date {
     view_label: "Dim Date Hierarchy"
     from: dim_date
-    sql_on: ${ereg_vw_fact_transaction.fk_date_request} = ${Request.pk_date} ;;
+    sql_on: ${ereg_vw_fact_transaction.fk_date_request} = ${Request_date.pk_date} ;;
     relationship: many_to_one
     type: left_outer
   }
@@ -249,10 +249,10 @@ explore: fact_comparison_point {
     relationship: many_to_one
     type: left_outer
   }
-  join: encoding {
+  join: encoding_date {
     view_label: "Dim Date Hierarchy"
     from: dim_date
-    sql_on: ${fact_comparison_point.fk_date_encoding} = ${encoding.pk_date} ;;
+    sql_on: ${fact_comparison_point.fk_date_encoding} = ${encoding_date.pk_date} ;;
     relationship: many_to_one
     type: left_outer
   }
@@ -302,10 +302,10 @@ explore: fact_real_estate_notice {
     type: left_outer
     fields: []
   }
-  join: first_sending_notary {
+  join: first_sending_notary_date {
     view_label: "Dimensions"
     from: dim_date
-    sql_on: ${fact_real_estate_notice.fk_date_first_enot_request} = ${first_sending_notary.pk_date} ;;
+    sql_on: ${fact_real_estate_notice.fk_date_first_enot_request} = ${first_sending_notary_date.pk_date} ;;
     relationship: many_to_one
     type: left_outer
   }
@@ -323,4 +323,96 @@ explore: fact_real_estate_notice {
   #   relationship: many_to_one
   #   type: left_outer
   # }
+}
+
+explore: fact_izimi_events {
+  label: "Izimi Events"
+  join: dim_izimi_category {
+    sql_on: ${fact_izimi_events.dim_document_owner_sk} = ${dim_izimi_category.dim_izimi_category_sk} ;;
+    relationship: many_to_one
+    type:  left_outer
+  }
+  join: dim_izimi_event_types {
+    sql_on: ${dim_izimi_event_types.dim_izimievent_type_sk} = ${dim_izimi_event_types.dim_izimievent_type_sk} ;;
+    relationship: many_to_one
+    type:  left_outer
+  }
+  join: dim_izimi_users {
+    sql_on: ${fact_izimi_events.dim_izimiuser_sk} = ${dim_izimi_users.dim_izimiuser_sk} ;;
+    relationship: many_to_one
+    type:  left_outer
+  }
+  join: dim_izimi_vault {
+    sql_on: ${fact_izimi_events.dim_izimi_vault_sk} = ${dim_izimi_vault.dim_izimi_vault_sk} ;;
+    relationship: many_to_one
+    type:  left_outer
+  }
+  join: dim_izimi_document_owner {
+    view_label: "Dimensions"
+    from: dim_izimi_users
+    sql_on: ${fact_izimi_events.dim_document_owner_sk} = ${dim_izimi_document_owner.dim_izimiuser_sk} ;;
+    relationship: many_to_one
+    type:  left_outer
+  }
+  join: event_date {
+    from:  dim_date
+    view_label: "Dimensions"
+    sql_on: ${fact_izimi_events.dim_days_sk} = ${event_date.pk_date} ;;
+    relationship:  many_to_one
+    type: left_outer
+  }
+}
+
+explore: fact_izimi_items {
+  label: "Izimi Items"
+  join: dim_izimi_items {
+    sql_on: ${fact_izimi_items.dim_izimi_item_sk} = ${dim_izimi_items.dim_izimiitem_sk} ;;
+    relationship: many_to_one
+    type:  left_outer
+  }
+  join: dim_izimi_category_group {
+  sql_on: ${fact_izimi_items.dim_izimi_category_group_sk} = ${dim_izimi_category_group.dim_izimi_category_group_sk} ;;
+  relationship: many_to_one
+  type:  left_outer
+  }
+  join: dim_izimi_vault {
+  sql_on: ${fact_izimi_items.dim_izimi_vault_sk} = ${dim_izimi_vault.dim_izimi_vault_sk} ;;
+  relationship: many_to_one
+  type:  left_outer
+  }
+  join: item_date {
+    from:  dim_date
+    view_label: "Dimensions"
+    sql_on: ${fact_izimi_items.dim_days_sk} = ${item_date.pk_date} ;;
+    relationship:  many_to_one
+    type: left_outer
+  }
+}
+
+explore: fact_izimi_vaults {
+  label: "Izimi Vaults"
+  join: dim_izimi_vault {
+    sql_on: ${fact_izimi_vaults.dim_izimivault_sk} = ${dim_izimi_vault.dim_izimi_vault_sk} ;;
+    relationship: many_to_one
+    type:  left_outer
+  }
+  join: dim_izimi_users {
+    sql_on: ${fact_izimi_vaults.dim_izimiuser_sk} = ${dim_izimi_users.dim_izimiuser_sk} ;;
+    relationship: many_to_one
+    type:  left_outer
+  }
+  join: vault_creation_date {
+      from:  dim_date
+      view_label: "Dimensions"
+      sql_on: ${fact_izimi_vaults.dim_days_sk} = ${vault_creation_date.pk_date} ;;
+      relationship:  many_to_one
+      type: left_outer
+    }
+  join: registered_date {
+    from:  dim_date
+    view_label: "Dimensions"
+    sql_on: ${fact_izimi_vaults.registered} = ${registered_date.pk_date} ;;
+    relationship:  many_to_one
+    type: left_outer
+  }
 }
