@@ -10,17 +10,6 @@ datagroup: fednot_acceptation_default_datagroup {
 
 persist_with: fednot_acceptation_default_datagroup
 
-map_layer: province_location_belgium {
-  file: "/maps/belgium.json"
-  property_key: "prov_nl"
-}
-
-map_layer: region_location_belgium {
-  file: "/maps/belgium.json"
-  property_key: "reg_nl"
-  property_label_key: "reg_nl"
-}
-
 map_layer: region_location_belgium_ereg {
   file: "/maps/belgium.json"
   property_key: "reg_nis"

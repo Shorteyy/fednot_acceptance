@@ -18,7 +18,6 @@ view: ereg_vw_dim_party_address {
 
   dimension: district_name {
     group_label: "Address"
-    group_item_label: "District"
     type: string
     sql: ${TABLE}.DistrictName ;;
   }
@@ -49,28 +48,28 @@ view: ereg_vw_dim_party_address {
 
   dimension: is_streets_belgian_coast {
     group_label: "Address"
-    group_item_label: "Street Belgian Coast?"
+    label: "Street Belgian Coast?"
     type: string
     sql: ${TABLE}.isStreetsBelgianCoast ;;
   }
 
   dimension: is_zip_belgian_coast {
     group_label: "Address"
-    group_item_label: "Zip Belgian Coast?"
+    label: "Zip Belgian Coast?"
     type: string
     sql: ${TABLE}.isZipBelgianCoast ;;
   }
 
   dimension: is_zip_frontalier {
     group_label: "Address"
-    group_item_label: "Zip Frontalier?"
+   label: "Zip Frontalier?"
     type: string
     sql: ${TABLE}.isZipFrontalier ;;
   }
 
   dimension: is_zip_town {
     group_label: "Address"
-    group_item_label: "Zip Town?"
+    label: "Zip Town?"
     type: string
     sql: ${TABLE}.isZipTown ;;
   }
@@ -83,7 +82,7 @@ view: ereg_vw_dim_party_address {
 
   dimension: locality_name {
     group_label: "Address"
-    group_item_label: "Locality"
+    label: "Locality"
     type: string
     sql: ${TABLE}.LocalityName ;;
   }
@@ -108,7 +107,7 @@ view: ereg_vw_dim_party_address {
 
   dimension: main_locality_name {
     group_label: "Address"
-    group_item_label: "Main Locality"
+    label: "Main Locality"
     type: string
     sql: ${TABLE}.MainLocalityName ;;
   }
@@ -128,7 +127,6 @@ view: ereg_vw_dim_party_address {
 
   dimension: municipality_name {
     group_label: "Address"
-    group_item_label: "Municipality"
     type: string
     sql: ${TABLE}.MunicipalityName ;;
   }
@@ -152,24 +150,40 @@ view: ereg_vw_dim_party_address {
   }
 
   dimension: nis_code_municipality {
-    # hidden: yes
+    hidden: yes
     type: string
     sql: ${TABLE}.NisCode ;;
   }
 
-  dimension: nis_code_arrondissement {
-    # hidden: yes
+  dimension: nis_code_district {
+    hidden: yes
     type: string
     sql: CONCAT(LEFT(${TABLE}.NisCode,2),"000") ;;
   }
 
   dimension: nis_code_province {
-    # hidden: yes
+    hidden: yes
     type: string
     sql: CASE
-           WHEN ${TABLE}.NisCode = "'20001'" THEN ${TABLE}.NisCode
-           WHEN ${TABLE}.NisCode = "'20002'" THEN ${TABLE}.NisCode
+           WHEN LEFT(${TABLE}.NisCode,2) = "21" THEN "04000"
+           WHEN LEFT(${TABLE}.NisCode,2) in ("23","24") THEN "20001"
+           WHEN LEFT(${TABLE}.NisCode,2) = "25" THEN "20002"
            ELSE CONCAT(LEFT(${TABLE}.NisCode,1),"0000") END ;;
+  }
+
+  dimension: nis_code_region {
+    hidden: yes
+    type: string
+    sql: CASE
+           WHEN LEFT(${TABLE}.NisCode,2) = "21" THEN "04000"
+           WHEN LEFT(${TABLE}.NisCode,2) in ("11","12","13","23","24","31","32","33","34","35","36","37","38","41","42","43","44","45","46","71","72","73") THEN "02000"
+           ELSE "03000" END ;;
+  }
+
+  dimension: nis_code_arrondissement {
+    hidden: yes
+    type: string
+    sql: CONCAT(LEFT(${TABLE}.NisCode,2),"000") ;;
   }
 
   dimension: pk_address {
@@ -187,7 +201,6 @@ view: ereg_vw_dim_party_address {
 
   dimension: province_name {
     group_label: "Address"
-    group_item_label: "Province"
     type: string
     sql: ${TABLE}.ProvinceName ;;
   }
@@ -210,12 +223,43 @@ view: ereg_vw_dim_party_address {
     sql: ${TABLE}.ProvinceNameNL ;;
   }
 
-  dimension: province_area {
+  dimension: municipality {
     group_label: "Address"
-    group_item_label: "Province Area"
+    label: "Municipality"
     type: string
-    map_layer_name: province_location_belgium
-    sql: concat("Provincie " || trim(${TABLE}.ProvinceNameNL)) ;;
+    map_layer_name: municipality_location_belgium_ereg
+    sql: ${nis_code_municipality} ;;
+    html: {{ municipality_name._linked_value}} ;;
+  }
+
+  dimension: district {
+    group_label: "Address"
+    label: "District"
+    type: string
+    drill_fields: [municipality]
+    map_layer_name: district_location_belgium_ereg
+    sql: ${nis_code_district} ;;
+    html: {{district_name._linked_value}} ;;
+  }
+
+  dimension: province {
+    group_label: "Address"
+    label: "Province"
+    type: string
+    drill_fields: [district, municipality]
+    map_layer_name: province_location_belgium_ereg
+    sql: ${nis_code_province} ;;
+    html: {{ province_name._linked_value }} ;;
+  }
+
+  dimension: region {
+    group_label: "Address"
+    label: "Region"
+    type: string
+    drill_fields: [province, district, municipality]
+    map_layer_name: region_location_belgium_ereg
+    sql: ${nis_code_region} ;;
+    html: {{region_name._linked_value}} ;;
   }
 
   dimension: region_id {
@@ -226,7 +270,6 @@ view: ereg_vw_dim_party_address {
 
   dimension: region_name {
     group_label: "Address"
-    group_item_label: "Region"
     type: string
     sql: ${TABLE}.RegionName ;;
   }
@@ -249,26 +292,6 @@ view: ereg_vw_dim_party_address {
     sql: ${TABLE}.RegionNameNL ;;
   }
 
-  dimension: region_area {
-    group_label: "Address"
-    group_item_label: "Region Area"
-    type: string
-    label: "Region Area"
-    drill_fields: [province_area]
-    # link: {label: "Show as Geographical Visualization"
-    #   url: "{% assign vis_config = '{
-    #       vis={\"map_plot_mode\":\"points\",\"heatmap_gridlines\":false,\"heatmap_gridlines_empty\":false,\"heatmap_opacity\":0.4,\"show_region_field\":true,\"draw_map_labels_above_data\":true,\"map_tile_provider\":\"outdoors\",\"map_position\":\"fit_data\",\"map_scale_indicator\":\"metric\",\"map_pannable\":true,\"map_zoomable\":true,\"map_marker_type\":\"circle\",\"map_marker_icon_name\":\"default\",\"map_marker_radius_mode\":\"proportional_value\",\"map_marker_units\":\"meters\",\"map_marker_proportional_scale_type\":\"linear\",\"map_marker_color_mode\":\"fixed\",\"show_view_names\":false,\"show_legend\":true,\"quantize_map_value_colors\":false,\"reverse_map_value_colors\":false,\"map_latitude\":50.161064818858684,\"map_longitude\":4.630737304687501,\"map_zoom\":8,\"type\":\"looker_map\",\"defaults_version\":1}
-    #     }' %}
-    #   {{ link }}&vis_config={{ vis_config | encode_uri }}&toggle=dat,pik,vis&limit=5000"
-    # }
-    map_layer_name: region_location_belgium
-    sql: CASE
-          WHEN ${TABLE}.RegionNameNL = "VLAAMS GEWEST" THEN "Vlaams Gewest"
-          WHEN ${TABLE}.RegionNameNL = "WAALS GEWEST" THEN "Waals Gewest"
-          ELSE "Brussels Hoofdstedelijk Gewest"
-          END ;;
-  }
-
   dimension: street_code {
     hidden: yes
     type: string
@@ -283,7 +306,7 @@ view: ereg_vw_dim_party_address {
 
   dimension: street_name {
     group_label: "Address"
-    group_item_label: "Street"
+    label: "Street"
     type: string
     sql: ${TABLE}.StreetName ;;
   }
@@ -308,7 +331,7 @@ view: ereg_vw_dim_party_address {
 
   dimension: zip_code {
     group_label: "Address"
-    group_item_label: "Zip Code"
+    label: "Zip Code"
     type: zipcode
     sql: ${TABLE}.ZipCode ;;
   }

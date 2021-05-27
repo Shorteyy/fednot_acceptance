@@ -39,11 +39,6 @@ view: ereg_vw_dim_good_address {
     sql: ${TABLE}.DistrictNameNL ;;
   }
 
-  # dimension: district_name_tableau {
-  #   type: string
-  #   sql: ${TABLE}.DistrictName_Tableau ;;
-  # }
-
   dimension: is_streets_belgian_coast {
     group_label: "Address"
     type: string
@@ -98,32 +93,6 @@ view: ereg_vw_dim_good_address {
     sql: ${TABLE}.LocalityNameNL ;;
   }
 
-  # dimension_group: m_job_datetime {
-  #   type: time
-  #   timeframes: [
-  #     raw,
-  #     time,
-  #     date,
-  #     week,
-  #     month,
-  #     quarter,
-  #     year
-  #   ]
-  #   sql: ${TABLE}.m_job_datetime ;;
-  # }
-
-  # dimension: m_job_run_id {
-  #   type: string
-  #   # hidden: yes
-  #   sql: ${TABLE}.m_job_run_id ;;
-  # }
-
-  # dimension: m_model_run_id {
-  #   type: string
-  #   # hidden: yes
-  #   sql: ${TABLE}.m_model_run_id ;;
-  # }
-
   dimension: main_locality_name {
     group_label: "Address"
     type: string
@@ -172,6 +141,37 @@ view: ereg_vw_dim_good_address {
     sql: ${TABLE}.NisCode ;;
   }
 
+  dimension: nis_code_municipality {
+    hidden: yes
+    type: string
+    sql: ${TABLE}.NisCode ;;
+  }
+
+  dimension: nis_code_district {
+    hidden: yes
+    type: string
+    sql: CONCAT(LEFT(${TABLE}.NisCode,2),"000") ;;
+  }
+
+  dimension: nis_code_province {
+    hidden: yes
+    type: string
+    sql: CASE
+           WHEN LEFT(${TABLE}.NisCode,2) = "21" THEN "04000"
+           WHEN LEFT(${TABLE}.NisCode,2) in ("23","24") THEN "20001"
+           WHEN LEFT(${TABLE}.NisCode,2) = "25" THEN "20002"
+           ELSE CONCAT(LEFT(${TABLE}.NisCode,1),"0000") END ;;
+  }
+
+  dimension: nis_code_region {
+    hidden: yes
+    type: string
+    sql: CASE
+           WHEN LEFT(${TABLE}.NisCode,2) = "21" THEN "04000"
+           WHEN LEFT(${TABLE}.NisCode,2) in ("11","12","13","23","24","31","32","33","34","35","36","37","38","41","42","43","44","45","46","71","72","73") THEN "02000"
+           ELSE "03000" END ;;
+  }
+
   dimension: pk_address {
     hidden: yes
     primary_key: yes
@@ -209,12 +209,43 @@ view: ereg_vw_dim_good_address {
     sql: ${TABLE}.ProvinceNameNL ;;
   }
 
-  dimension: province_area {
+  dimension: municipality {
     group_label: "Address"
-    group_item_label: "Province Area"
+    label: "Municipality"
     type: string
-    map_layer_name: province_location_belgium
-    sql: concat("Provincie " || trim(${TABLE}.ProvinceNameNL)) ;;
+    map_layer_name: municipality_location_belgium_ereg
+    sql: ${nis_code_municipality} ;;
+    html: {{ municipality_name._linked_value}} ;;
+  }
+
+  dimension: district {
+    group_label: "Address"
+    label: "District"
+    type: string
+    drill_fields: [municipality]
+    map_layer_name: district_location_belgium_ereg
+    sql: ${nis_code_district} ;;
+    html: {{district_name._linked_value}} ;;
+  }
+
+  dimension: province {
+    group_label: "Address"
+    label: "Province"
+    type: string
+    drill_fields: [district, municipality]
+    map_layer_name: province_location_belgium_ereg
+    sql: ${nis_code_province} ;;
+    html: {{ province_name._linked_value }} ;;
+  }
+
+  dimension: region {
+    group_label: "Address"
+    label: "Region"
+    type: string
+    drill_fields: [province, district, municipality]
+    map_layer_name: region_location_belgium_ereg
+    sql: ${nis_code_region} ;;
+    html: {{region_name._linked_value}} ;;
   }
 
   dimension: region_id {
@@ -245,25 +276,6 @@ view: ereg_vw_dim_good_address {
     hidden: yes
     type: string
     sql: ${TABLE}.RegionNameNL ;;
-  }
-
-  # dimension: region_name_tableau {
-  #   type: string
-  #   sql: ${TABLE}.RegionName_Tableau ;;
-  # }
-
-  dimension: region_area {
-    group_label: "Address"
-    group_item_label: "Region Area"
-    type: string
-    label: "Region Area"
-    drill_fields: [province_area]
-    map_layer_name: region_location_belgium
-    sql: CASE
-          WHEN ${TABLE}.RegionNameNL = "VLAAMS GEWEST" THEN "Vlaams Gewest"
-          WHEN ${TABLE}.RegionNameNL = "WAALS GEWEST" THEN "Waals Gewest"
-          ELSE "Brussels Hoofdstedelijk Gewest"
-          END ;;
   }
 
   dimension: street_code {
@@ -301,11 +313,6 @@ view: ereg_vw_dim_good_address {
     type: string
     sql: ${TABLE}.StreetNameNL ;;
   }
-
-  # dimension: sys_insert_update_date {
-  #   type: string
-  #   sql: ${TABLE}.Sys_InsertUpdateDate ;;
-  # }
 
   dimension: zip_code {
     group_label: "Address"
