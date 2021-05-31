@@ -2,7 +2,6 @@ view: dim_izimi_users {
   label: "Dimensions"
   sql_table_name: `dwh.dim_izimiUsers`
     ;;
-  drill_fields: [id]
 
   dimension: id {
     hidden: yes
@@ -143,6 +142,5 @@ view: dim_izimi_users {
   measure: count {
     hidden: yes
     type: count
-    drill_fields: [id, locality_name, username]
   }
 }

@@ -2,7 +2,6 @@ view: dim_izimi_vault {
   label: "Dimensions"
   sql_table_name: `dwh.dim_izimiVault`
     ;;
-  drill_fields: [id]
 
   dimension: id {
     hidden: yes
@@ -78,7 +77,6 @@ view: dim_izimi_vault {
   measure: count {
     hidden: yes
     type: count
-    drill_fields: [id]
   }
 
   measure: vault_used_size {
