@@ -3,6 +3,7 @@ view: dim_izimi_category_group_bridge {
     ;;
 
   dimension: dim_izimi_category_group_bridge_sk {
+    primary_key: yes
     hidden: yes
     type: string
     sql: ${TABLE}.dim_izimiCategoryGroupBridge_sk ;;

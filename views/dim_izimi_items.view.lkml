@@ -4,26 +4,27 @@ view: dim_izimi_items {
     ;;
 
   dimension: confidentiality_level {
-    group_label: "Item"
+    group_label: "Document"
     type: string
     sql: ${TABLE}.confidentialityLevel ;;
   }
 
   dimension: dim_izimiitem_sk {
     hidden: yes
+    primary_key: yes
     type: string
     sql: ${TABLE}.dim_izimiitem_sk ;;
   }
 
   dimension: h_izimi_item_bk {
-    group_label: "Item"
+    group_label: "Document"
     label: "Document"
     type: number
     sql: ${TABLE}.h_izimi_item_bk ;;
   }
 
   dimension_group: item_created {
-    group_label: "Item"
+    group_label: "Document"
     label: "Document Created"
     type: time
     timeframes: [
@@ -39,8 +40,8 @@ view: dim_izimi_items {
   }
 
   dimension_group: item_event_ts {
-    group_label: "Item"
-    label: "Item Event"
+    group_label: "Document"
+    label: "Document Event"
     type: time
     timeframes: [
       raw,
@@ -55,13 +56,15 @@ view: dim_izimi_items {
   }
 
   dimension: item_mime_type {
-    group_label: "Item"
+    group_label: "Document"
+    label: "Document Mime Type"
     type: string
     sql: ${TABLE}.itemMimeType ;;
   }
 
   dimension_group: item_modified {
-    group_label: "Item"
+    group_label: "Document"
+    label: "Document Modified"
     type: time
     timeframes: [
       raw,
@@ -76,31 +79,32 @@ view: dim_izimi_items {
   }
 
   dimension: record_type {
-    group_label: "Item"
+    group_label: "Document"
+    label: "Document Type"
     type: string
     sql: ${TABLE}.recordType ;;
   }
 
   dimension: scanning_state {
-    group_label: "Item"
+    group_label: "Document"
     type: string
     sql: ${TABLE}.scanningState ;;
   }
 
   dimension: size {
-    group_label: "Item"
+    group_label: "Document"
     type: number
     sql: ${TABLE}.size ;;
   }
 
   dimension: upload_source {
-    group_label: "Item"
+    group_label: "Document"
     type: string
     sql: ${TABLE}.uploadSource ;;
   }
 
   dimension: uri {
-    group_label: "Item"
+    group_label: "Document"
     type: string
     sql: ${TABLE}.uri ;;
   }

@@ -6,7 +6,6 @@ view: dim_izimi_vault {
 
   dimension: id {
     hidden: yes
-    primary_key: yes
     type: number
     sql: ${TABLE}.id ;;
   }
@@ -34,6 +33,7 @@ view: dim_izimi_vault {
 
   dimension: dim_izimi_vault_sk {
     hidden: yes
+    primary_key: yes
     type: string
     sql: ${TABLE}.dim_izimiVault_sk ;;
   }
@@ -85,13 +85,11 @@ view: dim_izimi_vault {
     hidden: yes
     type: sum
     sql: ${used_size} ;;
-    drill_fields: []
     }
 
   measure: vault_max_size {
     hidden: yes
     type: sum
     sql: ${max_size} ;;
-    drill_fields: []
     }
 }

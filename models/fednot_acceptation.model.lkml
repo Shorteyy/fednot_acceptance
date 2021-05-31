@@ -364,7 +364,7 @@ explore: fact_izimi_events {
 }
 
 explore: fact_izimi_items {
-  label: "Izimi Items"
+  label: "Izimi Documents"
   join: dim_izimi_items {
     sql_on: ${fact_izimi_items.dim_izimi_item_sk} = ${dim_izimi_items.dim_izimiitem_sk} ;;
     relationship: many_to_one
@@ -380,10 +380,10 @@ explore: fact_izimi_items {
   relationship: many_to_one
   type:  left_outer
   }
-  join: item_date {
+  join: document_date {
     from:  dim_date
     view_label: "Dimensions"
-    sql_on: ${fact_izimi_items.dim_days_sk} = ${item_date.date} ;;
+    sql_on: ${fact_izimi_items.dim_days_sk} = ${document_date.date} ;;
     relationship:  many_to_one
     type: left_outer
   }

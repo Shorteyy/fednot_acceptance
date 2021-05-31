@@ -5,6 +5,7 @@ view: dim_izimi_category {
 
   dimension: dim_izimi_category_sk {
     hidden: yes
+    primary_key: yes
     type: string
     sql: ${TABLE}.dim_izimiCategory_sk ;;
   }

@@ -6,7 +6,6 @@ view: dim_izimi_users {
 
   dimension: id {
     hidden: yes
-    primary_key: yes
     type: number
     sql: ${TABLE}.id ;;
   }
@@ -46,6 +45,7 @@ view: dim_izimi_users {
 
   dimension: dim_izimiuser_sk {
     hidden: yes
+    primary_key: yes
     type: string
     sql: ${TABLE}.dim_izimiuser_sk ;;
   }

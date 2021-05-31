@@ -4,6 +4,7 @@ view: dim_izimi_event_types {
     ;;
 
   dimension: dim_izimievent_type_sk {
+    primary_key: yes
     hidden: yes
     type: string
     sql: ${TABLE}.dim_izimievent_type_sk ;;
