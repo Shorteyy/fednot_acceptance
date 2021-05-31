@@ -6,7 +6,7 @@ view: fact_izimi_vaults {
   dimension: dim_days_sk {
     hidden: yes
     type: date
-    sql: ${TABLE}.dim_days_sk ;;
+    sql: ${TABLE}.dim_days_sk_vaultCreated ;;
   }
 
   dimension: dim_izimiuser_sk {
@@ -19,6 +19,13 @@ view: fact_izimi_vaults {
     hidden: yes
     type: string
     sql: ${TABLE}.dim_izimivault_sk ;;
+  }
+
+  dimension: vault_compound_primary_key {
+    primary_key: yes
+    hidden: yes
+    type: string
+    sql: CONCAT(cast(${TABLE}.dim_izimiuser_sk as string ), cast(${TABLE}.dim_izimivault_sk as string) ;;
   }
 
   dimension: h_izimi_user_bk {
@@ -41,12 +48,6 @@ view: fact_izimi_vaults {
     sql: ${TABLE}.maxSize ;;
   }
 
-  dimension: quantity {
-    hidden: yes
-    type: number
-    sql: ${TABLE}.quantity ;;
-  }
-
   dimension: registered {
     hidden: yes
     type: date
@@ -57,6 +58,24 @@ view: fact_izimi_vaults {
     hidden: yes
     type: number
     sql: ${TABLE}.usedSize ;;
+  }
+
+  dimension: quantity_preferred_notary {
+    hidden: yes
+    type: number
+    sql: ${TABLE}.quantityPreferredNotary ;;
+  }
+
+  dimension: quantity_vault {
+    hidden: yes
+    type: number
+    sql: ${TABLE}.quantityVaults ;;
+  }
+
+  dimension: quantity_document {
+    hidden: yes
+    type: number
+    sql: ${TABLE}.quantityDocuments ;;
   }
 
   measure: used_size_vault {
@@ -87,14 +106,29 @@ view: fact_izimi_vaults {
     drill_fields: []
   }
 
-  measure: vault_quantity {
-    label: "Quantity"
+  measure: quantity_vaults {
+    label: "Quantity Vaults"
     type: sum
-    sql: ${quantity} ;;
+    sql: ${quantity_vault} ;;
+    drill_fields: []
+  }
+
+  measure: quantity_documents {
+    label: "Quantity Documents"
+    type: sum
+    sql: ${quantity_document} ;;
+    drill_fields: []
+  }
+
+  measure: quantity_preffered_notaries {
+    label: "Quantity Preferred Notary"
+    type: sum
+    sql: ${quantity_preferred_notary} ;;
     drill_fields: []
   }
 
   measure: count {
+    hidden: yes
     type: count
     drill_fields: []
   }

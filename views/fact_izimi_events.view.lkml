@@ -68,30 +68,11 @@ view: fact_izimi_events {
     sql: ${TABLE}.h_izimi_vault_bk ;;
   }
 
-  # dimension: m_model_exec_id {
-  #   type: string
-  #   sql: ${TABLE}.m_model_exec_id ;;
-  # }
-
   dimension: quantity {
     hidden: yes
     type: number
     sql: ${TABLE}.quantity ;;
   }
-
-  # dimension_group: s_izimi_event_type_user_vault_load_dt {
-  #   type: time
-  #   timeframes: [
-  #     raw,
-  #     time,
-  #     date,
-  #     week,
-  #     month,
-  #     quarter,
-  #     year
-  #   ]
-  #   sql: ${TABLE}.s_izimi_event_type_user_vault_load_dt ;;
-  # }
 
   measure: qty {
     label: "Quantity"

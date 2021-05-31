@@ -27,6 +27,13 @@ view: fact_izimi_items {
     sql: ${TABLE}.dim_izimiVault_sk ;;
   }
 
+  dimension: item_compound_primary_key {
+    primary_key: yes
+    hidden: yes
+    type: string
+    sql: CONCAT(cast(${TABLE}.dim_izimiItem_sk as string ), cast(${TABLE}.dim_izimiVault_sk as string) ;;
+  }
+
   dimension: h_izimi_category_group_bk {
     label: "Category Group"
     hidden: yes
@@ -48,39 +55,34 @@ view: fact_izimi_items {
     sql: ${TABLE}.h_izimi_vault_bk ;;
   }
 
-  # dimension: m_model_exec_id {
-  #   type: string
-  #   sql: ${TABLE}.m_model_exec_id ;;
-  # }
-
-  # dimension_group: s_izimi_item_category_vault_load_dt {
-  #   type: time
-  #   timeframes: [
-  #     raw,
-  #     time,
-  #     date,
-  #     week,
-  #     month,
-  #     quarter,
-  #     year
-  #   ]
-  #   sql: ${TABLE}.s_izimi_item_category_vault_load_dt ;;
-  # }
-
   dimension: size {
     hidden: yes
     type: number
     sql: ${TABLE}.size ;;
   }
 
+  dimension: quantity {
+    hidden: yes
+    type: number
+    sql: ${TABLE}.quantity ;;
+  }
+
   measure: size_item {
-    label: "Size"
+    label: "Item Size"
     type: sum
     sql: ${size} ;;
     drill_fields: []
   }
 
+  measure: item_quantity {
+    label: "Item Quantity"
+    type: sum
+    sql: ${quantity} ;;
+    drill_fields: []
+  }
+
   measure: count {
+    hidden: yes
     type: count
     drill_fields: []
   }
