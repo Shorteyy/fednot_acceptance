@@ -98,14 +98,14 @@ explore: ereg_vw_fact_transaction {
   type: left_outer
   }
   join: deed_date {
-    view_label: "Dim Date Hierarchy"
+    view_label: "Dimensions"
     from: dim_date
     sql_on: ${ereg_vw_fact_transaction.fk_date_deed} = ${deed_date.pk_date} ;;
   relationship: many_to_one
   type: left_outer
   }
   join: First_Fednot_Sending_date {
-    view_label: "Dim Date Hierarchy"
+    view_label: "Dimensions"
     from: dim_date
     sql_on: ${ereg_vw_fact_transaction.fk_date_first_fed_not_sending} = ${First_Fednot_Sending_date.pk_date} ;;
     relationship: many_to_one
@@ -156,43 +156,43 @@ explore: ereg_vw_fact_transaction_f {
     relationship:  many_to_one
     type: left_outer
   }
-  join: Expedition_Signed_date {
-    view_label: "Dim Date Hierarchy"
+  join: Expedition_Signed {
+    view_label: "Dimensions"
     from: dim_date
-    sql_on: ${ereg_vw_fact_transaction.fk_date_expedition_signed} = ${Expedition_Signed_date.pk_date} ;;
+    sql_on: ${ereg_vw_fact_transaction.fk_date_expedition_signed} = ${Expedition_Signed.pk_date} ;;
     relationship: many_to_one
     type: left_outer
   }
-  join: Deed_Registered_AA_date {
-    view_label: "Dim Date Hierarchy"
+  join: Deed_Registered_AA {
+    view_label: "Dimensions"
     from: dim_date
-    sql_on: ${ereg_vw_fact_transaction.fk_date_deed_registered_aa} = ${Deed_Registered_AA_date.pk_date} ;;
+    sql_on: ${ereg_vw_fact_transaction.fk_date_deed_registered_aa} = ${Deed_Registered_AA.pk_date} ;;
     relationship: many_to_one
     type: left_outer
   }
   join: eDossier_Creation_date {
-    view_label: "Dim Date Hierarchy"
+    view_label: "Dimensions"
     from: dim_date
     sql_on: ${ereg_vw_fact_transaction.fk_date_edossier_creation} = ${eDossier_Creation_date.pk_date} ;;
     relationship: many_to_one
     type: left_outer
   }
   join: Fednot_Received_Answer_date {
-    view_label: "Dim Date Hierarchy"
+    view_label: "Dimensions"
     from: dim_date
     sql_on: ${ereg_vw_fact_transaction.fk_date_fed_not_received_answer} = ${Fednot_Received_Answer_date.pk_date} ;;
     relationship: many_to_one
     type: left_outer
   }
   join: Fednot_Sending_date {
-    view_label: "Dim Date Hierarchy"
+    view_label: "Dimensions"
     from: dim_date
     sql_on: ${ereg_vw_fact_transaction.fk_date_fed_not_sending} = ${Fednot_Sending_date.pk_date} ;;
     relationship: many_to_one
     type: left_outer
   }
   join: Request_date {
-    view_label: "Dim Date Hierarchy"
+    view_label: "Dimensions"
     from: dim_date
     sql_on: ${ereg_vw_fact_transaction.fk_date_request} = ${Request_date.pk_date} ;;
     relationship: many_to_one
@@ -250,7 +250,7 @@ explore: fact_comparison_point {
     type: left_outer
   }
   join: encoding_date {
-    view_label: "Dim Date Hierarchy"
+    view_label: "Dimensions"
     from: dim_date
     sql_on: ${fact_comparison_point.fk_date_encoding} = ${encoding_date.pk_date} ;;
     relationship: many_to_one
@@ -302,10 +302,10 @@ explore: fact_real_estate_notice {
     type: left_outer
     fields: []
   }
-  join: first_sending_notary_date {
+  join: first_sending_notary {
     view_label: "Dimensions"
     from: dim_date
-    sql_on: ${fact_real_estate_notice.fk_date_first_enot_request} = ${first_sending_notary_date.pk_date} ;;
+    sql_on: ${fact_real_estate_notice.fk_date_first_enot_request} = ${first_sending_notary.pk_date} ;;
     relationship: many_to_one
     type: left_outer
   }

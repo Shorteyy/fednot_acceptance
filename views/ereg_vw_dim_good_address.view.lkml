@@ -1,10 +1,10 @@
 view: ereg_vw_dim_good_address {
-  label: "Dim Good"
+  label: "Dimensions"
   sql_table_name: `dwh.ereg_vwDimGoodAddress`
     ;;
 
   dimension: country_name {
-    group_label: "Address"
+    group_label: "Good Address"
     type: string
     sql: ${TABLE}.CountryName ;;
   }
@@ -16,7 +16,7 @@ view: ereg_vw_dim_good_address {
   }
 
   dimension: district_name {
-    group_label: "Address"
+    group_label: "Good Address"
     type: string
     sql: ${TABLE}.DistrictName ;;
   }
@@ -40,25 +40,25 @@ view: ereg_vw_dim_good_address {
   }
 
   dimension: is_streets_belgian_coast {
-    group_label: "Address"
+    group_label: "Good Address"
     type: string
     sql: ${TABLE}.isStreetsBelgianCoast ;;
   }
 
   dimension: is_zip_belgian_coast {
-    group_label: "Address"
+    group_label: "Good Address"
     type: string
     sql: ${TABLE}.isZipBelgianCoast ;;
   }
 
   dimension: is_zip_frontalier {
-    group_label: "Address"
+    group_label: "Good Address"
     type: string
     sql: ${TABLE}.isZipFrontalier ;;
   }
 
   dimension: is_zip_town {
-    group_label: "Address"
+    group_label: "Good Address"
     type: string
     sql: ${TABLE}.isZipTown ;;
   }
@@ -70,7 +70,7 @@ view: ereg_vw_dim_good_address {
   }
 
   dimension: locality_name {
-    group_label: "Address"
+    group_label: "Good Address"
     type: string
     sql: ${TABLE}.LocalityName ;;
   }
@@ -94,13 +94,13 @@ view: ereg_vw_dim_good_address {
   }
 
   dimension: main_locality_name {
-    group_label: "Address"
+    group_label: "Good Address"
     type: string
     sql: ${TABLE}.MainLocalityName ;;
   }
 
   dimension: matching_level {
-    group_label: "Address"
+    group_label: "Good Address"
     type: string
     sql: ${TABLE}.MatchingLevel ;;
   }
@@ -112,7 +112,7 @@ view: ereg_vw_dim_good_address {
   }
 
   dimension: municipality_name {
-    group_label: "Address"
+    group_label: "Good Address"
     type: string
     sql: ${TABLE}.MunicipalityName ;;
   }
@@ -186,7 +186,7 @@ view: ereg_vw_dim_good_address {
   }
 
   dimension: province_name {
-    group_label: "Address"
+    group_label: "Good Address"
     type: string
     sql: ${TABLE}.ProvinceName ;;
   }
@@ -210,7 +210,7 @@ view: ereg_vw_dim_good_address {
   }
 
   dimension: municipality {
-    group_label: "Address"
+    group_label: "Good Address"
     label: "Municipality"
     type: string
     map_layer_name: municipality_location_belgium_ereg
@@ -219,7 +219,7 @@ view: ereg_vw_dim_good_address {
   }
 
   dimension: district {
-    group_label: "Address"
+    group_label: "Good Address"
     label: "District"
     type: string
     drill_fields: [municipality]
@@ -229,7 +229,7 @@ view: ereg_vw_dim_good_address {
   }
 
   dimension: province {
-    group_label: "Address"
+    group_label: "Good Address"
     label: "Province"
     type: string
     drill_fields: [district, municipality]
@@ -239,7 +239,7 @@ view: ereg_vw_dim_good_address {
   }
 
   dimension: region {
-    group_label: "Address"
+    group_label: "Good Address"
     label: "Region"
     type: string
     drill_fields: [province, district, municipality]
@@ -255,7 +255,7 @@ view: ereg_vw_dim_good_address {
   }
 
   dimension: region_name {
-    group_label: "Address"
+    group_label: "Good Address"
     type: string
     sql: ${TABLE}.RegionName ;;
   }
@@ -279,7 +279,7 @@ view: ereg_vw_dim_good_address {
   }
 
   dimension: street_code {
-    group_label: "Address"
+    group_label: "Good Address"
     type: string
     sql: ${TABLE}.StreetCode ;;
   }
@@ -291,7 +291,7 @@ view: ereg_vw_dim_good_address {
   }
 
   dimension: street_name {
-    group_label: "Address"
+    group_label: "Good Address"
     type: string
     sql: ${TABLE}.StreetName ;;
   }
@@ -315,7 +315,7 @@ view: ereg_vw_dim_good_address {
   }
 
   dimension: zip_code {
-    group_label: "Address"
+    group_label: "Good Address"
     type: zipcode
     sql: ${TABLE}.ZipCode ;;
   }
