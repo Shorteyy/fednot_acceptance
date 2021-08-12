@@ -2,7 +2,7 @@
 view: dim_date {
 #  extends: [global_parameters]
   # label: "Date Hierarchy"
-  sql_table_name: `dwh.DimDate`
+  sql_table_name: `dwh.dbo_DimDate`
     ;;
 
   parameter: timeframe_picker {
